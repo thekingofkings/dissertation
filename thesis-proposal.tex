@@ -1,0 +1,57 @@
+\documentclass[11pt]{article}
+
+\usepackage[top=1in,left=1in,right=1in,bottom=1in]{geometry}
+
+
+\title{Thesis Proposal}
+\author{Hongjian Wang \qquad hxw186@ist.psu.edu}
+\date{}
+
+
+\begin{document}
+
+\maketitle
+
+Use heterogeneous urban data to solve practical problems.
+
+
+\begin{table}[h]
+\centering
+\caption{The category of research problems.}
+\begin{tabular}{|c|c|c|}
+\hline
+ & Individual level & Aggregated level \\ \hline
+Single domain correlation & 	&  \\ \hline
+Cross domain correlations &     &  \\ \hline
+\end{tabular}
+\end{table}
+
+
+The urban data we have worked on
+\begin{itemize}
+\item Taxi trips
+\item POI
+\item Tweets (geo-tagged)
+\item crime
+\end{itemize}
+
+The problem I am interested in working on.
+\begin{itemize}
+\item \textbf{Measure Relationship Strength} is a fundamental problem. The proposed measure can benefit the recommendation and a series of real applications. 
+	\begin{itemize}
+		\item \textbf{Current work} use the historical check-ins to profile user and measure the distance between a pair. 
+        \item \textbf{Future work} (1) use cross-domain data (combine tweets hashtag, which reflects the individual interest). (2) generalize the measure to identify community. One interested approach is to create individual user embedding from their social network / co-location network. 
+	\end{itemize}
+\item \textbf{Traffic analysis} -- either predict travel time / traffic volume, or correlate traffic with event. 
+	\begin{itemize}
+		\item \textbf{Current work} travel time estimation. Use big data to ease the complexity of simple task.
+        \item \textbf{Future work} correlate the traffic with event. Predict traffic variation with respect to external impact (weather, event, traffic accident).
+	\end{itemize}
+\item \textbf{Study social properties of city}
+	\begin{itemize}
+		\item \textbf{Current work} infer the crime count at a certain community area in Chicago. Correlate POI and taxi flow with crime propagation.
+	\end{itemize}
+\end{itemize}
+
+
+\end{document}
