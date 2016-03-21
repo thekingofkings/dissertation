@@ -3,7 +3,7 @@
 \usepackage[top=1in,left=1in,right=1in,bottom=1in]{geometry}
 
 
-\title{Thesis Proposal}
+\title{Understand Movement Pattern: from Individual Trajectory to Aggregated Flow}
 \author{Hongjian Wang \qquad hxw186@ist.psu.edu}
 \date{}
 
@@ -12,7 +12,77 @@
 
 \maketitle
 
-Use heterogeneous urban data to solve practical problems.
+
+\section{Background}
+
+
+Millions of trajectory data are collected.
+
+\begin{itemize}
+\item Geo-tagged tweets.
+\item Taxi on-board GPS.
+\item LEHD social flow
+\end{itemize}
+
+
+
+
+
+\section{Problem}
+
+How to interpret the movement that we have observed? This question can be further specified as two questions. 
+
+
+\subsection{Given individual trajectories, answer the question why it moves like this.}
+
+We define simple pattern such as periodic pattern~\cite{li2010mining}.
+
+When other nearby individual's trajectories are available, we further study following pattern~\cite{li2010swarm}, attraction/avoidance~\cite{li2013attraction}, and many more.
+
+
+\textbf{Challenge 1:} Most simple patterns are defined and mined on animal data. For human beings, the mobility pattern is more complicated to define and mine. How to correlate one's mobility with others is hard to answer.
+
+
+
+\subsection{Given an observed social flow, explore what are the factors that strongly influences this flow.}
+
+Examples are urban traffic flow prediction~\cite{castro2012urban}.  However, such work only interprets the flow with historical observation. We still cannot answer what factors are there that significantly influence the traffic.
+
+To better understand the agreggated flow, we need extra information. Luckily, we have them.
+The urban data we are able to collect:
+\begin{itemize}
+\item POI
+\item Tweets (geo-tagged)
+\item Air pollution
+\item City noies
+\item crime
+\end{itemize}
+
+Some existing work has already demonstrated the correlation between traffic and other urban factors, such as air pollution~\cite{zheng2013u} and city noise~\cite{zheng2014diagnosing}.
+
+\textbf{Challenge 2:} how to combine different data types and model them simultaneously is difficult.
+
+
+
+\subsection{Link the individual trajecotry to aggregated flow pattern}
+
+The aforementioned two problmes should not be orthogonal. The individual level results or minined pattern, are suppoed to be able to naturally scale to aggragated pattern.
+
+
+Take the geographical relationship strength for example. At individual level, we can propose pair-wise measure, which works pretty well. At aggregated level, we can use clustering to detect community. However, when the second method is applied on the first problem, it cannot outperform the algorithm dedicated for the first. Similarly, it is not efficient to apply the dedicated pair-wise measure for the first problem to the second one.
+
+
+\textbf{Challenge 3:} propose a generalized framework to fill the gap between the first two problmes.
+
+
+
+
+
+
+
+\section{Methodology}
+
+
 
 
 \begin{table}[h]
@@ -27,31 +97,25 @@ Cross domain correlations &     &  \\ \hline
 \end{table}
 
 
-The urban data we have worked on
+\subsection{Measure Geographical Relationship Strength}
+
+
+The proposed measure consists of three different factors, which effectively outperforms the meeting frequency-based baseline method. Such a effective measure can benefit the recommendation and a series of other real applications. 
 \begin{itemize}
-\item Taxi trips
-\item POI
-\item Tweets (geo-tagged)
-\item crime
+\item Location popularity
+\item User personal preference
+\item The temporal distribution of pair-wise co-location events.
 \end{itemize}
 
-The problem I am interested in working on.
-\begin{itemize}
-\item \textbf{Measure Relationship Strength} is a fundamental problem. The proposed measure can benefit the recommendation and a series of real applications. 
-	\begin{itemize}
-		\item \textbf{Current work} use the historical check-ins to profile user and measure the distance between a pair. 
-        \item \textbf{Future work} (1) use cross-domain data (combine tweets hashtag, which reflects the individual interest). (2) generalize the measure to identify community. One interested approach is to create individual user embedding from their social network / co-location network. 
-	\end{itemize}
-\item \textbf{Traffic analysis} -- either predict travel time / traffic volume, or correlate traffic with event. 
-	\begin{itemize}
-		\item \textbf{Current work} travel time estimation. Use big data to ease the complexity of simple task.
-        \item \textbf{Future work} correlate the traffic with event. Predict traffic variation with respect to external impact (weather, event, traffic accident).
-	\end{itemize}
-\item \textbf{Study social properties of city}
-	\begin{itemize}
-		\item \textbf{Current work} infer the crime count at a certain community area in Chicago. Correlate POI and taxi flow with crime propagation.
-	\end{itemize}
-\end{itemize}
+
+\subsection{Explore Aggregated Flow}
+Explore the correlation between community area flow transition and crime. To do so, we build a regression model to predict the crime count with traffic flow and many other features. The null hypothesis is that if the traffic flow is not correlated with the crime, adding them to the prediction model has no effect on the results. Through experiments on real data, we verify the correlation between taxi flow and crime propagation.
+
+
+
+
+\bibliographystyle{ieeetr}
+\bibliography{ref}
 
 
 \end{document}
