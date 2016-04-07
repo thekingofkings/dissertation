@@ -1,0 +1,87 @@
+\documentclass{article}
+
+
+
+\usepackage[top=1in,bottom=1in,left=1in,right=1in]{geometry}
+
+
+
+\title{Dynamic Coefficient Model}
+\author{Hongjian Wang}
+\date{April 7, 2016}
+
+
+
+\begin{document}
+
+\maketitle
+
+
+\section{Background}
+
+
+We use various types of data to estimate the crime count in community area (CA) of Chicago. For each CA we have observations on crime count and demographics. For each pair of CAs we also have observations on the taxi flow and spatial distance. One straightforward method is to build a regression model from all the features we observed to the crime counts.
+
+We have one interesting observations is that in the south and north part of Chicago, the significances of different features are different. Therefore, the idea is to learn a dynamic weights for different geospatial region.
+
+
+
+\section{Formulation}
+
+
+Suppose we have $n$ regions in total, $R = \{ r_1, r_2, \cdots, r_n \}$.
+The following notations are used
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|r|}
+\hline
+crime count at $r_i$ & $y_i$ \\ \hline
+demographics at $r_i$ & $\mathbf{d}_i$ \\ \hline
+taxi flow between $r_i$ and $r_j$ & $f_{ij}$ \\ \hline
+taxi flow weight matrix for $r_i$ & $\mathbf{f_i}$ \\ \hline
+spatial weight matrix for $r_i$ & $\mathbf{g_i}$ \\ \hline
+social flow lag variable for $r_i$ & $s_i = \mathbf{f}_i^T \mathbf{y}$ \\\hline
+spatial flow lag variable for $r_i$ & $p_i = \mathbf{g}_i^T \mathbf{y}$ \\\hline
+\end{tabular}
+\end{table}
+
+
+\section{Model}
+
+
+\subsection{Baseline Model}
+
+For simplicity we use linear regression model
+\[
+y_i = \mathbf{w}_1^T \mathbf{d}_i + w_2 s_i + w_3 p_i + w_4,
+\]
+where $\{ w \}$ are the coefficients.
+
+To simplify notations, we use $\mathbf{x}_i$ denote all the available predictors for region $r_i$,
+\[
+\mathbf{x}_i = [ \mathbf{d}_i, s_i, p_i, 1 ].
+\]
+Then the model becomes 
+\[
+y_i = \mathbf{w}^T \mathbf{x}_i.
+\]
+
+
+\subsection{Dynamic Model}
+
+Now we use a dynamic model, where $\mathbf{w}$ is different for various regions.
+This leads to 
+\[
+y_i  = \mathbf{w}_i^T \mathbf{x}_i.
+\]
+
+
+The problem with formulation is that there are too many parameters to learn. To address this issue, we use the constraint that \textbf{spatially adjacent regions share similar coefficients}.
+
+We use $S_{ij}$ to denote the adjacency of $r_i$ and $r_j$. 
+
+
+
+
+\end{document}
