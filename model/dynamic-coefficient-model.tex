@@ -22,7 +22,7 @@
 
 We use various types of data to estimate the crime count in community area (CA) of Chicago. For each CA we have observations on crime count and demographics. For each pair of CAs we also have observations on the taxi flow and spatial distance. One straightforward method is to build a regression model from all the features we observed to the crime counts.
 
-We have one interesting observations is that in the south and north part of Chicago, the significances of different features are different. Therefore, the idea is to learn a dynamic weights for different geospatial region.
+We have one interesting observations is that in the south and north part of Chicago, the significance of different features are different. Therefore, the idea is to learn a dynamic weights for different spatial region.
 
 
 
@@ -79,8 +79,21 @@ y_i  = \mathbf{w}_i^T \mathbf{x}_i.
 
 The problem with formulation is that there are too many parameters to learn. To address this issue, we use the constraint that \textbf{spatially adjacent regions share similar coefficients}.
 
-We use $S_{ij}$ to denote the adjacency of $r_i$ and $r_j$. 
+We use $S_{ij}$ to denote the adjacency of $r_i$ and $r_j$. And the aforementioned constraint is formulated as
+\[
+\min \sum_{i,j} S_{ij} ||\mathbf{w}_i^T - \mathbf{w}_j^T||_2^2
+\] The several choice of $S_{ij}$
+\begin{itemize}
+\item Binary indicator. $S_{ij} = 1$ if two regions are contiguous, otherwise $S_{ij} = 0$.
+\item The reverse distance between $r_i$ and $r_j$. 
+\end{itemize}
 
+The overall objective is
+
+\[
+\min_{\mathbf{W}} \alpha \sum_i || y_i - \mathbf{w}_i^T \mathbf{x}_i ||_2^2 + \beta \sum_{i,j} S_{ij} ||\mathbf{w}_i^T - \mathbf{w}_j^T||_2^2 
++ \theta || \mathbf{W} ||_F^2
+\]
 
 
 
