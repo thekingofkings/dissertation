@@ -1,7 +1,7 @@
 \documentclass{article}
 
 
-
+\usepackage{amsmath}
 \usepackage[top=1in,bottom=1in,left=1in,right=1in]{geometry}
 
 
@@ -90,10 +90,50 @@ We use $S_{ij}$ to denote the adjacency of $r_i$ and $r_j$. And the aforemention
 
 The overall objective is
 
-\[
-\min_{\mathbf{W}} \alpha \sum_i || y_i - \mathbf{w}_i^T \mathbf{x}_i ||_2^2 + \beta \sum_{i,j} S_{ij} ||\mathbf{w}_i^T - \mathbf{w}_j^T||_2^2 
+\begin{equation}
+\label{eq:obj}
+\min_{\mathbf{W}}  \sum_i || y_i - \mathbf{w}_i^T \mathbf{x}_i ||_2^2 + \eta \sum_{i,j} S_{ij} ||\mathbf{w}_i^T - \mathbf{w}_j^T||_2^2 
 + \theta || \mathbf{W} ||_F^2
+\end{equation}
+
+
+
+
+\section{Optimization}
+
+
+Rewrite the Frobenius norm in the last term
+\[
+|| \mathbf{W} ||_F^2 = \sum_i || \mathbf{w}_i - \mathbf{0}||_2^2.
 \]
+
+
+Therefore the Equation~\ref{eq:obj} is rewritten as
+\begin{equation}
+\label{eq:obj2}
+\min_{\mathbf{W}}  \sum_i || y_i - \mathbf{w}_i^T \mathbf{x}_i ||_2^2 + \eta \sum_{i,j \in 0, \cdots, N} S_{ij} || \mathbf{w}_i - \mathbf{w}_j ||_2^2,
+\end{equation}
+where $\mathbf{w}_0 = \mathbf{0}$ and $S_{0i} = 1$ for $\forall i$.
+
+
+To solve the objective in Equation~\ref{eq:obj2}, we use variable splitting. Namely, when optimizing for $\mathbf{w}_i$, we assume all other $\mathbf{w}_{j, j\neq i}$ are fixed. The subproblem is
+\begin{equation}
+\label{eq:subobj}
+\min_{\mathbf{w}_i}   ||y_i - \mathbf{w}_i^T \mathbf{x}_i ||_2^2 + \eta \sum_j S_{ij}|| \mathbf{w}_i - \mathbf{w}_j||_2^2.
+\end{equation}
+
+
+
+The update on $\mathbf{w}_i$ is
+\[
+\mathbf{w}_i = \min_{\mathbf{w}_i}   ||y_i - \mathbf{w}_i^T \mathbf{x}_i ||_2^2 + \eta \sum_j S_{ij} || \mathbf{w}_i - \mathbf{w}_j^{(t)} ||_2^2.
+\]
+
+The closed-form solution is
+
+\begin{equation}
+\mathbf{w}_i = (\mathbf{x}_i^T \mathbf{x}_i + \eta \sum_j S_{ij} \mathbf{I} )^{-1} (y_i \mathbf{x}_i + \eta \sum_j S_{ij} \mathbf{w}_j) 
+\end{equation}
 
 
 
