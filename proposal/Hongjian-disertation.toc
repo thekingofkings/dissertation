@@ -1,13 +1,21 @@
-\contentsline {chapter}{List of Figures}{vii}
-\contentsline {chapter}{List of Tables}{viii}
-\contentsline {chapter}{List of Symbols}{ix}
-\contentsline {chapter}{Acknowledgments}{x}
-\contentsline {chapter}{\numberline {1}Introduction -- Urban Computing}{2}
-\contentsline {section}{\numberline {1.1}The Challenges and Opportunities from Urban Data}{2}
-\contentsline {section}{\numberline {1.2}Take Crime Inference as an Example}{3}
-\contentsline {chapter}{\numberline {2}Related Work}{6}
-\contentsline {section}{\numberline {2.1}Crime Inference In the Literature}{6}
-\contentsline {chapter}{\numberline {3}Title of the Third Chapter}{9}
-\contentsline {chapter}{\numberline {4}Title of the Fourth Chapter}{10}
-\contentsline {chapter}{\numberline {5}Title of the Fifth Chapter}{11}
-\contentsline {chapter}{Bibliography}{12}
+\contentsline {chapter}{List of Figures}{vii}{chapter*.3}
+\contentsline {chapter}{List of Tables}{viii}{chapter*.4}
+\contentsline {chapter}{List of Symbols}{ix}{chapter*.5}
+\contentsline {chapter}{Acknowledgments}{x}{chapter*.6}
+\contentsline {chapter}{\numberline {1}Introduction -- Urban Computing}{2}{chapter.1}
+\contentsline {section}{\numberline {1.1}The Challenges and Opportunities from Urban Data}{2}{section.1.1}
+\contentsline {section}{\numberline {1.2}Take Crime Inference as an Example}{3}{section.1.2}
+\contentsline {chapter}{\numberline {2}Related Work}{6}{chapter.2}
+\contentsline {section}{\numberline {2.1}Crime Inference In the Literature}{6}{section.2.1}
+\contentsline {chapter}{\numberline {3}Base Model For Crime Inference}{9}{chapter.3}
+\contentsline {section}{\numberline {3.1}Problem Formulation}{9}{section.3.1}
+\contentsline {section}{\numberline {3.2}Base Inference Model}{11}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Linear Regression}{11}{subsection.3.2.1}
+\contentsline {section}{\numberline {3.3}Feature Extraction}{12}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Nodal Feature: Demographics}{13}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Nodal Feature: Point-of-Interest (POI)}{14}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}Edge: Geographical Influence}{16}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.4}Edge: Hyperlinks by Taxi Flow}{17}{subsection.3.3.4}
+\contentsline {chapter}{\numberline {4}Title of the Fourth Chapter}{20}{chapter.4}
+\contentsline {chapter}{\numberline {5}Title of the Fifth Chapter}{21}{chapter.5}
+\contentsline {chapter}{Bibliography}{22}{chapter.5}
