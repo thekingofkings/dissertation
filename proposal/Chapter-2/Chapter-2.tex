@@ -1,15 +1,33 @@
-\chapter{Title of the Second Chapter}
+\chapter{Related Work}
 
-\section{Introduction}
-When in the Course of human events, it becomes necessary for one people  to dissolve the political bands which have connected them with another,  and to assume among the powers of the earth, the separate and equal station  to which the Laws of Nature and of Nature's God entitle them, a decent respect to the opinions of mankind requires that they should declare  the causes which impel them to the separation.
 
-\section{More Declaration}
 
-We hold these truths to be self-evident, that all men are created equal,  that they are endowed by their Creator with certain unalienable Rights,  that among these are Life, Liberty and the pursuit of Happiness. --That to secure these  rights, Governments are instituted among Men, deriving their just powers  from the consent of the governed, --That whenever any Form of Government  becomes destructive of these ends, it is the Right of the People to alter  or to abolish it, and to institute new Government, laying its foundation on  such principles and organizing its powers in such form, as to them shall  seem most likely to effect their Safety and Happiness. Prudence, indeed, will dictate that Governments long established should not  be changed for light and transient causes; and accordingly all experience  hath shewn, that mankind are more disposed to suffer, while evils are  sufferable, than to right themselves by abolishing the forms to which they  are accustomed. But when a long train of abuses and usurpations, pursuing invariably the same  Object evinces a design to reduce them under absolute Despotism, it is their  right, it is their duty, to throw off such Government, and to provide new Guards for their future security. --Such has been the patient sufferance of these Colonies; and such is now the  necessity which constrains them to alter their former Systems of Government.
-%%
-\begin{equation}
-\label{eq: label}
-x = y
-\end{equation}
-%%
-The history of the present King of Great Britain [George III] is a history  of repeated injuries and usurpations, all having in direct object the  establishment of an absolute Tyranny over these States. To prove this, let Facts be submitted to a candid world.
+
+\section{Crime Inference In the Literature}
+
+
+In the criminology literature researchers have studied the relationship between crime and various features. Examples are historical crime records~\cite{MSBS+12,WRWS13}, education~\cite{Ehrl75}, ethnicity~\cite{Brai89}, income level~\cite{Patt91}, unemployment~\cite{Free99}, and spatial proximity~\cite{Ans02}. 
+In data mining field, newer type of data are used in the study. For example, there are works using twitter to predict crime \cite{WGB12,Gerb14}, and works using cellphone data \cite{TQC14,Bogo14} to evaluate crime and social theories at scale. 
+
+
+Overall, the existing work on crime prediction can be categorized into three paradigms.
+
+
+
+\textbf{Time-centric paradigm}. This line of work focuses on the temporal dimension of crime incidents. For example, in a study \cite{MSBS+12}, the authors propose to use a self-exciting point process to model the crime and gain insights into the temporal trends in the rate of burglary. In another study \cite{Ratc06}, the authors investigate the temporal constraints on crime, and propose an offender travel and opportunity model. This paper validates the claim that a proportion of offending is driven by the availability of opportunities presented in the offender's routine lives. 
+
+
+\textbf{Place-centric paradigm}. Most existing work adopt a place-centric paradigm, where the research question is to predict the location of  crime incidents.  The predicated crime location is usually refereed by the term \emph{hotspot}, which has various geographical size.  There are plenty of works on exploration of the crime hotspots. For example, in a study \cite{TEP11} the authors  use criminal offense records to identify spatio-temporal patterns at multiple scales. They employ various quantitative tools from mathematics and physics and identify significant correlation in both space and time in the crime behavioral data.  Short \emph{et al.} \cite{SDPT+08} use a simple model to study the dynamics of crime hotspots and identify stable hotspots, where criminals are modeled as random walkers.  Bogomolov \emph{et al.} \cite{Bogo14} use human behavioral data derived from mobile network and demographic sources, together with open crime data to predict crime hotspots. They compare various classifiers and find random forest has the best prediction performance. The paper \cite{WGB12} bases on automatic semantic analysis to understand natural language Twitter posts, from which the crime incidents are reported. Some other work \cite{CTU08,ECCW05} employ the kernel density estimation (KDE) to identify and analyze crime hot spots. Those works form another form of crime prediction, which relies on the retrospective crime data to identify areas of high concentrations of crime. In  \cite{NaYa14}, the authors extend the crime cluster analysis with a temporal dimension. They employ the space-time variants of KDE to simultaneously visualize geographical extent and duration of crime clusters. 
+
+
+
+
+
+
+
+\textbf{Population-centric paradigm}. In the last paradigm, research focuses on the criminal profiling at individual level and community level. At the individual level, \cite{WRWS13} aim to automatically  identify crimes committed by same individual from the historical crime database. The proposed system called \emph{Series Finder}, is designed to find and classify modus operandi (M.O.)  of criminals.  At the community level, Buczak \emph{et al.} \cite{BuGi10} use fuzzy association rule mining to find crime pattern. The rules they found are consistently held across all regions. The paper constructs association rules from population demographics in community.  In another paper \cite{TQC14}, the authors use computation method to validate various social theories at a large scale.  The data they used is mobile phone data in London, from which they mine the  people dynamics as features to correlate with crime.  
+
+
+Our problem is different from the first two categories of work, mainly because our innovation mostly lies in using newer type of data to enhance the commonly used traditional counterpart. More specifically, we use POI to enhance the demographics information, and use taxi flow as hyper link to enhance the geographical proximity correlation. Although our problem does not consider the temporal dimension of crime in depth, it could be a promising supplement to better profile crime. Our problem dose not predict the location of any particular crime incident. Therefore the methods proposed in place-centric method are not applicable in our problem. However, the features we proposed may be incorporated in those crime prediction model. 
+Our problem falls into the third paradigm,  because we are trying to profile the crime rate for Chicago community areas. In our problem, the community areas are well-defined and stable geographical regions. The newly proposed POI feature and taxi hyper link provide a unique perspective in profiling the crime rate across community areas.
+
