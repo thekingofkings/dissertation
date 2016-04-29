@@ -257,3 +257,23 @@ The correlation between taxi flow and crime rate is shown in Figure~\ref{fig:tax
 \caption{Correlation between taxi flow and crime rate. In the plot, we marked out three outliers and their corresponding community area ID.}
 \label{fig:taxi-corr}
 \end{figure}
+
+
+
+
+
+\section{Evaluation of Base Model}
+
+
+We evaluate the linear regression base model. We use a incremental settings, where new features are added on top of previous one. The results are shown in Figure~\ref{fig:lrresult}.
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{fig/lrresult.png}
+\caption{The inference error for linear regression base model. $^*$D -- demographic features, G -- geographical influence, P -- POI features, T -- taxi flow feature}
+\label{fig:lrresult}
+\end{figure}
+
+
+From the result in Figure~\ref{fig:lrresult}, we found that the newly added feature does not improve the inference accuracy. This result is counterintuitive. Dose this mean our intuition is not correct? Or it means that we did not pick the right model.  In the next chapter, we will go into the weakness of the base model. At the same time, we propose some new technique to improve the base model.

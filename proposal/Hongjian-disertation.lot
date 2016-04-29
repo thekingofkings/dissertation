@@ -4,8 +4,9 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\addvspace {10\p@ }
 \contentsline {table}{\numberline {3.1}{\ignorespaces Pearson correlation between demographic features and crime rate (\textbf {*} indicates significant correlations with p-value less than $5\%$). }}{14}{table.3.1}
 \contentsline {table}{\numberline {3.2}{\ignorespaces Pearson correlation between POI category and crime rate (\textbf {*} indicates significant correlations with p-value less than $5\%$).}}{15}{table.3.2}
 \addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces Performance evaluation. Various feature combinations are shown in each column. The linear regression model and negative binomial results are compared by year group. }}{24}{table.4.1}
+\contentsline {table}{\numberline {4.2}{\ignorespaces Symbols for the dynamic coefficient model.}}{25}{table.4.2}
 \addvspace {10\p@ }

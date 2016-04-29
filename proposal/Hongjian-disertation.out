@@ -1,21 +1,38 @@
 \BOOKMARK [0][-]{chapter*.3}{List of Figures}{}% 1
 \BOOKMARK [0][-]{chapter*.4}{List of Tables}{}% 2
-\BOOKMARK [0][-]{chapter*.5}{List of Symbols}{}% 3
-\BOOKMARK [0][-]{chapter*.6}{Acknowledgments}{}% 4
-\BOOKMARK [0][-]{chapter.1}{Introduction \205 Urban Computing}{}% 5
-\BOOKMARK [1][-]{section.1.1}{The Challenges and Opportunities from Urban Data}{chapter.1}% 6
-\BOOKMARK [1][-]{section.1.2}{Take Crime Inference as an Example}{chapter.1}% 7
-\BOOKMARK [0][-]{chapter.2}{Related Work}{}% 8
-\BOOKMARK [1][-]{section.2.1}{Crime Inference In the Literature}{chapter.2}% 9
-\BOOKMARK [0][-]{chapter.3}{Base Model For Crime Inference}{}% 10
-\BOOKMARK [1][-]{section.3.1}{Problem Formulation}{chapter.3}% 11
-\BOOKMARK [1][-]{section.3.2}{Base Inference Model}{chapter.3}% 12
-\BOOKMARK [2][-]{subsection.3.2.1}{Linear Regression}{section.3.2}% 13
-\BOOKMARK [1][-]{section.3.3}{Feature Extraction}{chapter.3}% 14
-\BOOKMARK [2][-]{subsection.3.3.1}{Nodal Feature: Demographics}{section.3.3}% 15
-\BOOKMARK [2][-]{subsection.3.3.2}{Nodal Feature: Point-of-Interest \(POI\)}{section.3.3}% 16
-\BOOKMARK [2][-]{subsection.3.3.3}{Edge: Geographical Influence}{section.3.3}% 17
-\BOOKMARK [2][-]{subsection.3.3.4}{Edge: Hyperlinks by Taxi Flow}{section.3.3}% 18
-\BOOKMARK [0][-]{chapter.4}{Title of the Fourth Chapter}{}% 19
-\BOOKMARK [0][-]{chapter.5}{Title of the Fifth Chapter}{}% 20
-\BOOKMARK [0][-]{chapter.5}{Bibliography}{}% 21
+\BOOKMARK [0][-]{chapter*.5}{Acknowledgments}{}% 3
+\BOOKMARK [0][-]{chapter.1}{Introduction \205 Urban Computing}{}% 4
+\BOOKMARK [1][-]{section.1.1}{The Challenges and Opportunities from Urban Data}{chapter.1}% 5
+\BOOKMARK [1][-]{section.1.2}{Take Crime Inference as an Example}{chapter.1}% 6
+\BOOKMARK [0][-]{chapter.2}{Related Work}{}% 7
+\BOOKMARK [1][-]{section.2.1}{Crime Inference In the Literature}{chapter.2}% 8
+\BOOKMARK [0][-]{chapter.3}{Base Model For Crime Inference}{}% 9
+\BOOKMARK [1][-]{section.3.1}{Problem Formulation}{chapter.3}% 10
+\BOOKMARK [1][-]{section.3.2}{Base Inference Model}{chapter.3}% 11
+\BOOKMARK [2][-]{subsection.3.2.1}{Linear Regression}{section.3.2}% 12
+\BOOKMARK [1][-]{section.3.3}{Feature Extraction}{chapter.3}% 13
+\BOOKMARK [2][-]{subsection.3.3.1}{Nodal Feature: Demographics}{section.3.3}% 14
+\BOOKMARK [2][-]{subsection.3.3.2}{Nodal Feature: Point-of-Interest \(POI\)}{section.3.3}% 15
+\BOOKMARK [2][-]{subsection.3.3.3}{Edge: Geographical Influence}{section.3.3}% 16
+\BOOKMARK [2][-]{subsection.3.3.4}{Edge: Hyperlinks by Taxi Flow}{section.3.3}% 17
+\BOOKMARK [1][-]{section.3.4}{Evaluation of Base Model}{chapter.3}% 18
+\BOOKMARK [0][-]{chapter.4}{Improve the Base Model}{}% 19
+\BOOKMARK [1][-]{section.4.1}{Use a count prediction model}{chapter.4}% 20
+\BOOKMARK [2][-]{subsection.4.1.1}{Linear regression gives negative prediction}{section.4.1}% 21
+\BOOKMARK [2][-]{subsection.4.1.2}{Poisson regression as a count prediction model}{section.4.1}% 22
+\BOOKMARK [2][-]{subsection.4.1.3}{Negative binomial regression addresses over-dispersion}{section.4.1}% 23
+\BOOKMARK [2][-]{subsection.4.1.4}{Evaluation of negative binomial regression model}{section.4.1}% 24
+\BOOKMARK [3][-]{subsubsection.4.1.4.1}{Evaluation Settings}{subsection.4.1.4}% 25
+\BOOKMARK [3][-]{subsubsection.4.1.4.2}{Performance Study: Negative Binomial Regression vs. Linear Regression}{subsection.4.1.4}% 26
+\BOOKMARK [1][-]{section.4.2}{Capture spatial non-stationarity \(Proposed problem 1\)}{chapter.4}% 27
+\BOOKMARK [2][-]{subsection.4.2.1}{Dynamic spatial model}{section.4.2}% 28
+\BOOKMARK [3][-]{subsubsection.4.2.1.1}{Dynamic linear regression model}{subsection.4.2.1}% 29
+\BOOKMARK [3][-]{subsubsection.4.2.1.2}{Optimization}{subsection.4.2.1}% 30
+\BOOKMARK [3][-]{subsubsection.4.2.1.3}{Inference}{subsection.4.2.1}% 31
+\BOOKMARK [1][-]{section.4.3}{Consider complicated interaction \(Proposed problem 2\)}{chapter.4}% 32
+\BOOKMARK [2][-]{subsection.4.3.1}{Problem Formulation}{section.4.3}% 33
+\BOOKMARK [2][-]{subsection.4.3.2}{Conditional random field model}{section.4.3}% 34
+\BOOKMARK [3][-]{subsubsection.4.3.2.1}{Potential Function}{subsection.4.3.2}% 35
+\BOOKMARK [3][-]{subsubsection.4.3.2.2}{Inference}{subsection.4.3.2}% 36
+\BOOKMARK [0][-]{chapter.5}{Research Plan and Schedule}{}% 37
+\BOOKMARK [0][-]{chapter.5}{Bibliography}{}% 38

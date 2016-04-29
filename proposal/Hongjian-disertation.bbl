@@ -1,0 +1,224 @@
+\begin{thebibliography}{10}
+\newcommand{\enquote}[1]{``#1''}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem{Baum05}
+\textsc{Baum, K.} (2005) \emph{Juvenile victimization and offending,
+  1993-2003}, US Department of Justice, Office of Justice Programs, Bureau of
+  Justice Statistics.
+
+\bibitem{Fink08}
+\textsc{Finkelhor, D.} (2008) \emph{Childhood victimization: violence, crime,
+  and abuse in the lives of young people: violence, crime, and abuse in the
+  lives of young people}, Oxford University Press, USA.
+
+\bibitem{cdc15}
+\textsc{for Disease~Control, N.~C.} and \textsc{P.~(CDC)} (2015)
+  \enquote{Leading Causes of Nonfatal Injury, United States 2001 - 2013.}
+  \emph{Injury Prevention and Control: data and statistics}.
+
+\bibitem{Grai15}
+\textsc{Graif, C.} (2015) \enquote{Toward a Geographically Extended Perspective
+  of Neighborhood Effects on Children's Victimization,} \emph{American Society
+  of Criminology Annual Meeting}.
+
+\bibitem{crime-stats}
+\textsc{Tribune, C.} (2015), \enquote{A tale of 3 cities: LA and NYC outpace
+  Chicago in curbing violence,} .
+\newline\urlprefix\url{http://www.chicagotribune.com/news/ct-violence-chicago-new-york-los-angeles-met-20150918-story.html}
+
+\bibitem{GrSa09}
+\textsc{Graif, C.} and \textsc{R.~J. Sampson} (2009) \enquote{Spatial
+  heterogeneity in the effects of immigration and diversity on neighborhood
+  homicide rates,} \emph{Homicide Studies}.
+
+\bibitem{Ans02}
+\textsc{Anselin, L.} (2002) \enquote{Under the hood: issues in the
+  specification and interpretation of spatial regression models,}
+  \emph{Agricultural economics}, \textbf{27}(3), pp. 247--267.
+
+\bibitem{ZCWY14}
+\textsc{Zheng, Y.}, \textsc{L.~Capra}, \textsc{O.~Wolfson}, and
+  \textsc{H.~Yang} (2014) \enquote{Urban computing: concepts, methodologies,
+  and applications,} \emph{ACM TIST}, \textbf{5}(3), p.~38.
+
+\bibitem{YZX12}
+\textsc{Yuan, J.}, \textsc{Y.~Zheng}, and \textsc{X.~Xie} (2012)
+  \enquote{Discovering regions of different functions in a city using human
+  mobility and POIs,} in \emph{ACM SIGKDD}, ACM, pp. 186--194.
+
+\bibitem{GGM14}
+\textsc{Graif, C.}, \textsc{A.~S. Gladfelter}, and \textsc{S.~A. Matthews}
+  (2014) \enquote{Urban poverty and neighborhood effects on crime:
+  Incorporating spatial and network perspectives,} \emph{Sociology Compass},
+  \textbf{8}(9), pp. 1140--1155.
+
+\bibitem{MSBS+12}
+\textsc{Mohler, G.~O.}, \textsc{M.~B. Short}, \textsc{P.~J. Brantingham},
+  \textsc{F.~P. Schoenberg}, and \textsc{G.~E. Tita} (2012)
+  \enquote{Self-exciting point process modeling of crime,} \emph{Journal of the
+  American Statistical Association}.
+
+\bibitem{WRWS13}
+\textsc{Wang, T.}, \textsc{C.~Rudin}, \textsc{D.~Wagner}, and
+  \textsc{R.~Sevieri} (2013) \enquote{Learning to detect patterns of crime,} in
+  \emph{Machine Learning and Knowledge Discovery in Databases}, Springer.
+
+\bibitem{Ehrl75}
+\textsc{Ehrlich, I.} (1975) \enquote{On the relation between education and
+  crime,} in \emph{Education, income, and human behavior}, NBER, pp. 313--338.
+
+\bibitem{Brai89}
+\textsc{Braithwaite, J.} (1989) \emph{Crime, shame and reintegration},
+  Cambridge University Press.
+
+\bibitem{Patt91}
+\textsc{Patterson, E.~B.} (1991) \enquote{Poverty, income inequality, and
+  community crime rates,} \emph{Criminology}, \textbf{29}(4), pp. 755--776.
+
+\bibitem{Free99}
+\textsc{Freeman, R.~B.} (1999) \enquote{The economics of crime,} \emph{Handbook
+  of labor economics}, \textbf{3}, pp. 3529--3571.
+
+\bibitem{WGB12}
+\textsc{Wang, X.}, \textsc{M.~S. Gerber}, and \textsc{D.~E. Brown} (2012)
+  \enquote{Automatic crime prediction using events extracted from twitter
+  posts,} in \emph{Social Computing, Behavioral-Cultural Modeling and
+  Prediction}, Springer, pp. 231--238.
+
+\bibitem{Gerb14}
+\textsc{Gerber, M.~S.} (2014) \enquote{Predicting crime using Twitter and
+  kernel density estimation,} \emph{Decision Support Systems}, \textbf{61}.
+
+\bibitem{TQC14}
+\textsc{Traunmueller, M.}, \textsc{G.~Quattrone}, and \textsc{L.~Capra} (2014)
+  \enquote{Mining mobile phone data to investigate urban crime theories at
+  scale,} in \emph{Social Informatics}, Springer, pp. 396--411.
+
+\bibitem{Bogo14}
+\textsc{Bogomolov, A.}, \textsc{B.~Lepri}, \textsc{J.~Staiano},
+  \textsc{N.~Oliver}, \textsc{F.~Pianesi}, and \textsc{A.~Pentland} (2014)
+  \enquote{Once upon a crime: towards crime prediction from demographics and
+  mobile data,} in \emph{Proceedings of the 16th international conference on
+  multimodal interaction}, ACM, pp. 427--434.
+
+\bibitem{Ratc06}
+\textsc{Ratcliffe, J.~H.} (2006) \enquote{A temporal constraint theory to
+  explain opportunity-based spatial offending patterns,} \emph{Journal of
+  Research in Crime and Delinquency}, \textbf{43}(3), pp. 261--291.
+
+\bibitem{TEP11}
+\textsc{Toole, J.~L.}, \textsc{N.~Eagle}, and \textsc{J.~B. Plotkin} (2011)
+  \enquote{Spatiotemporal correlations in criminal offense records,} \emph{ACM
+  Transactions on Intelligent Systems and Technology (TIST)}, \textbf{2}(4),
+  p.~38.
+
+\bibitem{SDPT+08}
+\textsc{Short, M.~B.}, \textsc{M.~R. D'ORSOGNA}, \textsc{V.~B. Pasour},
+  \textsc{G.~E. Tita}, \textsc{P.~J. Brantingham}, \textsc{A.~L. Bertozzi}, and
+  \textsc{L.~B. Chayes} (2008) \enquote{A statistical model of criminal
+  behavior,} \emph{Mathematical Models and Methods in Applied Sciences},
+  \textbf{18}(supp01), pp. 1249--1267.
+
+\bibitem{CTU08}
+\textsc{Chainey, S.}, \textsc{L.~Tompson}, and \textsc{S.~Uhlig} (2008)
+  \enquote{The utility of hotspot mapping for predicting spatial patterns of
+  crime,} \emph{Security Journal}, \textbf{21}(1), pp. 4--28.
+
+\bibitem{ECCW05}
+\textsc{Eck, J.}, \textsc{S.~Chainey}, \textsc{J.~Cameron}, and
+  \textsc{R.~Wilson} (2005) \enquote{Mapping crime: Understanding hotspots,} .
+
+\bibitem{NaYa14}
+\textsc{Nakaya, T.} and \textsc{K.~Yano} (2010) \enquote{Visualising Crime
+  Clusters in a Space-time Cube: An Exploratory Data-analysis Approach Using
+  Space-time Kernel Density Estimation and Scan Statistics,} \emph{Transactions
+  in GIS}, \textbf{14}(3), pp. 223--239.
+
+\bibitem{BuGi10}
+\textsc{Buczak, A.~L.} and \textsc{C.~M. Gifford} (2010) \enquote{Fuzzy
+  association rule mining for community crime pattern discovery,} in \emph{ACM
+  SIGKDD Workshop on Intelligence and Security Informatics}, ACM, p.~2.
+
+\bibitem{wiki-ca}
+\textsc{Wikipedia} (2015), \enquote{Community areas in Chicago --- Wikipedia{,}
+  The Free Encyclopedia,} .
+\newline\urlprefix\url{https://en.wikipedia.org/w/index.php?title=Community_areas_in_Chicago&oldid=696795849}
+
+\bibitem{crime-data}
+ (2015), \enquote{City of Chicago data portal,}
+  https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-present/ijzp-q8t2.
+
+\bibitem{HsPu93}
+\textsc{Hsieh, C.-C.} and \textsc{M.~D. Pugh} (1993) \enquote{Poverty, income
+  inequality, and violent crime: a meta-analysis of recent aggregate data
+  studies,} \emph{Criminal Justice Review}, \textbf{18}(2), pp. 182--202.
+
+\bibitem{WoMe12}
+\textsc{Wolfe, M.~K.} and \textsc{J.~Mennis} (2012) \enquote{Does vegetation
+  encourage or suppress urban crime? Evidence from Philadelphia, PA,}
+  \emph{Landscape and Urban Planning}, \textbf{108}(2), pp. 112--122.
+
+\bibitem{SaHi07}
+\textsc{Sahbaz, O.} and \textsc{B.~Hillier} (2007) \enquote{The story of the
+  crime: functional, temporal and spatial tendencies in street robbery,} in
+  \emph{Proc of 6th International Space Syntax Symposium, Istanbul}, pp. 4--14.
+
+\bibitem{Jac61}
+\textsc{Jacobs, J.} (1961) \emph{The death and life of great American cities},
+  Vintage.
+
+\bibitem{census-data}
+\enquote{United States Census Bureau,} http://www.census.gov.
+
+\bibitem{SRE97}
+\textsc{Sampson, R.~J.}, \textsc{S.~W. Raudenbush}, and \textsc{F.~Earls}
+  (1997) \enquote{Neighborhoods and violent crime: A multilevel study of
+  collective efficacy,} \emph{Science}, \textbf{277}(5328), pp. 918--924.
+
+\bibitem{poi-data}
+\enquote{Foursquare Venues Service,}
+  https://developer.foursquare.com/overview/venues.html.
+
+\bibitem{GSGL01}
+\textsc{Gorman, D.~M.}, \textsc{P.~W. Speer}, \textsc{P.~J. Gruenewald}, and
+  \textsc{E.~W. Labouvie} (2001) \enquote{Spatial dynamics of alcohol
+  availability, neighborhood structure and violent crime.} \emph{Journal of
+  studies on alcohol}, \textbf{62}(5), pp. 628--636.
+
+\bibitem{Bur88}
+\textsc{Burnell, J.~D.} (1988) \enquote{Crime and racial composition in
+  contiguous communities as negative externalities: prejudiced household's
+  evaluation of crime rate and segregation nearby reduces housing values and
+  tax revenues,} \emph{American Journal of Economics and Sociology},
+  \textbf{47}(2), pp. 177--193.
+
+\bibitem{ACC00}
+\textsc{Anselin, L.}, \textsc{J.~Cohen}, \textsc{D.~Cook}, \textsc{W.~Gorr},
+  and \textsc{G.~Tita} (2000) \enquote{Spatial analyses of crime,}
+  \emph{Criminal justice}, \textbf{4}(2), pp. 213--262.
+
+\bibitem{MoSa97}
+\textsc{Morenoff, J.~D.} and \textsc{R.~J. Sampson} (1997) \enquote{Violent
+  crime and the spatial dynamics of neighborhood transition: Chicago,
+  1970--1990,} \emph{Social forces}, \textbf{76}(1), pp. 31--64.
+
+\bibitem{GMS95}
+\textsc{Gardner, W.}, \textsc{E.~P. Mulvey}, and \textsc{E.~C. Shaw} (1995)
+  \enquote{Regression analyses of counts and rates: Poisson, overdispersed
+  Poisson, and negative binomial models.} \emph{Psychological bulletin},
+  \textbf{118}(3), p. 392.
+
+\bibitem{Lamb92}
+\textsc{Lambert, D.} (1992) \enquote{Zero-inflated Poisson regression, with an
+  application to defects in manufacturing,} \emph{Technometrics},
+  \textbf{34}(1), pp. 1--14.
+
+\bibitem{Osg00}
+\textsc{Osgood, D.~W.} (2000) \enquote{Poisson-based regression analysis of
+  aggregate crime rates,} \emph{Journal of quantitative criminology},
+  \textbf{16}(1), pp. 21--43.
+
+\end{thebibliography}

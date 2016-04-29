@@ -2,9 +2,8 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\addvspace {10\p@ }
 \contentsline {figure}{\numberline {1.1}{\ignorespaces Use data collected in the urban space to address real urban problems.}}{2}{figure.1.1}
-\contentsline {figure}{\numberline {1.2}{\ignorespaces An illustration of various types of features we used in Chicago. The POI distribution across community areas reflects profiles of the region functionality. The taxi flow connects nonadjacent regions and act as a ``hyperlink''.}}{4}{figure.1.2}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces An illustration of various types of features we used in Chicago. The POI distribution across community areas reflects profiles of the region functionality. The taxi flow connects nonadjacent regions and act as a ``hyperlink''.}}{3}{figure.1.2}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Crime rate of Chicago by community areas. The community area \#32 is Chicago downtown, which has the highest crime rate.}}{10}{figure.3.1}
@@ -19,5 +18,8 @@
 \contentsline {figure}{\numberline {3.4}{\ignorespaces The geographical influence feature correlation with crime. In the plot we marked out three outliers and their corresponding community area ID.}}{16}{figure.3.4}
 \contentsline {figure}{\numberline {3.5}{\ignorespaces Major taxi flows between neighborhoods. We set a threshold ($> 5,000$) on the flow and only plot the high volume flow. The label on the node is the ID of the corresponding community areas. We can see that there are several hub community areas, such as \#6, \#8, \#32, which are all in the downtown areas. The label on the edge shows how many taxi trips are commuting through the two community areas for three months in 2013.}}{18}{figure.3.5}
 \contentsline {figure}{\numberline {3.6}{\ignorespaces Correlation between taxi flow and crime rate. In the plot, we marked out three outliers and their corresponding community area ID.}}{19}{figure.3.6}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces The inference error for linear regression base model. $^*$D -- demographic features, G -- geographical influence, P -- POI features, T -- taxi flow feature}}{19}{figure.3.7}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces The inference error for linear regression base model. $^*$D -- demographic features, G -- geographical influence, P -- POI features, T -- taxi flow feature}}{23}{figure.4.1}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces The CRF model of the crime rate $y_i$ for each grid $g_i$.}}{29}{figure.4.2}
 \addvspace {10\p@ }
