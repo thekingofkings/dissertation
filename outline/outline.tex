@@ -1,0 +1,72 @@
+\documentclass{article}
+
+
+\usepackage[top=1in,bottom=1in,left=1in,right=1in]{geometry}
+
+
+
+\begin{document}
+
+
+\section{Introduction}
+
+In the urban space, explain the data variatey, volume, and velocity. They pose challenges and opportunities in addressing real urban computing problem.
+
+Challenges:
+\begin{itemize}
+\item Data sparse and nosise
+\item Heterogeneous data type
+\item Data is huge
+\end{itemize}
+
+Problems with existing methods:
+\begin{itemize}
+\item model of interaction is ad-hoc
+\item the spatial non-stationarity
+\end{itemize}
+
+
+My reserach focus is to model complicated interactions in the urban space. It could be interactions of regions, people, and features. And I want to propose a unified graphical model to do this.
+
+\subsection{Research questions include:}
+
+\begin{itemize}
+\item How does the crime (or any other feature) in one region correlate and influence that variable of other regions.
+\item What influence crime in focal region, the crime in its neighbor, or the demographics in its neighbor.
+\item Measure the similarity of two person, given their observations.
+\item How would the traffic change, if build a new transportation center at location X.
+\end{itemize}
+
+
+Understanding the interactions can help us solve three fundamental problems in urban space.
+
+\begin{itemize}
+\item Inference (single source from others) problem. [Prediction]
+\item Structural learning. Does two variable correlated? How?
+\item Partition regions (address misalignment issue). community detection based on high-dimension similarity.
+\end{itemize}
+
+
+
+\subsection{Why use grapihcal model?}
+
+A graphical model support three kinds of learning problem:
+
+\begin{enumerate}
+\item Infer unobserved values.
+\item Learn parameters.  Given graph, learn dependency.
+\item Structural learning. Given data, the graph is too complicated to build. Learn the graph.
+\end{enumerate}
+
+Therefore,  a graphical model is a unified approach.
+
+
+
+
+
+
+
+
+
+
+\end{document}
