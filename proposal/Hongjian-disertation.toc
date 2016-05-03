@@ -8,35 +8,23 @@
 \contentsline {subsection}{\numberline {1.2.1}Traditional Approach: Space Continuity}{3}{subsection.1.2.1}
 \contentsline {subsection}{\numberline {1.2.2}New Approach: Flow as Hyperlink}{3}{subsection.1.2.2}
 \contentsline {section}{\numberline {1.3}Proposed Research Questions}{5}{section.1.3}
-\contentsline {chapter}{\numberline {2}Related Work}{7}{chapter.2}
-\contentsline {section}{\numberline {2.1}Crime Inference In the Literature}{7}{section.2.1}
-\contentsline {chapter}{\numberline {3}Base Model For Crime Inference}{10}{chapter.3}
-\contentsline {section}{\numberline {3.1}Problem Formulation}{10}{section.3.1}
-\contentsline {section}{\numberline {3.2}Base Inference Model}{12}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Linear Regression}{12}{subsection.3.2.1}
-\contentsline {section}{\numberline {3.3}Feature Extraction}{13}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Nodal Feature: Demographics}{14}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Nodal Feature: Point-of-Interest (POI)}{15}{subsection.3.3.2}
-\contentsline {subsection}{\numberline {3.3.3}Edge: Geographical Influence}{17}{subsection.3.3.3}
-\contentsline {subsection}{\numberline {3.3.4}Edge: Hyperlinks by Taxi Flow}{18}{subsection.3.3.4}
-\contentsline {section}{\numberline {3.4}Evaluation of Base Model}{19}{section.3.4}
-\contentsline {chapter}{\numberline {4}Improve the Base Model}{21}{chapter.4}
-\contentsline {section}{\numberline {4.1}Use a count prediction model}{21}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Linear regression gives negative prediction}{21}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}Poisson regression as a count prediction model}{22}{subsection.4.1.2}
-\contentsline {subsection}{\numberline {4.1.3}Negative binomial regression addresses over-dispersion}{22}{subsection.4.1.3}
-\contentsline {subsection}{\numberline {4.1.4}Evaluation of negative binomial regression model}{23}{subsection.4.1.4}
-\contentsline {subsubsection}{\numberline {4.1.4.1}Evaluation Settings}{23}{subsubsection.4.1.4.1}
-\contentsline {subsubsection}{\numberline {4.1.4.2}Performance Study: Negative Binomial Regression vs. Linear Regression}{24}{subsubsection.4.1.4.2}
-\contentsline {section}{\numberline {4.2}Capture spatial non-stationarity (Proposed problem 1)}{26}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Dynamic spatial model}{26}{subsection.4.2.1}
-\contentsline {subsubsection}{\numberline {4.2.1.1}Dynamic linear regression model}{26}{subsubsection.4.2.1.1}
-\contentsline {subsubsection}{\numberline {4.2.1.2}Optimization}{27}{subsubsection.4.2.1.2}
-\contentsline {subsubsection}{\numberline {4.2.1.3}Inference}{28}{subsubsection.4.2.1.3}
-\contentsline {section}{\numberline {4.3}Consider complicated interaction (Proposed problem 2)}{29}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Problem Formulation}{29}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Conditional random field model}{29}{subsection.4.3.2}
-\contentsline {subsubsection}{\numberline {4.3.2.1}Potential Function}{29}{subsubsection.4.3.2.1}
-\contentsline {subsubsection}{\numberline {4.3.2.2}Inference}{30}{subsubsection.4.3.2.2}
-\contentsline {chapter}{\numberline {5}Research Plan and Schedule}{34}{chapter.5}
-\contentsline {chapter}{Bibliography}{35}{chapter.5}
+\contentsline {chapter}{\numberline {2}Understand Nodes Using Links}{7}{chapter.2}
+\contentsline {section}{\numberline {2.1}General Problem Definition}{7}{section.2.1}
+\contentsline {section}{\numberline {2.2}Crime Inference as One Example}{8}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Related Work}{8}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Data Description and Feature Extraction}{10}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}Spatial AutoRegressive Inference Model}{18}{subsection.2.2.3}
+\contentsline {subsection}{\numberline {2.2.4}Evaluation of negative binomial regression model}{21}{subsection.2.2.4}
+\contentsline {chapter}{\numberline {3}Understanding Links Using Nodes}{24}{chapter.3}
+\contentsline {section}{\numberline {3.1}Capture spatial non-stationarity (Proposed problem 1)}{24}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Dynamic spatial model}{24}{subsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.1.1}Dynamic linear regression model}{25}{subsubsection.3.1.1.1}
+\contentsline {subsubsection}{\numberline {3.1.1.2}Optimization}{26}{subsubsection.3.1.1.2}
+\contentsline {subsubsection}{\numberline {3.1.1.3}Inference}{26}{subsubsection.3.1.1.3}
+\contentsline {section}{\numberline {3.2}Consider complicated interaction (Proposed problem 2)}{27}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Problem Formulation}{27}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Conditional random field model}{27}{subsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.2.1}Potential Function}{27}{subsubsection.3.2.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2.2}Inference}{28}{subsubsection.3.2.2.2}
+\contentsline {chapter}{\numberline {4}Research Plan and Schedule}{32}{chapter.4}
+\contentsline {chapter}{Bibliography}{33}{chapter.4}

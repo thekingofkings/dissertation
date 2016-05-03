@@ -1,279 +1,302 @@
-\chapter{Base Model For Crime Inference}
+\chapter{Understanding Links Using Nodes}
 
 
 
-\section{Problem Formulation}
-
-\label{sec:problem-formulation}
-The crime dataset in Chicago has detailed information about the time and location (i.e., latitude and longitude) of crime and the types of crime. In our problem, when we use term crime count, we often refer to crime count in a  region (i.e., community area) in a year. The \emph{community area} is used as our geographical unit of study, since it is well-defined,  historically recognized and stable over time~\cite{wiki-ca}. In total, there are 77 community areas in Chicago.  Crime rate is the crime count normalized by the population in a region. We use vector $\vec{y} = [y_1, y_2, \ldots, y_n]$ to denote the crime rate in region $i$. The crime rate inference problem is to estimate the crime rate in one region using the crime rate of other regions in the same year by considering the features of regions and correlations between regions. 
 
 
-The crime data of Chicago are obtained from City of Chicago data portal~\cite{crime-data}. Chicago is the city with most complete crime data that are made public online. The crime dataset contains the incident date, location (strict name and GPS coordinates), and primary type from year 2001 to 2015. In total there are $5,856,414$ recorded crime incidents over 15 years, which is an average $390,417$ crimes incidents per year. We visualize the crime normalized by population in Figure~\ref{fig:crime-ca}, from which we can see that the downtown area has the highest crime rate.
 
-\begin{figure}[t]
+
+\section{Capture spatial non-stationarity (Proposed problem 1)}
+
+
+
+
+\subsection{Dynamic spatial model}
+
+
+We use various types of data to estimate the crime count in community area (CA) of Chicago. For each CA we have observations on crime count and demographics. For each pair of CAs we also have observations on the taxi flow and spatial distance. One straightforward method is to build a regression model from all the features we observed to the crime counts.
+
+We have one interesting observations is that in the south and north part of Chicago, the significance of different features are different. Therefore, the idea is to learn a dynamic weights for different spatial region.
+
+
+
+Suppose we have $n$ regions in total, $R = \{ r_1, r_2, \cdots, r_n \}$.
+The following notations are used
+
+\begin{table}[h]
 \centering
-\includegraphics[width=0.7\textwidth]{fig/crime-ca.pdf}
-\caption{Crime rate of Chicago by community areas. The community area \#32 is Chicago downtown, which has the highest crime rate.}
-\label{fig:crime-ca}
-\end{figure}
+\begin{tabular}{|l|r|}
+\hline
+crime count at $r_i$ & $y_i$ \\ \hline
+demographics at $r_i$ & $\mathbf{d}_i$ \\ \hline
+taxi flow between $r_i$ and $r_j$ & $f_{ij}$ \\ \hline
+taxi flow weight matrix for $r_i$ & $\mathbf{f_i}$ \\ \hline
+spatial weight matrix for $r_i$ & $\mathbf{g_i}$ \\ \hline
+social flow lag variable for $r_i$ & $s_i = \mathbf{f}_i^T \mathbf{y}$ \\\hline
+spatial flow lag variable for $r_i$ & $p_i = \mathbf{g}_i^T \mathbf{y}$ \\\hline
+\end{tabular}
+\caption{Symbols for the dynamic coefficient model.}
+\end{table}
 
 
-In this paper we study the crime rate inference problem. More specifically, we estimate the crime rate of some regions given the information of all the other regions. Without loss of generality, we assume there is one community area $t$ with crime rate $y_t$ missing, and we use the crime rate of all the other regions $\{y_i \} \backslash y_t$ to infer this missing value. Our problem is mathematically formalized as follows
-\begin{equation}
-\hat{y_t} = f( \{y_i\} \backslash y_t, X),
-\end{equation}
-where  $X$ refers to observed extra information of  all those community areas.
-
-
-
-
-\smallskip
-We consider two  types of features $X$ for inference:
-\begin{itemize}
-\item Nodal feature. Nodal features describe the characteristics of the focal region. Such features include demographic information and Point-of-Interest (POI) distribution. Demographics are frequently used in literature, but POI is a newer type of big data, which we find significantly improve the crime inference accuracy.
-\item Edge feature: (1) Geographical influence. Geographical influence considers the crime rate of the nearby locations.  This feature has been extensively used in
-literature as well. To estimate the focal region, the
-crime rate of nearby regions are weighted according
-to spatial distances. (2) Hyperlink by taxi flow. Locations are connected through the frequent trips made by humans, which can be considered as the hyperlinks in space. This type of feature has never been studied in literature. We propose to use taxi trips to construct the social flow. Our hypothesis is that similarity in the crime rate of two regions should correlate with the social flow strength between these two regions. 
-\end{itemize}
+\subsubsection{Dynamic linear regression model}
 
 
 
-
-
-\section{Base Inference Model}
-
-
-
-\subsection{Linear Regression}
-The most straightforward prediction is linear regression model. This model assumes the error terms follow a Gaussian distribution $\epsilon \sim \mathcal{N}(0, \sigma^2)$. As a result the parameter distribution also follows a Gaussian distribution. This assumption makes the model less generative, since in real applications, there is no way to ensure the dependent variable has a Gaussian error term. 
-
-
-Equation~\ref{eq:lrm} gives the linear regression formulation of our problem.
-\begin{equation}
-\label{eq:lrm}
-\vec{y} = \vec{\alpha}^T \vec{x} + \beta^f W^f \vec{y} + \beta^g W^g \vec{y} + \vec{\epsilon},
-\end{equation}
-where $\vec{x}$ represents the nodal features including demographics and POI distribution, $W^f$ is the flow matrix of taxi flow, and $W^g$ is the spatial matrix representing the geographical adjacency. On the right-hand side, $\epsilon$ is the only stochastic variables, and all other terms are fixed observation values. Therefore, we incorporate all the fixed observations into one term $X$, and we get the standard regression problem
+For simplicity we use linear regression model
 \[
-E(y) = X w + \epsilon.
+y_i = \mathbf{w}_1^T \mathbf{d}_i + w_2 s_i + w_3 p_i + w_4,
+\]
+where $\{ w \}$ are the coefficients.
+
+To simplify notations, we use $\mathbf{x}_i$ denote all the available predictors for region $r_i$,
+\[
+\mathbf{x}_i = [ \mathbf{d}_i, s_i, p_i, 1 ].
+\]
+Then the model becomes 
+\[
+y_i = \mathbf{w}^T \mathbf{x}_i.
 \]
 
 
-In order to learn the regression parameter $w$, we can use a maximum likelihood estimator. Since $\epsilon = y - Xw$, the joint probability of error term is
+
+Now we use a dynamic model, where $\mathbf{w}$ is different for various regions.
+This leads to 
+\[
+y_i  = \mathbf{w}_i^T \mathbf{x}_i.
+\]
+
+
+The problem with formulation is that there are too many parameters to learn. To address this issue, we use the constraint that \textbf{spatially adjacent regions share similar coefficients}.
+
+We use $S_{ij}$ to denote the adjacency of $r_i$ and $r_j$. And the aforementioned constraint is formulated as
+\[
+\min \sum_{i,j} S_{ij} ||\mathbf{w}_i^T - \mathbf{w}_j^T||_2^2
+\] The several choice of $S_{ij}$
+\begin{itemize}
+\item Binary indicator. $S_{ij} = 1$ if two regions are contiguous, otherwise $S_{ij} = 0$.
+\item The reverse distance between $r_i$ and $r_j$. 
+\end{itemize}
+
+The overall objective is
+
 \begin{equation}
-P(\epsilon | w) = \frac{1}{\sqrt{2\pi \sigma^2}} e^{-\frac{(y - Xw)^2}{2 \sigma^2}}.
+\label{eq:obj}
+\min_{\mathbf{W}}  \sum_i || y_i - \mathbf{w}_i^T \mathbf{x}_i ||_2^2 + \eta \sum_{i,j} S_{ij} ||\mathbf{w}_i^T - \mathbf{w}_j^T||_2^2 
++ \theta || \mathbf{W} ||_F^2
 \end{equation}
-Maximizing the joint probability gives us the optimal solution.
 
 
 
 
+\subsubsection{Optimization}
 
 
-\section{Feature Extraction}
-\label{sec:feature}
+Rewrite the Frobenius norm in the last term
+\[
+|| \mathbf{W} ||_F^2 = \sum_i || \mathbf{w}_i - \mathbf{0}||_2^2.
+\]
 
 
-In this section, we will discuss the details of features used in our method. The two types of new features we will use are extracted from Point-Of-Interest data and taxi flow data. Below we will describe the datasets used to construct features and the characteristics of these features.
-
-\begin{figure*}[t]
-\centering
-\subfigure[Total population]{\includegraphics[width=0.45\textwidth]{fig/demo-f1.pdf}}
-\subfigure[Poverty index]{\includegraphics[width=0.45\textwidth]{fig/demo-f3.pdf}}
-\subfigure[Disadvantage index]{\includegraphics[width=0.45\textwidth]{fig/demo-f4.pdf}}
-\subfigure[Ethnic diversity]{\includegraphics[width=0.45\textwidth]{fig/demo-f6.pdf}}
-\caption{(a)-(d) Demographics in Chicago by community areas. Darker colors indicate higher values.}
-\label{fig:demo-f}
-\end{figure*}
-
-
-
-
-
-\subsection{Nodal Feature: Demographics}
-
-Socioeconomic and demographic features of neighborhoods have been
-widely used to predict crime~\cite{Bogo14, HsPu93, WoMe12, SaHi07}. Previous studies have shown that crime rate correlates with certain demographics. For example, \cite{Jac61, GrSa09} suggests that population diversity leads to less crime in certain neighborhoods. 
-In our study, we include demographic information from the US Census Bureau's Decennial Census of 2010~\cite{census-data} and American Community Survey's five-year average estimates
-between 2007 and 2011. We use year 2010 data because we are evaluating crime rates in 2010-2013. The demographics include the following features:
-
-\textsf{total population, population density, poverty, disadvantage index, residential stability, ethnic diversity, race distribution}.
-
-
-The poverty index measures the proportion of community area residents
-with income below the poverty level. The disadvantage index is
-a composite scale based on prior work \cite{SRE97}, a function of 
-poverty, unemployment rate, proportions of families with public
-assistance income, and proportion of female headed households. 
- The residential stability measures home ownership and proportion of
-residents who lived in the neighborhood for more than one year. Racial
-and ethnic diversity is an index of heterogeneity~\cite{GrSa09} based on six
-population groups, including: Hispanics, non-Hispanic Blacks, Whites,
-Asians, Pacific Islanders and others.
-
-
-Figure~\ref{fig:demo-f} visualizes the crime rate and demographics features in Chicago by community areas. Comparing with Figure~\ref{fig:crime-ca}, it is clear that the crime rate and poverty index and disadvantage index are consistent,  the ethnic diversity shows an inverse correlation, and the total population has little correlation with crime.
-
-
-
-Table~\ref{tb:demo} shows the Pearson correlation coefficient between various demographics features and the crime rate at community area level. The corresponding p-value is also calculated and shown in the table to indicate the significance of the correlation coefficient.  There  are in total $77$  community areas in Chicago. Table~\ref{tb:demo} shows such correlation with several most correlated features. We can see that the poverty index and disadvantage index positively and strongly correlate with crime, while the ethnic diversity negatively correlates with crime. Other features such as total population, population density, and residential stability  have weaker correlations. One counter-intuitive observation is that the total population has a weak and negative correlation with crime. The reason is that we use crime rate in each community area, which is already normalized by the population, and therefore the total population and population density have less impact. 
-
-
-\begin{table}[h]
-\centering
-\caption{Pearson correlation between demographic features  and crime rate (\textbf{*} indicates significant correlations with p-value less than $5\%$). }
-\vspace{2mm}
-\begin{tabular}{|c||c|c|}
-\hline
-Feature & Correlation & p-value \\ \hline \hline
-Total Population & -0.1269 &  0.2716 \\ \hline
-Population Density & -0.1972  & 0.0855 \\ \hline
-Poverty Index & \textbf{0.5573*} & 1.403e-07 \\ \hline
-Disadvantage Index & \textbf{0.5959*} & 1.082e-08 \\ \hline
-Residential Stability  & -0.0453 &  0.6965 \\ \hline
-Ethnic Diversity & \textbf{-0.5545*} &  1.678e-07 \\ \hline
-Percentage of Black & \textbf{0.6696*} &  2.779e-11 \\ \hline
-Percentage of Hispanic  & \textbf{-0.3820*} &  0.0006 \\ \hline
-\end{tabular}
-\label{tb:demo}
-
-\end{table}
-
-
-
-
-
-
-
-\subsection{Nodal Feature: Point-of-Interest (POI)}
-
-While demographics are traditional census data, POI is a type of  modern data that provide fine-grained information about locations. We collect POI from FourSquare~\cite{poi-data}. POI data from FourSquare provide the venue information including venue name, category, number of check-ins, and number of unique visitors. We mainly use the major category information because categories can characterize the neighborhood functions. There are 10 major categories defined by FourSquare:
-
-\textsf{food, residence, travel, arts \& entertainment, outdoors \& recreation, college \& education, nightlife, professional, shops, and event.}
-
-
-\begin{figure}[tb]
-\centering
-\subfigure[Nightlife]{\includegraphics[width=0.45\textwidth]{fig/poi-dist7.pdf}}
-\subfigure[Professional]{\includegraphics[width=0.45\textwidth]{fig/poi-dist8.pdf}}
-\caption{Plot the  POI ratio per neighborhood. The saturation of color is proportional to the ratio value. The ``professional'' category distribution is more consistent with the crime distribution, and therefore it is the most correlated with crime. Meanwhile, the ``nightlife'' category is not positively correlated with Chicago crime.}
-\label{fig:poi-coef}
-\end{figure}
-
-In total, we have crawled $112,000$  POIs from FourSquare for Chicago. Most of these POIs are in downtown area of Chicago. We normalize the POIs count per category by the total POI count in a neighborhood and plot two selected category, i.e. nightlife and professional, in Figure~\ref{fig:poi-coef}.  The darker colored neighborhoods in Figure~\ref{fig:poi-coef} are the ones with a higher portion of residence POIs.
-
-
-
-\begin{table}[h]
-\centering
-\caption{Pearson correlation between POI category and crime rate (\textbf{*} indicates significant correlations with p-value less than $5\%$).}
-\vspace{2mm}
-
-\label{tb:poi-corr}
-\begin{tabular}{|c ||c|c|}
-\hline
-POI category & Correlation & p-value \\ \hline \hline
-Food & -0.1543 &  0.1803 \\ \hline
-Residence &  -0.0610 &  0.5984 \\ \hline
-Travel & -0.0017 &  0.9883 \\ \hline
-Arts \& Entertainment & -0.0049 &  0.9661 \\ \hline
-Outdoors \& Recreation &  0.0668 &  0.5637 \\ \hline
-College \& Education & -0.0078 &  0.9473 \\ \hline
-Nightlife &  -0.1553 &  0.1775 \\ \hline
-Professional & \textbf{0.3221*} &  0.0043 \\ \hline
-Shops & -0.1676 &  0.1450 \\ \hline
-Event & 0.2196 &  0.0549  \\ \hline
-\end{tabular}
-\end{table}
-
-
-
-In Table~\ref{tb:poi-corr} we show the Pearson correlation between POI category and crime rate. The category ``professional''  is most significantly correlated with the crime rate. Under the professional POI category, there are some venues with a large population concentration, such as transportation center, convention center, community center, and coworking space. In those venues, the  population volume is high and residential stability is low, therefore the professional POI counts positively correlates with crime rate.  One counter-intuitive observation is that ``nightlife'' category is not positively correlated with crime ($-0.1553$). This can be explained through Figure~\ref{fig:poi-coef}(a). The majority of nightlife venues in Chicago locate in northern area, while most crime incidents occur in downtown area.
-
-
-
-
-
-
-
-
-\subsection{Edge: Geographical Influence}
-
-Together with the US census demographics data, we also collected the boundary shape files of Chicago, which are used to calculate the geographical influence feature.
-
-Previous studies have also shown that the crime rate at one location is highly correlated with nearby locations~\cite{GSGL01, Bur88}. Such geographical influence is also frequently used in the literature~\cite{ACC00, MoSa97}, which is calculated as:
+Therefore the Equation~\ref{eq:obj} is rewritten as
 \begin{equation}
-\vec{F^g} = W^g \cdot \vec{Y},
-\label{eq:spatial}
+\label{eq:obj2}
+\min_{\mathbf{W}}  \sum_i || y_i - \mathbf{w}_i^T \mathbf{x}_i ||_2^2 + \eta \sum_{i,j \in 0, \cdots, N} S_{ij} || \mathbf{w}_i - \mathbf{w}_j ||_2^2,
 \end{equation}
-where $W^g$ is the spatial weight matrix. If region $i$ and $j$ are not geospatially adjacent, $w_{ij}^g = 0$; otherwise, $w_{ij}^g \propto distance(i,j)^{-1}$.
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.8\textwidth]{fig/spatial-crime-rate.pdf}
-\caption{The geographical influence feature correlation with crime. In the plot we marked out three outliers and their corresponding community area ID.}
-\label{fig:spatial}
-\end{figure}
-
-In Figure~\ref{fig:spatial},  we plot crime rate with respect to geographical influence calculated in Eq.~\ref{eq:spatial}. We observe an obvious positive correlation, which means if nearby neighborhoods have a high crime rate, the focal neighborhood is more likely to have a high crime rate. We also do observe a few outliers in Figure~\ref{fig:spatial}. These neighborhoods show different crime rate in their nearby neighborhoods compared to their own. For example, as we can also see in Figure~\ref{fig:crime-ca}, community area \#38 locates in an area where the the neighbors have high crime rates but its crime rate is relatively low; in contrast, neighborhood \#32 has a high crime rate even though its neighbors have relatively low crime. The community area \#76 home of the O'Hare International Airport is far from most of other community areas, however its own crime rate is relative high.
+where $\mathbf{w}_0 = \mathbf{0}$ and $S_{0i} = 1$ for $\forall i$.
 
 
-
-
-
-
-
-
-
-\subsection{Edge: Hyperlinks by Taxi Flow}
-
-In our Chicago taxi dataset, there are $1,048,576$ taxi trips in total during the October to December in 2013. For each trip the following information are available: pickup/dropoff time, pickup/dropoff location, operation time, and total amount paid. We requested the taxi trip records from Chicago taxi commission pursuant of the Freedom of Information Law.  Figure~\ref{fig:taxi-flow} shows a visualization of the major flows at community level.
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width=0.8\textwidth]{fig/taxiflow.pdf}
-\caption{Major taxi flows between neighborhoods. We set a threshold ($> 5,000$) on the flow and only plot the high volume flow. The label on the node is the ID of the corresponding community areas. We can see that there are several hub community areas, such as \#6, \#8, \#32, which are all in the downtown areas. The label on the edge shows how many taxi trips are commuting through the two community areas for three months in 2013.}
-\label{fig:taxi-flow}
-\end{figure}
-
-
-One of our hypothesis is that the social interaction among two community areas propagates crime from one region to another.
-The Chicago taxi data captures the social interactions among various community areas. To calculate this first, we first map all taxi trips to community areas to get the taxi flow $w_{ij}\ \forall i,j \in \{1, 2, \cdots n\}$. Then the taxi flow lag is constructed by the product of social flow and the crime rate of neighboring regions as follows
+To solve the objective in Equation~\ref{eq:obj2}, we use variable splitting. Namely, when optimizing for $\mathbf{w}_i$, we assume all other $\mathbf{w}_{j, j\neq i}$ are fixed. The sub-problem is
 \begin{equation}
-\vec{F^t} = W^t \cdot \vec{Y}.
-\label{eq:taxi}
+\label{eq:subobj}
+\min_{\mathbf{w}_i}   ||y_i - \mathbf{w}_i^T \mathbf{x}_i ||_2^2 + \eta \sum_j S_{ij}|| \mathbf{w}_i - \mathbf{w}_j||_2^2.
 \end{equation}
-The taxi flow $W^t$ is a matrix with entry $w_{ij}$ denoting the taxi flow from $i$ to $j$. Note that $\forall i$, $w^s_{ii} = 0$ in matrix $W^t$, because we have to exclude the crime in focal area from its own predictor. The semantic of this taxi flow feature is how many crime in the focal area is contributed by its neighboring areas through social interaction.
-
-The correlation between taxi flow and crime rate is shown in Figure~\ref{fig:taxi-corr}. From the scatter plot, we can see that overall the crime rate is positively correlate with the taxi flow. There are two  outliers clearly shown in Figure~\ref{fig:taxi-corr}. The community area \#32 is the downtown Loop, which has the highest crime rate and is hard to predict by taxi flow. Another anomalous community area \#47 has relatively low crime rate by itself. However, this area has a lot of in flows from high-crime communities. 
 
 
 
+The update on $\mathbf{w}_i$ is
+\[
+\mathbf{w}_i = \min_{\mathbf{w}_i}   ||y_i - \mathbf{w}_i^T \mathbf{x}_i ||_2^2 + \eta \sum_j S_{ij} || \mathbf{w}_i - \mathbf{w}_j^{(t)} ||_2^2.
+\]
 
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.8\textwidth]{fig/taxi-flow-percent.pdf}
-\caption{Correlation between taxi flow and crime rate. In the plot, we marked out three outliers and their corresponding community area ID.}
-\label{fig:taxi-corr}
+The closed-form solution is
+
+\begin{equation}
+\mathbf{w}_i = (\mathbf{x}_i^T \mathbf{x}_i + \eta \sum_j S_{ij} \mathbf{I} )^{-1} (y_i \mathbf{x}_i + \eta \sum_j S_{ij} \mathbf{w}_j) 
+\end{equation}
+
+
+\subsubsection{Inference}
+
+We use the \textbf{leave-one-out} setting to infer and evaluate the crime rate of new community area. 
+
+Suppose the we want to estimate the crime rate $y_i$ of $CA_i$. During the training process, we hold everything about $CA_i$ out (including $y_i$, flow coming in and leaving from $CA_i$). Then training the model on $CA_j$, $\forall j \neq i$, which gives us $w_j$, $\forall j \neq i$. To infer the $y_i$, we need estimate the model coefficient $w_i$ first. Follow the same intuition that model on $CA_i$ is only similar to all its neighboring models, we have
+\begin{equation}
+\min_{\mathbf{w}_i} \sum_{j, \forall j \neq i} S_{ij} || \mathbf{w}_i - \mathbf{w}_j ||_2^2 + || \mathbf{w}_i ||_2^2
+\end{equation}
+
+After getting $\mathbf{w}_i$, we infer $y_i$ by
+\begin{equation}
+\hat{y}_i = \mathbf{w}_i^T * \mathbf{x}_i
+\end{equation}
+
+
+
+\section{Consider complicated interaction (Proposed problem 2)}
+
+
+\subsection{Problem Formulation}
+
+We want to predict the crime rate $y_i$ of each geographical grid (tract/community area) $g_i$. The available observations are demographics features $\x_i$ of each $g_i$ from census, and the interactions among grids. We denote the interactions as $\f_{ij}$ for grid pair $g_i, g_j$, and examples of such interactions are social flow and geospatial distance.
+
+\subsection{Conditional random field model}
+The first model comes to mind.
+
+\subsubsection{Potential Function}
+Each grid is a node, and its crime rate $y_i$ is the hidden variable that we want to estimate. Two kinds of fixed parameters are observed for each grid $g_i$. The first one is the demographic features $\x_i$. The second is the interactions among grids, such as social flow and geospatial distance, denoted by $\f{ij}$.
+
+We use Conditional Random Field (CRF) shown in Figure~\ref{fig:crf} to model the dependency of nodal features. The learning goal is to estimate the conditional probability of $y$ given $\x$ and $\f$
+
+\begin{equation}
+	P(y |  \x, \f) 
+\end{equation}
+
+
+\begin{figure}[hb]
+	\centering
+	\includegraphics[width=0.5\textwidth]{fig/CRF-fig.pdf}
+	\caption{The CRF model of the crime rate $y_i$ for each grid $g_i$.}
+	\label{fig:crf}
 \end{figure}
 
 
 
+In the CRF model, we factorize the probability distribution of $y$ to a series of potential functions $\psi$ on the clique. 
+\begin{equation}
+	P(Y) = \frac{1}{Z} \prod_{ c \in C} \psi(c)
+\end{equation}
+
+Use $C_1$ to denote the set of cliques of size 1 with the form $\langle y_i \rangle$, and $C_2$ to denote size-2 clique. We define the potential function as follows:
+
+\begin{align}
+	\psi_{C_1} = &exp( - |y_i - \demow^T \cdot \x_i| )  \forall i \in [1, n], {g_i} \in C_1, \\
+	\psi_{C_2} = & exp( - |y_i - y_j - \w^T \cdot \f_{i,j}| )  \forall i,j \in [1, n], {g_i, g_j} \in C_2, 
+\end{align}
+where $\demow$ and $\w$ are all positive coefficients.
+
+The distribution of $Y$ is given by 
+\begin{equation}
+	P(Y) =  \frac{1}{Z} \left[ \prod_{i=1}^n \psi_{C_1}(y_i) \times \prod_{i=1}^n \prod_{j=i}^n \psi_{C_2}(y_i, y_j) \right]
+\end{equation}
+\begin{multline}
+	P(Y) =  \frac{1}{Z} exp  \left( - \sum_{i=1}^n |y_i - \demow^T \cdot \x_i| \right. \\
+          \left. - \sum_{i=1}^n\sum_{j=i}^n |y_i - y_j - \w^T \cdot \f_{i,j}| \right)
+	\label{eq:PY}
+\end{multline}
 
 
-\section{Evaluation of Base Model}
+A large value of  potential function $\psi$ implies the high probability of $P(Y)$. The goal is to find a set of $Y$ maximizing $P(Y)$. 
 
 
-We evaluate the linear regression base model. We use a incremental settings, where new features are added on top of previous one. The results are shown in Figure~\ref{fig:lrresult}.
+\subsubsection{Inference}
 
 
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.8\textwidth]{fig/lrresult.png}
-\caption{The inference error for linear regression base model. $^*$D -- demographic features, G -- geographical influence, P -- POI features, T -- taxi flow feature}
-\label{fig:lrresult}
-\end{figure}
+\textbf{Estimate CRF Parameters}
+\label{sec:estim}
 
 
-From the result in Figure~\ref{fig:lrresult}, we found that the newly added feature does not improve the inference accuracy. This result is counterintuitive. Dose this mean our intuition is not correct? Or it means that we did not pick the right model.  In the next chapter, we will go into the weakness of the base model. At the same time, we propose some new technique to improve the base model.
+We solve the Equation~(\ref{eq:PY}) by minimizing the negative log-likelihood function
+\begin{multline}
+\min_{\demow, \w} -\log P(Y|\demow, \w) = \min_{\demow, \w} \left[ \log Z + \sum_{i=1}^n |y_i - \demow^T \cdot \x_i| \right. \\
+\left.  + \sum_{i=1}^n\sum_{j=i}^n |y_i - y_j - \w^T \cdot \f_{i,j}| \right]
+\end{multline}
+
+Use matrix form
+\[
+\min_{\demow, \w} ||X \demow - \y||_1 + ||F \cdot \w - \yp||_1,
+\]
+where $X$ is demographics matrix with $n$ rows, $\y$ is the $n$-dimension crime rate vector, $F$ is the pairwise features matrix with $(n^2+n)/2$  rows, and $\yp$ is the $(n^2+n)/2$-dimension pairwise crime rate difference vector $\{y_i- y_j\}$.
+
+We can minimize separably.
+
+
+
+\textbf{Minimize $\demow$}
+
+\[ \min_{\demow} ||X \demow - \y||_1 \]
+
+Take $X\demow - \y = \z$, and use ADMM.
+\begin{multline}
+ \min_{\z, \demow}  ||\z||_1 + \rho/2 ||\z - X\demow + \y||_2^2,\\
+   s.t.\quad  \z - X\demow + \y = 0 
+\end{multline}
+
+\begin{multline}
+L(\vec{\theta_1}, \z, \demow) = \max_{\vec\theta_1} \min_{\z, \demow} ||\z||_1 + \\
+\rho/2 ||\z - X\demow + \y||_2^2  + \vec{\theta_1}( \z - X\demow + \y ) 
+\end{multline}
+
+\textbf{$\demow$ update}
+
+\[ \demow^{k+1} \gets \argmin_{\demow}  \rho/2 ||\z^{k+1} - X\demow + \y + \vec{\theta_1}^{k+1}||_2^2 \]
+Take derivative we have
+\[ \frac{\partial}{\partial \demow} = \rho X^T(X\demow - \z^{k+1} - \y - \vec\theta_1^{k+1} ) \]
+Make it $0$, $\demow^{k+1} = (X^TX)^{-1} X^T(\z^{k+1} + \y + \vec\theta_1^{k+1})$.
+
+\textbf{$\z$ update}
+
+\[ \z^{k+1} \gets \argmin_{\z}  ||\z||_1 + \rho/2 ||\z - X\demow^{k+1} + \y + \vec{\theta_1}^{k+1}||_2^2 \]
+So, $\z^{k+1} = S_{1/\rho}(X\demow^{k+1} - \y - \vec\theta_1^{k+1})$.
+
+\textbf{$\vec\theta_1$ update}
+
+\[ \vec\theta_1^{k+1} = \vec\theta_1^{k} + \z^{k+1} - X\demow^{k+1} + \y \]
+
+
+
+\textbf{Minimize $\w$}
+
+\[ \min_{\w} ||F \cdot \w - \yp||_1 \]
+It has exactly the same form as previously. Therefore,
+\begin{multline}
+L(\vec{\theta_2}, \z', \w) = \max_{\vec\theta_2} \min_{\z', \w}  ||\z'||_1 + \\
+\rho/2 ||\z' - F\w + \yp||_2^2 + \vec{\theta_2}( \z' - F\w + \yp ) 
+\end{multline}
+
+\textbf{$\w$ update}
+\[ \w^{k+1} = (F^TF)^{-1} F^T(\z^{'k+1} + \yp + \vec\theta_2^{k+1}) \]
+
+\textbf{$\z'$ update}
+\[ \z^{'k+1} = S_{1/\rho}(F\w^{k+1} - \yp - \vec\theta_2^{k+1}) \]
+
+\textbf{$\vec\theta_1$ update}
+\[ \vec\theta_2^{k+1} = \vec\theta_2^{k} + \z^{'k+1} - F\w^{k+1} + \yp \]
+
+
+
+\textbf{Infer New $y_i$}
+
+To infer new $y_i$, we want to maximize the following probability
+\[ P(y_i | \x_i, F, \y, \demow, \w), \]
+where $\demow$ and $\w$ are estimated using previous section, $\y$ denote the crime rates of other observed geographical units, and $F$ is the pairwise feature matrix.
+
+Take negative log of the probability, we have 
+
+\begin{align}
+\min_{y_i} &  \left[ \log Z +  |y_i - \demow^T \cdot \x_i| + \sum_{j \neq i}^n |y_i - y_j - \w^T \cdot \f_{i,j}| \right] \nonumber \\
+\min_{y_i} & \left[ |y_i - \demow^T \cdot \x_i| + \sum_{j \neq i}^n |y_i - y_j - \w^T \cdot \f_{i,j}| \right] 
+\label{eq:inference}
+\end{align}
+
+In Equation~\ref{eq:inference}, we have $n+1$ $\ell_1$-norm terms, which have exactly the same form $|y_i - b_j|$. The objective becomes
+\begin{equation}
+  \min_{y_i} \sum_j^n |y_i - b_j|,
+\label{eq:infy}
+\end{equation}
+where $b_1 = \demow^T \cdot \x_i$ and $b_j = y_{j-1} + \w^T\cdot \f_{i,j-1}$ for $j > 1$.
+
+Notice that the optimal solution must take value on $\{b_j\}$. We solve this by sorting all the $b_j$ and then calculate the result segment by segment.
+
+
+
+

@@ -4,6 +4,11 @@
 \providecommand{\urlprefix}{URL }
 \providecommand{\eprint}[2][]{\url{#2}}
 
+\bibitem{ZCWY14}
+\textsc{Zheng, Y.}, \textsc{L.~Capra}, \textsc{O.~Wolfson}, and
+  \textsc{H.~Yang} (2014) \enquote{Urban computing: concepts, methodologies,
+  and applications,} \emph{ACM TIST}, \textbf{5}(3), p.~38.
+
 \bibitem{Baum05}
 \textsc{Baum, K.} (2005) \emph{Juvenile victimization and offending,
   1993-2003}, US Department of Justice, Office of Justice Programs, Bureau of
@@ -24,11 +29,6 @@
   of Neighborhood Effects on Children's Victimization,} \emph{American Society
   of Criminology Annual Meeting}.
 
-\bibitem{crime-stats}
-\textsc{Tribune, C.} (2015), \enquote{A tale of 3 cities: LA and NYC outpace
-  Chicago in curbing violence,} .
-\newline\urlprefix\url{http://www.chicagotribune.com/news/ct-violence-chicago-new-york-los-angeles-met-20150918-story.html}
-
 \bibitem{GrSa09}
 \textsc{Graif, C.} and \textsc{R.~J. Sampson} (2009) \enquote{Spatial
   heterogeneity in the effects of immigration and diversity on neighborhood
@@ -38,16 +38,6 @@
 \textsc{Anselin, L.} (2002) \enquote{Under the hood: issues in the
   specification and interpretation of spatial regression models,}
   \emph{Agricultural economics}, \textbf{27}(3), pp. 247--267.
-
-\bibitem{ZCWY14}
-\textsc{Zheng, Y.}, \textsc{L.~Capra}, \textsc{O.~Wolfson}, and
-  \textsc{H.~Yang} (2014) \enquote{Urban computing: concepts, methodologies,
-  and applications,} \emph{ACM TIST}, \textbf{5}(3), p.~38.
-
-\bibitem{YZX12}
-\textsc{Yuan, J.}, \textsc{Y.~Zheng}, and \textsc{X.~Xie} (2012)
-  \enquote{Discovering regions of different functions in a city using human
-  mobility and POIs,} in \emph{ACM SIGKDD}, ACM, pp. 186--194.
 
 \bibitem{GGM14}
 \textsc{Graif, C.}, \textsc{A.~S. Gladfelter}, and \textsc{S.~A. Matthews}
