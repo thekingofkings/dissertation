@@ -1,17 +1,81 @@
-\chapter{Understanding Links Using Nodes}
+\chapter{A Unified Graphical Model}
+
+\label{ch:crf}
+
+
+In this chapter, we propose to use a unified graphical model to model the interactions among regions. We start from a discussion on the major flaw of previous flow augmented spatial autoregressive model, that as a global spatial model is assumes spatial stationarity. However, in the real problem there is usually a spatial non-stationarity over some properties. For example, we observe that the relationship between crime count and total population in each community presents such spatial non-stationarity.
+
+To fix the spatial non-stationarity issue, the most widely used method is called \emph{geographically weighted regression} (GWR) in the literature. In the next section, we will discuss the pros and cons to employ GWR to capture the spatial non-stationarity. Since our problem has multiple ``hyperlink'' flows in addition to space continuity, the idea of GWR must be generalized over a high dimension space consisted of multiple interactions. However, this generalization is non-trivial, and thus we propose a graphical model to address this challenge.
+
+
+
+The graphical model is a natural way to capture the complicated interactions among regions.
+With the same graphical model, we further show that other data mining tasks in urban space can be solved as well.  Therefore, we believe this graphical model is superior than other model in capturing the interactions, which consequently could be a united model.
+
+
+
+\section{Capture Spatial Non-stationarity}
+
+\subsection{Global Model vs. Local Model}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\textwidth]{fig/simpson.png}
+\caption{A spatial example of Simpson's Paradox (from~\cite{fig:simpson}).}
+\label{fig:simpson}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.45\textwidth]{fig/north-south-split.pdf}
+\includegraphics[width=0.45\textwidth]{fig/crime-pop.pdf}
+\caption{The crime count vs. total population relationship shows spatial non-stationary property.}
+\label{fig:spa-non-sta}
+\end{figure}
+
+
+Global model assumes the statistical relationships does not change over space. However, some statistical relationship is not stationary over space, which requries specific treatment for different locations, i.e. a local model at different places.
+
+
+
+According to \cite{GWR03}, using global estimates of statistics can present misleading interpretations of local models. This is shown as an example in Figure~\ref{fig:simpson}, known as Simpson's Paradox~\cite{wiki:simpson}. The reason of Simpson's Paradox is that there is a hidden distribution of properties over space, which leads to opposite results in global model when aggregate subgroups over space.
 
 
 
 
 
+In the Chicago crime inference example, we also observed similar phonomenon, as shown in Figure~\ref{fig:spa-non-sta}. We divide Chicago into two half: i) downtown north, ii) downtown and downtown south. The intuition is that the Chicago south usually have more crime than north, therefore we want to split Chicago into low-crime half and high-crime half. The splition of Chicago communites are visualized in left figure of Figure~\ref{fig:spa-non-sta}. 
+On the right of Figure~\ref{fig:spa-non-sta}, we present the total crime plotted against total population. It is clear that in the high-crime half of Chicago the relation is almost neutral (coefficient as 0), and in the low-crime half of Chicago the relation is postive. However, the global model (black line) presents a negative correlation.
 
 
-\section{Capture spatial non-stationarity (Proposed problem 1)}
 
 
 
+\subsection{An Existing Solution: Geographically Weighted Regression}
 
-\subsection{Dynamic spatial model}
+
+Geographically weighted regression (GWR) is a term introduced in \cite{GWR03} to describe a family of regression method in which the coefficients $\beta$ are allowed to vary spatially. GWR uses the coordinates of each sample or zone centroid $t_i$, as a target point for a form of spatially weighted least squares regression. The model is of the form:
+
+\begin{equation}
+y = X \beta(t) + \epsilon
+\end{equation}
+
+The coefficient $\beta(t)$ are determined at different regression point locally by its neighboring sample points. A weighting schema or spatial kernel $W$ is employed to weight neighboring sample points accordint to its distance to regression point. The Figure~\ref{fig:spa-kernel} is an example of the weighting function.
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{fig/spatial-kernel.png}
+\caption{A spatial kernel. Example from ~\cite{GWR03}}
+\label{fig:spa-kernel}
+\end{figure}
+
+
+
+The GWR idea is able to be applied on top of spatial autoregressive (SAR) model, so that SAR model deals with spatial non-stationarity.  In the next we discuss another similar model called adaptive spatial model. After that, we discuss a common drawbacks of this two models.
+
+
+\subsection{An Alternative Solution: Adaptive Spatial Model}
 
 
 We use various types of data to estimate the crime count in community area (CA) of Chicago. For each CA we have observations on crime count and demographics. For each pair of CAs we also have observations on the taxi flow and spatial distance. One straightforward method is to build a regression model from all the features we observed to the crime counts.
@@ -39,7 +103,7 @@ spatial flow lag variable for $r_i$ & $p_i = \mathbf{g}_i^T \mathbf{y}$ \\\hline
 \end{table}
 
 
-\subsubsection{Dynamic linear regression model}
+\textbf{Dynamic linear regression model}
 
 
 
@@ -89,7 +153,7 @@ The overall objective is
 
 
 
-\subsubsection{Optimization}
+\textbf{Optimization}
 
 
 Rewrite the Frobenius norm in the last term
@@ -126,7 +190,7 @@ The closed-form solution is
 \end{equation}
 
 
-\subsubsection{Inference}
+\textbf{Inference}
 
 We use the \textbf{leave-one-out} setting to infer and evaluate the crime rate of new community area. 
 
@@ -142,7 +206,36 @@ After getting $\mathbf{w}_i$, we infer $y_i$ by
 
 
 
-\section{Consider complicated interaction (Proposed problem 2)}
+
+\subsection{Comparison of GWR and Adaptive Model}
+
+
+Both the GWR and Adaptive model address the spatial non-stationarity by building local models. Two models use different approaches to model the spatial continuity.
+
+GWR implicitly model the spatial continuity by using similar sample points for two nearby regression models. Meanwhile, the adaptive model explicitly put a constrait to make two nearby models similar.
+
+Both mehtods can be extened with newer type of interactions. We use $W^0$ denote the spatial adjacency matrix, and use $W^k$, $k = 1,2, \cdots$ to denote the interactions matrix of data type $k$. Therefore, we are extending the two dimensional distance weighting kernel into a high dimension distance measure. 
+
+
+However, this high dimension distance measure is non-trivial to calculate. Suppose now we have taxi flow and LEHD flow in addition to geospatial adjacency. The tricky question to ask is which interaction is more important to connect two regions? We can give weight coefficient to different interactions, so that
+
+\begin{equation}
+W =  \alpha_0 W^0 + \alpha_1 W^1 + \cdots  +\alpha_k W^k
+\end{equation}
+where $\sum_0^k \alpha_i = 1$.
+
+However, the $W$ in both GWR and adaptive model is pre-given. Therefore, incorporating heterogeneous flows is the major challenge of both GWR and adaptive model.
+
+
+
+
+\section{Graphical Model to Capture Complicated Interactions}
+
+
+
+The methods in the literature is not originally designed to handle heterogenous interactions among regions, and therefore have the major challenge mentioned above. The heterogenous interactions generate different network structure for us.  Therefore, we propose to model the interactions of two regions as a latent variables with a graphical model. 
+
+
 
 
 \subsection{Problem Formulation}
@@ -150,9 +243,9 @@ After getting $\mathbf{w}_i$, we infer $y_i$ by
 We want to predict the crime rate $y_i$ of each geographical grid (tract/community area) $g_i$. The available observations are demographics features $\x_i$ of each $g_i$ from census, and the interactions among grids. We denote the interactions as $\f_{ij}$ for grid pair $g_i, g_j$, and examples of such interactions are social flow and geospatial distance.
 
 \subsection{Conditional random field model}
-The first model comes to mind.
 
-\subsubsection{Potential Function}
+
+\textbf{Potential Function}
 Each grid is a node, and its crime rate $y_i$ is the hidden variable that we want to estimate. Two kinds of fixed parameters are observed for each grid $g_i$. The first one is the demographic features $\x_i$. The second is the interactions among grids, such as social flow and geospatial distance, denoted by $\f{ij}$.
 
 We use Conditional Random Field (CRF) shown in Figure~\ref{fig:crf} to model the dependency of nodal features. The learning goal is to estimate the conditional probability of $y$ given $\x$ and $\f$
@@ -160,6 +253,10 @@ We use Conditional Random Field (CRF) shown in Figure~\ref{fig:crf} to model the
 \begin{equation}
 	P(y |  \x, \f) 
 \end{equation}
+
+This model can handle the spatial non-stationary issue, since we can learn the conditional probability separately at different locations.
+
+
 
 
 \begin{figure}[hb]
@@ -188,115 +285,48 @@ The distribution of $Y$ is given by
 \begin{equation}
 	P(Y) =  \frac{1}{Z} \left[ \prod_{i=1}^n \psi_{C_1}(y_i) \times \prod_{i=1}^n \prod_{j=i}^n \psi_{C_2}(y_i, y_j) \right]
 \end{equation}
-\begin{multline}
-	P(Y) =  \frac{1}{Z} exp  \left( - \sum_{i=1}^n |y_i - \demow^T \cdot \x_i| \right. \\
-          \left. - \sum_{i=1}^n\sum_{j=i}^n |y_i - y_j - \w^T \cdot \f_{i,j}| \right)
-	\label{eq:PY}
-\end{multline}
-
-
-A large value of  potential function $\psi$ implies the high probability of $P(Y)$. The goal is to find a set of $Y$ maximizing $P(Y)$. 
-
-
-\subsubsection{Inference}
-
-
-\textbf{Estimate CRF Parameters}
-\label{sec:estim}
-
-
-We solve the Equation~(\ref{eq:PY}) by minimizing the negative log-likelihood function
-\begin{multline}
-\min_{\demow, \w} -\log P(Y|\demow, \w) = \min_{\demow, \w} \left[ \log Z + \sum_{i=1}^n |y_i - \demow^T \cdot \x_i| \right. \\
-\left.  + \sum_{i=1}^n\sum_{j=i}^n |y_i - y_j - \w^T \cdot \f_{i,j}| \right]
-\end{multline}
-
-Use matrix form
-\[
-\min_{\demow, \w} ||X \demow - \y||_1 + ||F \cdot \w - \yp||_1,
-\]
-where $X$ is demographics matrix with $n$ rows, $\y$ is the $n$-dimension crime rate vector, $F$ is the pairwise features matrix with $(n^2+n)/2$  rows, and $\yp$ is the $(n^2+n)/2$-dimension pairwise crime rate difference vector $\{y_i- y_j\}$.
-
-We can minimize separably.
-
-
-
-\textbf{Minimize $\demow$}
-
-\[ \min_{\demow} ||X \demow - \y||_1 \]
-
-Take $X\demow - \y = \z$, and use ADMM.
-\begin{multline}
- \min_{\z, \demow}  ||\z||_1 + \rho/2 ||\z - X\demow + \y||_2^2,\\
-   s.t.\quad  \z - X\demow + \y = 0 
-\end{multline}
-
-\begin{multline}
-L(\vec{\theta_1}, \z, \demow) = \max_{\vec\theta_1} \min_{\z, \demow} ||\z||_1 + \\
-\rho/2 ||\z - X\demow + \y||_2^2  + \vec{\theta_1}( \z - X\demow + \y ) 
-\end{multline}
-
-\textbf{$\demow$ update}
-
-\[ \demow^{k+1} \gets \argmin_{\demow}  \rho/2 ||\z^{k+1} - X\demow + \y + \vec{\theta_1}^{k+1}||_2^2 \]
-Take derivative we have
-\[ \frac{\partial}{\partial \demow} = \rho X^T(X\demow - \z^{k+1} - \y - \vec\theta_1^{k+1} ) \]
-Make it $0$, $\demow^{k+1} = (X^TX)^{-1} X^T(\z^{k+1} + \y + \vec\theta_1^{k+1})$.
-
-\textbf{$\z$ update}
-
-\[ \z^{k+1} \gets \argmin_{\z}  ||\z||_1 + \rho/2 ||\z - X\demow^{k+1} + \y + \vec{\theta_1}^{k+1}||_2^2 \]
-So, $\z^{k+1} = S_{1/\rho}(X\demow^{k+1} - \y - \vec\theta_1^{k+1})$.
-
-\textbf{$\vec\theta_1$ update}
-
-\[ \vec\theta_1^{k+1} = \vec\theta_1^{k} + \z^{k+1} - X\demow^{k+1} + \y \]
-
-
-
-\textbf{Minimize $\w$}
-
-\[ \min_{\w} ||F \cdot \w - \yp||_1 \]
-It has exactly the same form as previously. Therefore,
-\begin{multline}
-L(\vec{\theta_2}, \z', \w) = \max_{\vec\theta_2} \min_{\z', \w}  ||\z'||_1 + \\
-\rho/2 ||\z' - F\w + \yp||_2^2 + \vec{\theta_2}( \z' - F\w + \yp ) 
-\end{multline}
-
-\textbf{$\w$ update}
-\[ \w^{k+1} = (F^TF)^{-1} F^T(\z^{'k+1} + \yp + \vec\theta_2^{k+1}) \]
-
-\textbf{$\z'$ update}
-\[ \z^{'k+1} = S_{1/\rho}(F\w^{k+1} - \yp - \vec\theta_2^{k+1}) \]
-
-\textbf{$\vec\theta_1$ update}
-\[ \vec\theta_2^{k+1} = \vec\theta_2^{k} + \z^{'k+1} - F\w^{k+1} + \yp \]
-
-
-
-\textbf{Infer New $y_i$}
-
-To infer new $y_i$, we want to maximize the following probability
-\[ P(y_i | \x_i, F, \y, \demow, \w), \]
-where $\demow$ and $\w$ are estimated using previous section, $\y$ denote the crime rates of other observed geographical units, and $F$ is the pairwise feature matrix.
-
-Take negative log of the probability, we have 
-
-\begin{align}
-\min_{y_i} &  \left[ \log Z +  |y_i - \demow^T \cdot \x_i| + \sum_{j \neq i}^n |y_i - y_j - \w^T \cdot \f_{i,j}| \right] \nonumber \\
-\min_{y_i} & \left[ |y_i - \demow^T \cdot \x_i| + \sum_{j \neq i}^n |y_i - y_j - \w^T \cdot \f_{i,j}| \right] 
-\label{eq:inference}
-\end{align}
-
-In Equation~\ref{eq:inference}, we have $n+1$ $\ell_1$-norm terms, which have exactly the same form $|y_i - b_j|$. The objective becomes
 \begin{equation}
-  \min_{y_i} \sum_j^n |y_i - b_j|,
-\label{eq:infy}
+	P(Y) =  \frac{1}{Z} exp  \left( - \sum_{i=1}^n |y_i - \demow^T \cdot \x_i|  - \sum_{i=1}^n\sum_{j=i}^n |y_i - y_j - \w^T \cdot \f_{i,j}| \right)
+	\label{eq:PY}
 \end{equation}
-where $b_1 = \demow^T \cdot \x_i$ and $b_j = y_{j-1} + \w^T\cdot \f_{i,j-1}$ for $j > 1$.
-
-Notice that the optimal solution must take value on $\{b_j\}$. We solve this by sorting all the $b_j$ and then calculate the result segment by segment.
 
 
+The inference of $CRF$ model is given in the Appendix~\ref{apdx:crf}, and we refer interested reader there.
+
+
+
+
+\section{Graphcial Model Solve Other Proposed Problems}
+
+
+
+The graphical model is not only useful to solve inference problem on nodes using links, but also able to solve other problems.
+
+
+
+\subsection{Understand links using nodes.}
+
+In a graphical model shown in Figure~\ref{fig:crf}, we can estimate the flow $f_{ij}$ using the nodal attributes $y_i$ and $\x_i$ as well.
+
+
+This problem answers important questions about the link. For example, we can answer when two regions are becoming very dissimilar in $\x$, what will happend to the taxi interaction between them? What about the LEHD flow.
+
+
+
+\subsection{Understand the causal structures}
+
+
+Graphical model also helps us understand the real dependency structure of node property and flow between nodes.
+The assumptions that crime is neighboring community will influence crime in focal community is  over-simplified. Actually, we do not know what impacts crime in focal community. It is very likely to be nodal properties in neighboring communites that impacts crime in focal community. There are various explanations behind, as shown in Figure~\ref{fig:crf-assump}.
+
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.45\textwidth]{fig/CRF-base.pdf}
+\includegraphics[width=0.45\textwidth]{fig/CRF-impr.pdf}
+\caption{Various assumptions on interations behind the inference problem.}
+\label{fig:crf-assump}
+\end{figure}
 
 
