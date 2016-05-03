@@ -3,9 +3,10 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {2.1}{\ignorespaces Pearson correlation between demographic features and crime rate (\textbf {*} indicates significant correlations with p-value less than $5\%$). }}{13}{table.2.1}
-\contentsline {table}{\numberline {2.2}{\ignorespaces Pearson correlation between POI category and crime rate (\textbf {*} indicates significant correlations with p-value less than $5\%$).}}{15}{table.2.2}
-\contentsline {table}{\numberline {2.3}{\ignorespaces Performance evaluation. Various feature combinations are shown in each column. The linear regression model and negative binomial results are compared by year group. }}{22}{table.2.3}
+\contentsline {table}{\numberline {2.1}{\ignorespaces Pearson correlation between demographic features and crime rate (\textbf {*} indicates significant correlations with p-value less than $5\%$). }}{14}{table.2.1}
+\contentsline {table}{\numberline {2.2}{\ignorespaces Pearson correlation between POI category and crime rate (\textbf {*} indicates significant correlations with p-value less than $5\%$).}}{16}{table.2.2}
+\contentsline {table}{\numberline {2.3}{\ignorespaces Performance evaluation. Various feature combinations are shown in each column. The linear regression model and negative binomial results are compared by year group. }}{23}{table.2.3}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces Symbols for the dynamic coefficient model.}}{24}{table.3.1}
+\contentsline {table}{\numberline {3.1}{\ignorespaces Symbols for the dynamic coefficient model.}}{29}{table.3.1}
+\addvspace {10\p@ }
 \addvspace {10\p@ }

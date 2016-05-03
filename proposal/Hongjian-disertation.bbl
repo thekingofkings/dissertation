@@ -211,4 +211,14 @@
   aggregate crime rates,} \emph{Journal of quantitative criminology},
   \textbf{16}(1), pp. 21--43.
 
+\bibitem{GWR03}
+\textsc{Fotheringham, A.~S.}, \textsc{C.~Brunsdon}, and \textsc{M.~Charlton}
+  (2003) \emph{Geographically weighted regression}, John Wiley \& Sons,
+  Limited.
+
+\bibitem{wiki:simpson}
+\textsc{Wikipedia} (2016), \enquote{Simpson's paradox --- Wikipedia{,} The Free
+  Encyclopedia,} [Online; accessed 3-May-2016].
+\newline\urlprefix\url{https://en.wikipedia.org/w/index.php?title=Simpson%27s_paradox&oldid=717258021}
+
 \end{thebibliography}

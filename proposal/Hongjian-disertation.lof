@@ -3,21 +3,28 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {1.1}{\ignorespaces Use data collected in the urban space to address real urban problems.}}{2}{figure.1.1}
-\contentsline {figure}{\numberline {1.2}{\ignorespaces An illustration of various types of features we used in Chicago. The POI distribution across community areas reflects profiles of the region functionality. The taxi flow connects nonadjacent regions and act as a ``hyperlink''.}}{4}{figure.1.2}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces The crime count vs. total population relationship shows spatial non-stationary property.}}{6}{figure.1.2}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Crime rate of Chicago by community areas. The community area \#32 is Chicago downtown, which has the highest crime rate.}}{11}{figure.2.1}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces (a)-(d) Demographics in Chicago by community areas. Darker colors indicate higher values.}}{12}{figure.2.2}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Total population}}}{12}{figure.2.2}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Poverty index}}}{12}{figure.2.2}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Disadvantage index}}}{12}{figure.2.2}
-\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Ethnic diversity}}}{12}{figure.2.2}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Plot the POI ratio per neighborhood. The saturation of color is proportional to the ratio value. The ``professional'' category distribution is more consistent with the crime distribution, and therefore it is the most correlated with crime. Meanwhile, the ``nightlife'' category is not positively correlated with Chicago crime.}}{14}{figure.2.3}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Nightlife}}}{14}{figure.2.3}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Professional}}}{14}{figure.2.3}
-\contentsline {figure}{\numberline {2.4}{\ignorespaces The geographical influence feature correlation with crime. In the plot we marked out three outliers and their corresponding community area ID.}}{16}{figure.2.4}
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Major taxi flows between neighborhoods. We set a threshold ($> 5,000$) on the flow and only plot the high volume flow. The label on the node is the ID of the corresponding community areas. We can see that there are several hub community areas, such as \#6, \#8, \#32, which are all in the downtown areas. The label on the edge shows how many taxi trips are commuting through the two community areas for three months in 2013.}}{17}{figure.2.5}
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Correlation between taxi flow and crime rate. In the plot, we marked out three outliers and their corresponding community area ID.}}{18}{figure.2.6}
-\contentsline {figure}{\numberline {2.7}{\ignorespaces The inference error for linear regression base model. $^*$D -- demographic features, G -- geographical influence, P -- POI features, T -- taxi flow feature}}{23}{figure.2.7}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces An illustration of various types of features we used in Chicago. The POI distribution across community areas reflects profiles of the region functionality. The taxi flow connects nonadjacent regions and act as a ``hyperlink''.}}{8}{figure.2.1}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Crime rate of Chicago by community areas. The community area \#32 is Chicago downtown, which has the highest crime rate.}}{12}{figure.2.2}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces (a)-(d) Demographics in Chicago by community areas. Darker colors indicate higher values.}}{13}{figure.2.3}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Total population}}}{13}{figure.2.3}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Poverty index}}}{13}{figure.2.3}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Disadvantage index}}}{13}{figure.2.3}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Ethnic diversity}}}{13}{figure.2.3}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Plot the POI ratio per neighborhood. The saturation of color is proportional to the ratio value. The ``professional'' category distribution is more consistent with the crime distribution, and therefore it is the most correlated with crime. Meanwhile, the ``nightlife'' category is not positively correlated with Chicago crime.}}{15}{figure.2.4}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Nightlife}}}{15}{figure.2.4}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Professional}}}{15}{figure.2.4}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces The geographical influence feature correlation with crime. In the plot we marked out three outliers and their corresponding community area ID.}}{17}{figure.2.5}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Major taxi flows between neighborhoods. We set a threshold ($> 5,000$) on the flow and only plot the high volume flow. The label on the node is the ID of the corresponding community areas. We can see that there are several hub community areas, such as \#6, \#8, \#32, which are all in the downtown areas. The label on the edge shows how many taxi trips are commuting through the two community areas for three months in 2013.}}{18}{figure.2.6}
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Correlation between taxi flow and crime rate. In the plot, we marked out three outliers and their corresponding community area ID.}}{19}{figure.2.7}
+\contentsline {figure}{\numberline {2.8}{\ignorespaces The inference error for linear regression base model. $^*$D -- demographic features, G -- geographical influence, P -- POI features, T -- taxi flow feature}}{24}{figure.2.8}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces The CRF model of the crime rate $y_i$ for each grid $g_i$.}}{28}{figure.3.1}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces A spatial example of Simpson's Paradox (from\nobreakspace {}\cite {fig:simpson}).}}{26}{figure.3.1}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces The crime count vs. total population relationship shows spatial non-stationary property.}}{27}{figure.3.2}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces A spatial kernel. Example from \nobreakspace {}\cite {GWR03}}}{28}{figure.3.3}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces The CRF model of the crime rate $y_i$ for each grid $g_i$.}}{33}{figure.3.4}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Various assumptions on interations behind the inference problem.}}{34}{figure.3.5}
 \addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {A.1}{\ignorespaces The CRF model of the crime rate $y_i$ for each grid $g_i$.}}{37}{figure.A.1}

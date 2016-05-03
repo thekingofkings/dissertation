@@ -26,6 +26,19 @@ In the next section, we will use the crime inference as  an example to show how 
 
 \section{Crime Inference as One Example}
 
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.8\textwidth]{fig/demo.pdf}
+\caption{An illustration of various types of features we used in Chicago. The POI distribution across community areas reflects profiles of the region functionality. The taxi flow connects nonadjacent regions and act as a ``hyperlink''.}
+\label{fig:demo}
+\end{figure}
+
+
+
+In Figure~\ref{fig:demo}, we show that taxi flow as a newer type of big data could provide us new insights to understand some traditional socioeconomic urban problems.  A huge amount of taxi flow data reflect how people commute in the city. In previous studies, when using geographical influence~\cite{Ans02}, people assume that a community is affected by the spatially nearby communities. However, communities are not only affected by spatially-close communities. Even if two communities are distant in geographical space, they could have a strong correlation if there are many people frequently travel between these two communities~\cite{GGM14}. We hypothesize that taxi flows may be considered as ``hyperlinks'' in the city that connect the locations and we use such data to estimate crime rates. Our experiments show very promising results --  adding taxi flow data on top of all other features can further decrease the error by 5\%.
+
+
 \subsection{Related Work}
 
 
@@ -202,7 +215,7 @@ Event & 0.2196 &  0.0549  \\ \hline
 
 
 
-In Table~\ref{tb:poi-corr} we show the Pearson correlation between POI category and crime rate. The category ``professional''  is most significantly correlated with the crime rate. Under the professional POI category, there are some venues with a large population concentration, such as transportation center, convention center, community center, and coworking space. In those venues, the  population volume is high and residential stability is low, therefore the professional POI counts positively correlates with crime rate.  One counter-intuitive observation is that ``nightlife'' category is not positively correlated with crime ($-0.1553$). This can be explained through Figure~\ref{fig:poi-coef}(a). The majority of nightlife venues in Chicago locate in northern area, while most crime incidents occur in downtown area.
+In Table~\ref{tb:poi-corr} we show the Pearson correlation between POI category and crime rate. The category ``professional''  is most significantly correlated with the crime rate. Under the professional POI category, there are some venues with a large population concentration, such as transportation center, convention center, community center, and co-working space. In those venues, the  population volume is high and residential stability is low, therefore the professional POI counts positively correlates with crime rate.  One counter-intuitive observation is that ``nightlife'' category is not positively correlated with crime ($-0.1553$). This can be explained through Figure~\ref{fig:poi-coef}(a). The majority of nightlife venues in Chicago locate in northern area, while most crime incidents occur in downtown area.
 
 
 
@@ -272,7 +285,7 @@ The correlation between taxi flow and crime rate is shown in Figure~\ref{fig:tax
 
 
 
-\subsection{Spatial AutoRegressive Inference Model}
+\subsection{Spatial Autoregressive Inference Model}
 
 
 
@@ -461,3 +474,16 @@ In Table~\ref{tb:perf},  we can see that in different years and under most setti
 One reason is that the negative binomial is a count prediction model, which assumes some distribution for the predicted variable and guarantee its positivity. Another reason is that it is difficult to get very precise estimation of crime rate, and  negative binomial model allows a large variance in the estimated crime rate. Therefore negative binomial is more appropriate for crime rate estimation than linear regression.
 
 
+
+
+
+\section{Conclusion}
+
+
+In this chapter, we discuss the a general inference problem that using information on the links to understand the nodes.
+
+
+We extend the spatial autoregressive model in the literature by adding new types of flow into the model.  We call this model flow augumented spatial autoregressive model. This modification makes it impossible to use standard T-test to get the significance of the model coefficients. Therefore, we use the Monte-Carlo tests, where a repeated leave-one-out schemes is designed.
+
+
+The flow augumented spatial autoregressive model has its own weakness, which will be discussed in next chapter. In the next chapter, we presents the unified graphical model to model the interactions.

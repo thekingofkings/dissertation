@@ -1,11 +1,54 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: Hongjian-disertation.aux
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: Hongjian-disertation.aux
 A level-1 auxiliary file: Chapter-1/Chapter-1.aux
 A level-1 auxiliary file: Chapter-2/Chapter-2.aux
 A level-1 auxiliary file: Chapter-3/Chapter-3.aux
-A level-1 auxiliary file: Chapter-4/Chapter-4.aux
 A level-1 auxiliary file: Chapter-5/Chapter-5.aux
 The style file: GLG-bibstyle.bst
 Database file #1: Biblio-Database.bib
+Warning--I didn't find a database entry for "fig:simpson"
 Warning--empty pages in WRWS13
 Warning--empty journal in ECCW05
-(There were 2 warnings)
+You've used 43 entries,
+            2552 wiz_defined-function locations,
+            853 strings with 11845 characters,
+and the built_in function-call counts, 16961 in all, are:
+= -- 1154
+> -- 447
+< -- 26
++ -- 138
+- -- 95
+* -- 1168
+:= -- 1738
+add.period$ -- 81
+call.type$ -- 43
+change.case$ -- 1
+chr.to.int$ -- 0
+cite$ -- 45
+duplicate$ -- 1908
+empty$ -- 1850
+format.name$ -- 119
+if$ -- 3906
+int.to.chr$ -- 0
+int.to.str$ -- 43
+missing$ -- 348
+newline$ -- 138
+num.names$ -- 40
+pop$ -- 552
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 572
+stack$ -- 0
+substring$ -- 750
+swap$ -- 1234
+text.length$ -- 26
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 2
+while$ -- 113
+width$ -- 45
+write$ -- 378
+(There were 3 warnings)
