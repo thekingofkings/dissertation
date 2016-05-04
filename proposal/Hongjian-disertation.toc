@@ -2,37 +2,36 @@
 \contentsline {chapter}{List of Tables}{viii}{chapter*.4}
 \contentsline {chapter}{Acknowledgments}{ix}{chapter*.5}
 \contentsline {chapter}{\numberline {1}Introduction -- Urban Computing}{1}{chapter.1}
-\contentsline {section}{\numberline {1.1}The Opportunities from Urban Data}{1}{section.1.1}
-\contentsline {subsection}{\numberline {1.1.1}A New Type of Data: Mobility Flow}{2}{subsection.1.1.1}
-\contentsline {section}{\numberline {1.2}Model Interactions In Urban Space}{3}{section.1.2}
-\contentsline {subsection}{\numberline {1.2.1}Literature}{4}{subsection.1.2.1}
-\contentsline {subsection}{\numberline {1.2.2}Drawbacks}{5}{subsection.1.2.2}
-\contentsline {section}{\numberline {1.3}A Unified Graphical Model}{5}{section.1.3}
-\contentsline {chapter}{\numberline {2}Understand Nodes Using Links}{7}{chapter.2}
-\contentsline {section}{\numberline {2.1}General Problem Definition}{7}{section.2.1}
-\contentsline {section}{\numberline {2.2}Crime Inference as One Example}{8}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Related Work}{9}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Data Description and Feature Extraction}{11}{subsection.2.2.2}
-\contentsline {subsection}{\numberline {2.2.3}Spatial Autoregressive Inference Model}{19}{subsection.2.2.3}
-\contentsline {subsection}{\numberline {2.2.4}Evaluation of negative binomial regression model}{22}{subsection.2.2.4}
-\contentsline {section}{\numberline {2.3}Conclusion}{24}{section.2.3}
-\contentsline {chapter}{\numberline {3}A Unified Graphical Model}{25}{chapter.3}
-\contentsline {section}{\numberline {3.1}Capture Spatial Non-stationarity}{26}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Global Model vs. Local Model}{26}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}An Existing Solution: Geographically Weighted Regression}{27}{subsection.3.1.2}
-\contentsline {subsection}{\numberline {3.1.3}An Alternative Solution: Adaptive Spatial Model}{28}{subsection.3.1.3}
-\contentsline {subsection}{\numberline {3.1.4}Comparison of GWR and Adaptive Model}{31}{subsection.3.1.4}
-\contentsline {section}{\numberline {3.2}Graphical Model to Capture Complicated Interactions}{32}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Problem Formulation}{32}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Conditional random field model}{32}{subsection.3.2.2}
-\contentsline {section}{\numberline {3.3}Graphcial Model Solve Other Proposed Problems}{33}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Understand links using nodes.}{34}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Understand the causal structures}{34}{subsection.3.3.2}
-\contentsline {chapter}{\numberline {4}Research Plan and Schedule}{35}{chapter.4}
+\contentsline {section}{\numberline {1.1}Model Region Interactions Incurred By Social Flow}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}Research Problems}{2}{section.1.2}
+\contentsline {section}{\numberline {1.3}Existing Work}{3}{section.1.3}
+\contentsline {section}{\numberline {1.4}Challenges}{4}{section.1.4}
+\contentsline {section}{\numberline {1.5}A Unified Graphical Model}{4}{section.1.5}
+\contentsline {chapter}{\numberline {2}Understand Nodes Using Links}{6}{chapter.2}
+\contentsline {section}{\numberline {2.1}General Problem Definition}{6}{section.2.1}
+\contentsline {section}{\numberline {2.2}Crime Inference as One Example}{7}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Related Work}{8}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Data Description and Feature Extraction}{10}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}Spatial Autoregressive Inference Model}{18}{subsection.2.2.3}
+\contentsline {subsection}{\numberline {2.2.4}Evaluation of negative binomial regression model}{21}{subsection.2.2.4}
+\contentsline {section}{\numberline {2.3}Conclusion}{23}{section.2.3}
+\contentsline {chapter}{\numberline {3}A Unified Graphical Model}{24}{chapter.3}
+\contentsline {section}{\numberline {3.1}Capture Spatial Non-stationarity}{25}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Global Model vs. Local Model}{25}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}An Existing Solution: Geographically Weighted Regression}{26}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}An Alternative Solution: Adaptive Spatial Model}{27}{subsection.3.1.3}
+\contentsline {subsection}{\numberline {3.1.4}Comparison of GWR and Adaptive Model}{30}{subsection.3.1.4}
+\contentsline {section}{\numberline {3.2}Graphical Model to Capture Complicated Interactions}{31}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Problem Formulation}{31}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Conditional random field model}{31}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}Graphcial Model Solve Other Proposed Problems}{32}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Understand links using nodes.}{33}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Understand the causal structures}{33}{subsection.3.3.2}
+\contentsline {chapter}{\numberline {4}Research Plan and Schedule}{34}{chapter.4}
 \renewcommand {\cftchappresnum }{Appendix }
-\contentsline {chapter}{\numberline {A}Inference of Conditional Random Field Model}{36}{appendix.A}
-\contentsline {section}{\numberline {A.1}Potential Function}{36}{section.A.1}
-\contentsline {section}{\numberline {A.2}Inference}{38}{section.A.2}
-\contentsline {subsection}{\numberline {A.2.1}Estimate CRF Parameters}{38}{subsection.A.2.1}
-\contentsline {subsection}{\numberline {A.2.2}Infer New $y_i$}{40}{subsection.A.2.2}
-\contentsline {chapter}{Bibliography}{41}{equation.A.2.12}
+\contentsline {chapter}{\numberline {A}Inference of Conditional Random Field Model}{35}{appendix.A}
+\contentsline {section}{\numberline {A.1}Potential Function}{35}{section.A.1}
+\contentsline {section}{\numberline {A.2}Inference}{37}{section.A.2}
+\contentsline {subsection}{\numberline {A.2.1}Estimate CRF Parameters}{37}{subsection.A.2.1}
+\contentsline {subsection}{\numberline {A.2.2}Infer New $y_i$}{39}{subsection.A.2.2}
+\contentsline {chapter}{Bibliography}{40}{equation.A.2.12}
