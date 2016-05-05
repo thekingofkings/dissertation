@@ -5,50 +5,50 @@ A level-1 auxiliary file: Chapter-1/Chapter-1.aux
 A level-1 auxiliary file: Chapter-2/Chapter-2.aux
 A level-1 auxiliary file: Chapter-3/Chapter-3.aux
 A level-1 auxiliary file: Chapter-5/Chapter-5.aux
+A level-1 auxiliary file: Appendix-A/Appendix-A.aux
 The style file: GLG-bibstyle.bst
 Database file #1: Biblio-Database.bib
-Warning--I didn't find a database entry for "fig:simpson"
 Warning--empty pages in WRWS13
 Warning--empty journal in ECCW05
-You've used 43 entries,
+You've used 66 entries,
             2552 wiz_defined-function locations,
-            853 strings with 11845 characters,
-and the built_in function-call counts, 16961 in all, are:
-= -- 1154
-> -- 447
-< -- 26
-+ -- 138
-- -- 95
-* -- 1168
-:= -- 1738
-add.period$ -- 81
-call.type$ -- 43
+            978 strings with 16031 characters,
+and the built_in function-call counts, 29152 in all, are:
+= -- 2057
+> -- 782
+< -- 51
++ -- 234
+- -- 168
+* -- 2065
+:= -- 2924
+add.period$ -- 126
+call.type$ -- 66
 change.case$ -- 1
 chr.to.int$ -- 0
-cite$ -- 45
-duplicate$ -- 1908
-empty$ -- 1850
-format.name$ -- 119
-if$ -- 3906
+cite$ -- 68
+duplicate$ -- 3212
+empty$ -- 3063
+format.name$ -- 212
+if$ -- 6738
 int.to.chr$ -- 0
-int.to.str$ -- 43
-missing$ -- 348
-newline$ -- 138
-num.names$ -- 40
-pop$ -- 552
+int.to.str$ -- 66
+missing$ -- 579
+newline$ -- 207
+num.names$ -- 63
+pop$ -- 856
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 572
+skip$ -- 1027
 stack$ -- 0
-substring$ -- 750
-swap$ -- 1234
-text.length$ -- 26
+substring$ -- 1492
+swap$ -- 2183
+text.length$ -- 51
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 2
-while$ -- 113
-width$ -- 45
-write$ -- 378
-(There were 3 warnings)
+while$ -- 202
+width$ -- 68
+write$ -- 588
+(There were 2 warnings)

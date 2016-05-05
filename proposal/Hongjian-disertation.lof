@@ -2,7 +2,6 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces The crime count vs. total population relationship shows spatial non-stationary property.}}{5}{figure.1.1}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {2.1}{\ignorespaces An illustration of various types of features we used in Chicago. The POI distribution across community areas reflects profiles of the region functionality. The taxi flow connects nonadjacent regions and act as a ``hyperlink''.}}{7}{figure.2.1}
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Crime rate of Chicago by community areas. The community area \#32 is Chicago downtown, which has the highest crime rate.}}{11}{figure.2.2}
@@ -19,7 +18,7 @@
 \contentsline {figure}{\numberline {2.7}{\ignorespaces Correlation between taxi flow and crime rate. In the plot, we marked out three outliers and their corresponding community area ID.}}{18}{figure.2.7}
 \contentsline {figure}{\numberline {2.8}{\ignorespaces The inference error for linear regression base model. $^*$D -- demographic features, G -- geographical influence, P -- POI features, T -- taxi flow feature}}{23}{figure.2.8}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces A spatial example of Simpson's Paradox (from\nobreakspace {}\cite {fig:simpson}).}}{25}{figure.3.1}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces A spatial example of Simpson's Paradox (from\nobreakspace {}\cite {GWR03}).}}{25}{figure.3.1}
 \contentsline {figure}{\numberline {3.2}{\ignorespaces The crime count vs. total population relationship shows spatial non-stationary property.}}{26}{figure.3.2}
 \contentsline {figure}{\numberline {3.3}{\ignorespaces A spatial kernel. Example from \nobreakspace {}\cite {GWR03}}}{27}{figure.3.3}
 \contentsline {figure}{\numberline {3.4}{\ignorespaces The CRF model of the crime rate $y_i$ for each grid $g_i$.}}{32}{figure.3.4}

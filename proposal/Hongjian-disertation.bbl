@@ -4,35 +4,153 @@
 \providecommand{\urlprefix}{URL }
 \providecommand{\eprint}[2][]{\url{#2}}
 
-\bibitem{ZCWY14}
-\textsc{Zheng, Y.}, \textsc{L.~Capra}, \textsc{O.~Wolfson}, and
-  \textsc{H.~Yang} (2014) \enquote{Urban computing: concepts, methodologies,
-  and applications,} \emph{ACM TIST}, \textbf{5}(3), p.~38.
+\bibitem{nyctaxi}
+\textsc{Whong, C.}, \enquote{Foiling NYC's Taxi Trip Data:
+  \url{http://chriswhong.com/open-data/foil_nyc_taxi/},} .
 
-\bibitem{Baum05}
-\textsc{Baum, K.} (2005) \emph{Juvenile victimization and offending,
-  1993-2003}, US Department of Justice, Office of Justice Programs, Bureau of
-  Justice Statistics.
+\bibitem{haynes1984gravity}
+\textsc{Haynes, K.~E.} and \textsc{A.~S. Fotheringham} (1984) \emph{Gravity and
+  spatial interaction models}, vol.~2, Sage publications Beverly Hills.
 
-\bibitem{Fink08}
-\textsc{Finkelhor, D.} (2008) \emph{Childhood victimization: violence, crime,
-  and abuse in the lives of young people: violence, crime, and abuse in the
-  lives of young people}, Oxford University Press, USA.
+\bibitem{rodrigue2013geography}
+\textsc{Rodrigue, J.-P.}, \textsc{C.~Comtois}, and \textsc{B.~Slack} (2013)
+  \emph{The geography of transport systems}, Routledge.
 
-\bibitem{cdc15}
-\textsc{for Disease~Control, N.~C.} and \textsc{P.~(CDC)} (2015)
-  \enquote{Leading Causes of Nonfatal Injury, United States 2001 - 2013.}
-  \emph{Injury Prevention and Control: data and statistics}.
+\bibitem{matyas1997proper}
+\textsc{M{\'a}ty{\'a}s, L.} (1997) \enquote{Proper econometric specification of
+  the gravity model,} \emph{The world economy}, \textbf{20}(3), pp. 363--368.
 
-\bibitem{Grai15}
-\textsc{Graif, C.} (2015) \enquote{Toward a Geographically Extended Perspective
-  of Neighborhood Effects on Children's Victimization,} \emph{American Society
-  of Criminology Annual Meeting}.
+\bibitem{anselin1980estimation}
+\textsc{Anselin, L.} (1980) \emph{Estimation methods for spatial autoregressive
+  structures: A study in spatial econometrics}, vol.~8, Program in Urban and
+  Regional Studies, Cornell University.
 
-\bibitem{GrSa09}
-\textsc{Graif, C.} and \textsc{R.~J. Sampson} (2009) \enquote{Spatial
-  heterogeneity in the effects of immigration and diversity on neighborhood
-  homicide rates,} \emph{Homicide Studies}.
+\bibitem{carrere2006revisiting}
+\textsc{Carrere, C.} (2006) \enquote{Revisiting the effects of regional trade
+  agreements on trade flows with proper specification of the gravity model,}
+  \emph{European Economic Review}, \textbf{50}(2), pp. 223--247.
+
+\bibitem{egger2003proper}
+\textsc{Egger, P.} and \textsc{M.~Pfaffermayr} (2003) \enquote{The proper panel
+  econometric specification of the gravity equation: A three-way model with
+  bilateral interaction effects,} \emph{Empirical Economics}, \textbf{28}(3),
+  pp. 571--580.
+
+\bibitem{martinez2003augmented}
+\textsc{Mart{\'\i}nez-Zarzoso, I.}, \textsc{F.~Nowak-Lehmann}, \textsc{et~al.}
+  (2003) \enquote{Augmented gravity model: An empirical application to
+  Mercosur-European Union trade flows,} \emph{Journal of applied economics},
+  \textbf{6}(2), pp. 291--316.
+
+\bibitem{hanski1994metapopulation}
+\textsc{Hanski, I.}, \textsc{M.~Kuussaari}, and \textsc{M.~Nieminen} (1994)
+  \enquote{Metapopulation structure and migration in the butterfly Melitaea
+  cinxia,} \emph{Ecology}, \textbf{75}(3), pp. 747--762.
+
+\bibitem{karemera2000gravity}
+\textsc{Karemera, D.}, \textsc{V.~I. Oguledo}, and \textsc{B.~Davis} (2000)
+  \enquote{A gravity model analysis of international migration to North
+  America,} \emph{Applied Economics}, \textbf{32}(13), pp. 1745--1755.
+
+\bibitem{lewer2008gravity}
+\textsc{Lewer, J.~J.} and \textsc{H.~Van~den Berg} (2008) \enquote{A gravity
+  model of immigration,} \emph{Economics letters}, \textbf{99}(1), pp.
+  164--167.
+
+\bibitem{jung2008gravity}
+\textsc{Jung, W.-S.}, \textsc{F.~Wang}, and \textsc{H.~E. Stanley} (2008)
+  \enquote{Gravity model in the Korean highway,} \emph{EPL (Europhysics
+  Letters)}, \textbf{81}(4), p. 48005.
+
+\bibitem{roughan2002experience}
+\textsc{Roughan, M.}, \textsc{A.~Greenberg}, \textsc{C.~Kalmanek},
+  \textsc{M.~Rumsewicz}, \textsc{J.~Yates}, and \textsc{Y.~Zhang} (2002)
+  \enquote{Experience in measuring backbone traffic variability: Models,
+  metrics, measurements and meaning,} in \emph{Proceedings of the 2nd ACM
+  SIGCOMM Workshop on Internet measurment}, ACM, pp. 91--92.
+
+\bibitem{khadaroo2008role}
+\textsc{Khadaroo, J.} and \textsc{B.~Seetanah} (2008) \enquote{The role of
+  transport infrastructure in international tourism development: A gravity
+  model approach,} \emph{Tourism management}, \textbf{29}(5), pp. 831--840.
+
+\bibitem{krings2009urban}
+\textsc{Krings, G.}, \textsc{F.~Calabrese}, \textsc{C.~Ratti}, and
+  \textsc{V.~D. Blondel} (2009) \enquote{Urban gravity: a model for inter-city
+  telecommunication flows,} \emph{Journal of Statistical Mechanics: Theory and
+  Experiment}, \textbf{2009}(07), p. L07003.
+
+\bibitem{fischer1994artificial}
+\textsc{Fischer, M.~M.} and \textsc{S.~Gopal} (1994) \enquote{ARTIFICIAL NEURAL
+  NETWORKS: A NEW APPROACH TO MODELING INTERREGIONAL TELECOMMUNICATION FLOWS*,}
+  \emph{Journal of Regional Science}, \textbf{34}(4), pp. 503--527.
+
+\bibitem{black1995spatial}
+\textsc{Black, W.~R.} (1995) \enquote{Spatial interaction modeling using
+  artificial neural networks,} \emph{Journal of Transport Geography},
+  \textbf{3}(3), pp. 159--166.
+
+\bibitem{anselin2000spatial}
+\textsc{Anselin, L.}, \textsc{J.~Cohen}, \textsc{D.~Cook}, \textsc{W.~Gorr},
+  and \textsc{G.~Tita} (2000) \enquote{Spatial analyses of crime,}
+  \emph{Criminal justice}, \textbf{4}(2), pp. 213--262.
+
+\bibitem{kakamu2008spatial}
+\textsc{Kakamu, K.}, \textsc{W.~Polasek}, and \textsc{H.~Wago} (2008)
+  \enquote{Spatial interaction of crime incidents in Japan,} \emph{Mathematics
+  and Computers in Simulation}, \textbf{78}(2), pp. 276--282.
+
+\bibitem{browning2004paradox}
+\textsc{Browning, C.~R.}, \textsc{R.~D. Dietz}, and \textsc{S.~L. Feinberg}
+  (2004) \enquote{The paradox of social organization: Networks, collective
+  efficacy, and violent crime in urban neighborhoods,} \emph{Social Forces},
+  \textbf{83}(2), pp. 503--534.
+
+\bibitem{lesage2007knowledge}
+\textsc{LeSage, J.~P.}, \textsc{M.~M. Fischer}, and \textsc{T.~Scherngell}
+  (2007) \enquote{Knowledge spillovers across Europe: Evidence from a Poisson
+  spatial interaction model with spatial effects*,} \emph{Papers in Regional
+  Science}, \textbf{86}(3), pp. 393--421.
+
+\bibitem{fischer2006geography}
+\textsc{Fischer, M.~M.}, \textsc{T.~Scherngell}, and \textsc{E.~Jansenberger}
+  (2006) \enquote{The Geography of Knowledge Spillovers Between High-Technology
+  Firms in Europe: Evidence from a Spatial Interaction Modeling Perspective,}
+  \emph{Geographical Analysis}, \textbf{38}(3), pp. 288--309.
+
+\bibitem{huang2013global}
+\textsc{Huang, Z.}, \textsc{A.~J. Tatem}, \textsc{et~al.} (2013)
+  \enquote{Global malaria connectivity through air travel,} \emph{Malar J},
+  \textbf{12}(1), p. 269.
+
+\bibitem{tatem2014mapping}
+\textsc{Tatem, A.~J.} (2014) \enquote{Mapping population and pathogen
+  movements,} \emph{International health}, p. ihu006.
+
+\bibitem{pindolia2013demographics}
+\textsc{Pindolia, D.~K.}, \textsc{A.~J. Garcia}, \textsc{Z.~Huang},
+  \textsc{D.~L. Smith}, \textsc{V.~A. Alegana}, \textsc{A.~M. Noor},
+  \textsc{R.~W. Snow}, and \textsc{A.~J. Tatem} (2013) \enquote{The
+  demographics of human and malaria movement and migration patterns in East
+  Africa,} \emph{Malar J}, \textbf{12}(397), pp. 10--1186.
+
+\bibitem{zheng2011urban}
+\textsc{Zheng, Y.}, \textsc{Y.~Liu}, \textsc{J.~Yuan}, and \textsc{X.~Xie}
+  (2011) \enquote{Urban computing with taxicabs,} in \emph{Proceedings of the
+  13th international conference on Ubiquitous computing}, ACM, pp. 89--98.
+
+\bibitem{yuan2012discovering}
+\textsc{Yuan, J.}, \textsc{Y.~Zheng}, and \textsc{X.~Xie} (2012)
+  \enquote{Discovering regions of different functions in a city using human
+  mobility and POIs,} in \emph{Proceedings of the 18th ACM SIGKDD international
+  conference on Knowledge discovery and data mining}, ACM, pp. 186--194.
+
+\bibitem{berlingerio2013allaboard}
+\textsc{Berlingerio, M.}, \textsc{F.~Calabrese}, \textsc{G.~Di~Lorenzo},
+  \textsc{R.~Nair}, \textsc{F.~Pinelli}, and \textsc{M.~L. Sbodio} (2013)
+  \enquote{AllAboard: a system for exploring urban mobility and optimizing
+  public transport using cellphone data,} in \emph{Machine learning and
+  knowledge discovery in databases}, Springer, pp. 663--666.
 
 \bibitem{Ans02}
 \textsc{Anselin, L.} (2002) \enquote{Under the hood: issues in the
@@ -159,6 +277,11 @@
 \bibitem{Jac61}
 \textsc{Jacobs, J.} (1961) \emph{The death and life of great American cities},
   Vintage.
+
+\bibitem{GrSa09}
+\textsc{Graif, C.} and \textsc{R.~J. Sampson} (2009) \enquote{Spatial
+  heterogeneity in the effects of immigration and diversity on neighborhood
+  homicide rates,} \emph{Homicide Studies}.
 
 \bibitem{census-data}
 \enquote{United States Census Bureau,} http://www.census.gov.
