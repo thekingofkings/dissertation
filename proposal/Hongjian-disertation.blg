@@ -1,4 +1,4 @@
-This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2014)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: Hongjian-disertation.aux
 A level-1 auxiliary file: Chapter-1/Chapter-1.aux
@@ -10,45 +10,45 @@ The style file: GLG-bibstyle.bst
 Database file #1: Biblio-Database.bib
 Warning--empty pages in WRWS13
 Warning--empty journal in ECCW05
-You've used 66 entries,
+You've used 75 entries,
             2552 wiz_defined-function locations,
-            978 strings with 16031 characters,
-and the built_in function-call counts, 29152 in all, are:
-= -- 2057
-> -- 782
-< -- 51
-+ -- 234
-- -- 168
-* -- 2065
-:= -- 2924
-add.period$ -- 126
-call.type$ -- 66
+            1037 strings with 18261 characters,
+and the built_in function-call counts, 33949 in all, are:
+= -- 2397
+> -- 927
+< -- 59
++ -- 275
+- -- 200
+* -- 2420
+:= -- 3408
+add.period$ -- 144
+call.type$ -- 75
 change.case$ -- 1
 chr.to.int$ -- 0
-cite$ -- 68
-duplicate$ -- 3212
-empty$ -- 3063
-format.name$ -- 212
-if$ -- 6738
+cite$ -- 77
+duplicate$ -- 3730
+empty$ -- 3560
+format.name$ -- 252
+if$ -- 7855
 int.to.chr$ -- 0
-int.to.str$ -- 66
-missing$ -- 579
-newline$ -- 207
-num.names$ -- 63
-pop$ -- 856
+int.to.str$ -- 75
+missing$ -- 672
+newline$ -- 237
+num.names$ -- 72
+pop$ -- 1002
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 1027
+skip$ -- 1183
 stack$ -- 0
-substring$ -- 1492
-swap$ -- 2183
-text.length$ -- 51
+substring$ -- 1756
+swap$ -- 2520
+text.length$ -- 59
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 2
-while$ -- 202
-width$ -- 68
-write$ -- 588
+while$ -- 234
+width$ -- 77
+write$ -- 679
 (There were 2 warnings)

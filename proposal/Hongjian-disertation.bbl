@@ -4,9 +4,70 @@
 \providecommand{\urlprefix}{URL }
 \providecommand{\eprint}[2][]{\url{#2}}
 
+\bibitem{GWR03}
+\textsc{Fotheringham, A.~S.}, \textsc{C.~Brunsdon}, and \textsc{M.~Charlton}
+  (2003) \emph{Geographically weighted regression}, John Wiley \& Sons,
+  Limited.
+
 \bibitem{nyctaxi}
 \textsc{Whong, C.}, \enquote{Foiling NYC's Taxi Trip Data:
   \url{http://chriswhong.com/open-data/foil_nyc_taxi/},} .
+
+\bibitem{Pontes:2012:WKY:2370216.2370419}
+\textsc{Pontes, T.}, \textsc{M.~Vasconcelos}, \textsc{J.~Almeida},
+  \textsc{P.~Kumaraguru}, and \textsc{V.~Almeida} (2012) \enquote{We Know Where
+  You Live: Privacy Characterization of Foursquare Behavior,} in
+  \emph{Proceedings of the 2012 ACM Conference on Ubiquitous Computing},
+  UbiComp '12, ACM, New York, NY, USA, pp. 898--905.
+\newline\urlprefix\url{http://doi.acm.org/10.1145/2370216.2370419}
+
+\bibitem{Li:2012:TSU:2339530.2339692}
+\textsc{Li, R.}, \textsc{S.~Wang}, \textsc{H.~Deng}, \textsc{R.~Wang}, and
+  \textsc{K.~C.-C. Chang} (2012) \enquote{Towards Social User Profiling:
+  Unified and Discriminative Influence Model for Inferring Home Locations,} in
+  \emph{Proceedings of the 18th ACM SIGKDD International Conference on
+  Knowledge Discovery and Data Mining}, KDD '12, ACM, New York, NY, USA, pp.
+  1023--1031.
+\newline\urlprefix\url{http://doi.acm.org/10.1145/2339530.2339692}
+
+\bibitem{6195711}
+\textsc{Dey, R.}, \textsc{C.~Tang}, \textsc{K.~Ross}, and \textsc{N.~Saxena}
+  (2012) \enquote{Estimating age privacy leakage in online social networks,} in
+  \emph{INFOCOM, 2012 Proceedings IEEE}, pp. 2836--2840.
+
+\bibitem{Mislove:2010:YYK:1718487.1718519}
+\textsc{Mislove, A.}, \textsc{B.~Viswanath}, \textsc{K.~P. Gummadi}, and
+  \textsc{P.~Druschel} (2010) \enquote{You Are Who You Know: Inferring User
+  Profiles in Online Social Networks,} in \emph{Proceedings of the Third ACM
+  International Conference on Web Search and Data Mining}, WSDM '10, ACM, New
+  York, NY, USA, pp. 251--260.
+\newline\urlprefix\url{http://doi.acm.org/10.1145/1718487.1718519}
+
+\bibitem{fortunato2010community}
+\textsc{Fortunato, S.} (2010) \enquote{Community detection in graphs,}
+  \emph{Physics reports}, \textbf{486}(3), pp. 75--174.
+
+\bibitem{guille2013information}
+\textsc{Guille, A.}, \textsc{H.~Hacid}, \textsc{C.~Favre}, and \textsc{D.~A.
+  Zighed} (2013) \enquote{Information diffusion in online social networks: A
+  survey,} \emph{ACM SIGMOD Record}, \textbf{42}(2), pp. 17--28.
+
+\bibitem{breese1998empirical}
+\textsc{Breese, J.~S.}, \textsc{D.~Heckerman}, and \textsc{C.~Kadie} (1998)
+  \enquote{Empirical analysis of predictive algorithms for collaborative
+  filtering,} in \emph{Proceedings of the Fourteenth conference on Uncertainty
+  in artificial intelligence}, Morgan Kaufmann Publishers Inc., pp. 43--52.
+
+\bibitem{rodriguez2011uncovering}
+\textsc{Rodriguez, M.~G.}, \textsc{D.~Balduzzi}, and \textsc{B.~Sch{\"o}lkopf}
+  (2011) \enquote{Uncovering the temporal dynamics of diffusion networks,}
+  \emph{arXiv preprint arXiv:1105.0697}.
+
+\bibitem{gomez2010inferring}
+\textsc{Gomez~Rodriguez, M.}, \textsc{J.~Leskovec}, and \textsc{A.~Krause}
+  (2010) \enquote{Inferring networks of diffusion and influence,} in
+  \emph{Proceedings of the 16th ACM SIGKDD international conference on
+  Knowledge discovery and data mining}, ACM, pp. 1019--1028.
 
 \bibitem{haynes1984gravity}
 \textsc{Haynes, K.~E.} and \textsc{A.~S. Fotheringham} (1984) \emph{Gravity and
@@ -333,11 +394,6 @@
 \textsc{Osgood, D.~W.} (2000) \enquote{Poisson-based regression analysis of
   aggregate crime rates,} \emph{Journal of quantitative criminology},
   \textbf{16}(1), pp. 21--43.
-
-\bibitem{GWR03}
-\textsc{Fotheringham, A.~S.}, \textsc{C.~Brunsdon}, and \textsc{M.~Charlton}
-  (2003) \emph{Geographically weighted regression}, John Wiley \& Sons,
-  Limited.
 
 \bibitem{wiki:simpson}
 \textsc{Wikipedia} (2016), \enquote{Simpson's paradox --- Wikipedia{,} The Free

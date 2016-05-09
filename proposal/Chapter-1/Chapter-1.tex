@@ -23,7 +23,7 @@ Consider the following two examples. These two examples show that it is not suff
 \textbf{Example 1.} \emph{Policy makers are deciding where to construct a shelter for families that are victims of violence. They understand the value of locating the shelter geographically far from violent neighborhoods. One possible choice is to locate the shelter in a neighborhood that is 10 miles from the violent neighborhoods where vulnerable families previously lived. However, a deeper analysis may reveal that the new neighborhood, though geographically removed from the old neighborhood, may still have strong social flows (connections caused by commutes, family visits) with the old neighborhood. Emerging research suggests that a great deal of crime happens in areas that are socially connected to offenders' neighborhoods. This suggests that shelters may benefit from being located in a neighborhood that is also socially isolated from violence (e.g., with weak communication and commuting interactions with the violent neighborhoods that shelter residents fled from) while socially connected to jobs, services, and resources.}
 
 
-\textbf{Example 2.} \emph{In order to provide better living environment to crowded city, city planner decide to expand city with a new satellite town. However, people are not willingly to move, if there is not enough incentive. To create opportunity and attract people, some candidates to relocate are big factory, shopping mall, and government offices. The question is which facility should be relocated, so that population pressure in whole  city  is reliefed.  Correspondingly, how many new residential building, supermarket, and parks should be built into the new city? People have to go the new city to work. Some of them may move to live in the new city, and the rest may choose to commute everyday.}
+\textbf{Example 2.} \emph{In order to provide better living environment to crowded city, city planner decide to expand city with a new satellite town. However, people are not willingly to move, if there is not enough incentive. To create opportunity and attract people, some candidates to relocate are big factory, shopping mall, and government offices. The question is which facility should be relocated, so that population pressure in whole  city  is relieved.  Correspondingly, how many new residential building, supermarket, and parks should be built into the new city? People have to go the new city to work. Some of them may move to live in the new city, and the rest may choose to commute everyday.}
 
 
 
@@ -48,11 +48,22 @@ In the urban space, a model of region \textbf{interactions} can help solve  seve
 
 
 
+\subsection{Interaction Model in Social Networks}
+
+
+In social network analysis, there is a line of work that focuses on infer an unobserved  nodal feature from neighboring nodes. Examples are infer user home location \cite{Pontes:2012:WKY:2370216.2370419, Li:2012:TSU:2339530.2339692}, user age \cite{6195711}, and more categorical features \cite{Mislove:2010:YYK:1718487.1718519}. To solve the application problem of user profiling, the underlying techniques are borrowed from community detection \cite{fortunato2010community}, information diffusion \cite{guille2013information}, collaborative filtering \cite{breese1998empirical}, etc. The inferred features are assumed to be similar within a cluster. Therefore, community detection will cluster nodes with unobserved property together with nodes with observed property, and thus we can conduct inference. Another angle is to study how information is propagated through network. Methods under the information diffusion category is explanatory \cite{rodriguez2011uncovering, gomez2010inferring}. And they describe how message spread through network. 
+
+
+The biggest difference between social networks and our problem is that the social network usually do not have observable edge properties. The online social networks literature relies heavily on the network topology to calculate the link importance and node influence. Another difference is that the node interaction in social network is less complicated than that of urban region network. In social network, usually categorical  properties (messages) are propagated through network, and the inference target usually take discrete form. Meanwhile, the inference in urban region network usually involves various kinds of nodal and dyadic features, and the inference target usually distributes over a continuous space.
+
+
+
+
 \subsection{Spatial Interaction Model}
 
 
 Spatial interaction is a broad term encompassing any movement over space that results from a human process \cite{haynes1984gravity,rodrigue2013geography}. It measures the flow between an origin and a destination, given distance and nodal properties on the origin and destination.  There are several classic models to measure the spatial interactions. For example, \textbf{gravity model} \cite{matyas1997proper} uses a similar formulation than Newton's law of gravity to model the interaction between two regions.
-\textbf{Spatial autoregressive model} \cite{anselin1980estimation} is another widely used inference model that infer a property in a region with nearby regions' information. There are a lot of  applications  based on the spatial interactions, such as international trade \cite{carrere2006revisiting, egger2003proper, martinez2003augmented}, population migration \cite{hanski1994metapopulation, karemera2000gravity, lewer2008gravity}, traffic flow \cite{jung2008gravity, roughan2002experience, khadaroo2008role}, telecommunication flow \cite{krings2009urban, fischer1994artificial, black1995spatial}, crime estimation \cite{anselin2000spatial, kakamu2008spatial, browning2004paradox}, knowledge spillover \cite{lesage2007knowledge, fischer2006geography}, and many more.
+\textbf{Spatial autoregressive model} \cite{anselin1980estimation} is another widely used inference model that infer a property in a region with nearby region's information. There are a lot of  applications  based on the spatial interactions, such as international trade \cite{carrere2006revisiting, egger2003proper, martinez2003augmented}, population migration \cite{hanski1994metapopulation, karemera2000gravity, lewer2008gravity}, traffic flow \cite{jung2008gravity, roughan2002experience, khadaroo2008role}, telecommunication flow \cite{krings2009urban, fischer1994artificial, black1995spatial}, crime estimation \cite{anselin2000spatial, kakamu2008spatial, browning2004paradox}, knowledge spillover \cite{lesage2007knowledge, fischer2006geography}, and many more.
 
 
 
@@ -101,7 +112,7 @@ To address the non-trivial definition of interaction. In the graphical model we 
 
 To address the spatial non-stationarity. Each region is built as separate node in the graphical model. This way, the conditional probability 
 \[ P(y_i | X_i) \]
-is different at different regions, which is equivalent to have mutliple local models to model the different relations between $y$ and $X$.
+is different at different regions, which is equivalent to have multiple local models to model the different relations between $y$ and $X$.
 
 
 
