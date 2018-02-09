@@ -48,17 +48,6 @@ In the urban space, a model of region \textbf{interactions} can help solve  seve
 
 
 
-\subsection{Interaction Model in Social Networks}
-
-
-In social network analysis, there is a line of work that focuses on infer an unobserved  nodal feature from neighboring nodes. Examples are infer user home location \cite{Pontes:2012:WKY:2370216.2370419, Li:2012:TSU:2339530.2339692}, user age \cite{6195711}, and more categorical features \cite{Mislove:2010:YYK:1718487.1718519}. To solve the application problem of user profiling, the underlying techniques are borrowed from community detection \cite{fortunato2010community}, information diffusion \cite{guille2013information}, collaborative filtering \cite{breese1998empirical}, etc. The inferred features are assumed to be similar within a cluster. Therefore, community detection will cluster nodes with unobserved property together with nodes with observed property, and thus we can conduct inference. Another angle is to study how information is propagated through network. Methods under the information diffusion category is explanatory \cite{rodriguez2011uncovering, gomez2010inferring}. And they describe how message spread through network. 
-
-
-The biggest difference between social networks and our problem is that the social network usually do not have observable edge properties. The online social networks literature relies heavily on the network topology to calculate the link importance and node influence. Another difference is that the node interaction in social network is less complicated than that of urban region network. In social network, usually categorical  properties (messages) are propagated through network, and the inference target usually take discrete form. Meanwhile, the inference in urban region network usually involves various kinds of nodal and dyadic features, and the inference target usually distributes over a continuous space.
-
-
-
-
 \subsection{Spatial Interaction Model}
 
 
@@ -85,6 +74,25 @@ The problem in this proposal is different from the works above in the sense that
 
 
 
+
+
+\subsection{Interaction Model in Social Networks}
+
+
+In social network analysis, there is a line of work that focuses on infer an unobserved  nodal feature from neighboring nodes. Examples are infer user home location \cite{Pontes:2012:WKY:2370216.2370419, Li:2012:TSU:2339530.2339692}, user age \cite{6195711}, and more categorical features \cite{Mislove:2010:YYK:1718487.1718519}. Earlier works mainly focus on one type of features, and employ the network structure to make inference. To solve the application problem of user profiling, some techniques are borrowed from community detection \cite{fortunato2010community}, information diffusion \cite{guille2013information}, collaborative filtering \cite{breese1998empirical}, etc. The inferred features are assumed to be similar within a cluster. Therefore, community detection will cluster nodes with unobserved property together with nodes with observed property, and thus we can conduct inference. Another angle is to study how information is propagated through network. Methods under the information diffusion category is explanatory \cite{rodriguez2011uncovering, gomez2010inferring}.
+
+
+With more data types available, there is one line of works solving the nodal feature inference problem with \textbf{composite social network} \cite{pan2011composite, madan2011pervasive,zhong2012comsoc}. Composite social network is a graph with multiple types of edges. For example in a social network, two users could be connected by following, how many re-tweets, how many messages are exchanged, etc. 
+
+
+Our work is different from those work in social network literature in a way that we do not use observed edge strength as the interactions. All those paper in literature assumes that if two nodes are connected by a edge with heavy weight, then they are very likely to have strong interactions. This is not necessarily true. Take the crime inference as example. Suppose two communities are connected by heavy traffic flow, and both community are crime free. In this case, we cannot say two regions have strong crime interactions.
+
+
+
+
+
+
+
 \section{Challenges}
 
 There are mainly three challenges to address.
@@ -102,7 +110,7 @@ Therefore, the construction of interaction is totally ad-hoc.
 
 
 
-
+\textbf{Identify discrete node from continuous space is challenging}. In the literature, the boundary of regions are usually pre-defined administrative regions, which has two major issues. First, this boundary definition is not consistent in terms of the property of interest. For example, it is very likely a community is formed on the boundary of two administrative regions. Also, the current partition does not evolve over time. In real life, we know there must be some dynamic change of communities. Second, partition continuous space is not trivial. There is a misalignment problem, which refers to the problem that different data are not collected in the same scale. For example, the crime record is at point level, while the demographics is at block level.
 
 \section{A Unified Graphical Model}
 
