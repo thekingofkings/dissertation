@@ -4,11 +4,9 @@
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=0.8\linewidth]{fig/layered-graph-embedding.pdf}
-\vspace{-3mm}
+\includegraphics[width=1\linewidth]{fig/layered-graph-embedding.pdf}
 \caption{The layered structure of a flow graph (left), a spatial graph (middle), and the combined graph (right). Each row $r_k$ is the region.  Each column $t$ is the timestamp, and all vertices within at the same timestamp (the dotted rectangle) form one \emph{layer} of the graph. Each vertex $v_i^t$ is a \emph{time-enhanced vertex} refers to region $r_i$ at time $t$. On the left, the solid blue edge refers to the taxi flow, and edge weight is number of taxi trips. In the middle, the dotted red edge refers to the spatial adjacency, and the edge weight is inversely correlated with the distance between region centroids. From the flow graph, vertices $v_1^2$ and $v_3^2$ have similar embeddings because they have similar in-flow from $v_3^1$ and similar out-flow to $v_2^3$ and $v_3^3$. However, with flow graph alone, we are not able to learn the embeddings for $v_1^1$ and $v_1^3$, due to lack of traffic flow. The spatial graph provides spatial information, which makes it possible to learn an embeddings for $v_1^1$ and $v_1^3$.}
 \label{fig:layered-graph}
-\vspace{-2mm}
 \end{figure*}
 
 
@@ -197,10 +195,8 @@ C & 1 & 1.0 & - \\
 Example 1: $x=0.45$, $i = 0$. Since $x > p_0$, return C.\\
 Example 2: $x=0.35$, $i=0$. Since $x < p_0$, return B. }};
 \end{tikzpicture}
-\vspace{-7mm}
 \caption{The alias method explanation. On the left, we want to draw the next vertices of A. The probability table and alias table are created on the top right. The bottom right shows the constant time sampling process from the alias method.}
 \label{fig:alias-method}
-\vspace{-3mm}
 \end{figure}
 
 

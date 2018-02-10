@@ -1,0 +1,169 @@
+% !TEX root = main.tex
+
+\section{Inference Model}
+\label{sec:model}
+
+
+\subsection{Linear Regression}
+
+
+The most straightforward prediction model is linear regression. This model assumes that the error term for $y_i$ follows a Gaussian distribution $\epsilon_i \sim \mathcal{N}(0, \sigma^2)$.
+
+
+Equation~(\ref{eq:lrm}) gives the linear regression formulation of our problem:
+\begin{equation}
+\label{eq:lrm}
+\y =  \alpha^T X^N + \beta^f W^f \y + \beta^g W^g \y + \epsilon.
+\end{equation}
+$X^N \in R^{d_N \times n}$ is the nodal feature matrix where column $i$ is the nodal feature vector of region $i$, $d_N$ is the dimension of nodal features, and $n$ is the number of regions. Both demographic features and POI distribution features are included in $X^N$ as nodal features. $W^f \in \R^{n \times n}$ is the flow matrix of taxi flow, and $W^g \in \R^{n \times n}$ is the spatial matrix representing the geographical adjacency. In addition, $\alpha \in \R^{d_N}$ and $\beta^f, \beta^g \in \R$ are the coefficients for corresponding features. Note that $\epsilon \in \R^n$ is the only stochastic variable on the right-hand side; all other terms are fixed observation values. Therefore, we incorporate all the fixed observations into one term $X \in \R^{(d_N + 2)\times n}$, and we get the standard regression problem:
+\[
+\y= \w^T X + \epsilon,
+\]
+where $\w = [\alpha^T, \beta^f, \beta^g]^T$ is the concatenation of all coefficients.
+
+
+\subsection{Negative Binomial Regression}
+
+
+In our problem, we aim to infer the crime rate, which is guaranteed to be a non-negative integer. However, linear regression does not ensure this property. 
+\emph{Poisson regression} is another form of regression, more appropriate for non-negative data than linear regression \cite{GMS95, Lamb92}. With shortened notation $\x_i$, which represents all features in a region, the Poisson regression model has the exponential function as link function
+\begin{equation}
+\label{eq:prm}
+E(y_i) = e^{\w^T \x_i}.
+\end{equation}
+In the following, we omit the index $i$ wherever it is clear to refer to the variable of a single region.
+The link function comes from the assumption that $y$ follows the Poisson distribution with mean $\lambda $. Additionally, the mean $\lambda$ is determined by observed independent variables $\x$, i.e. $\lambda = e^{\w^T \x}$. Adding all together, the joint probability of $y$ is 
+\begin{equation}
+P(y|\w) = \frac{e^{-e^{\w^T\x}}(e^{\w^T\x})^y}{y!}.
+\end{equation}
+
+
+However, Poisson regression enforces the mean and variance of dependent variable $y$ to be equal. This restriction leads to the ``over-dispersion'' issue for some real problems, that is the presence of larger variability in data set than the statistical model expected. To address this,  we use the Poisson-Gamma mixture model, which is also known as \emph{negative binomial regression}. Negative binomial regression is frequently used in crime research \cite{Osg00}.
+
+Given that the crime rate $y$ follows Poisson distribution with mean $\lambda$, in order to allow for larger variance, $\lambda$ itself is a random variable having a Gamma distribution with shape $k$ and scale $\theta = \frac{p}{1-p}$.  The probability density function of $y$ becomes
+\begin{align}
+\label{eq:nbpdf}
+P(y|k, p) & = \int_0^{\infty} P_{Poisson}(y|\lambda) \cdot P_{Gamma}(\lambda|k, p) d \lambda \nonumber \\
+		& = \int_0^{\infty} \frac{\lambda^y}{y!} e^{-\lambda} \cdot \lambda^{k-1} \frac{e^{-\lambda(1-p)/p}}{(\frac{p}{1-p})^k \Gamma(k)} d\lambda  \nonumber \\
+		 & = \frac{\Gamma(k+y)}{y! \Gamma(k)} p^y (1-p)^k.
+\end{align}
+This is exactly the probability density function of negative binomial distribution.
+
+
+In negative binomial regression, the link function is
+\begin{equation}
+E(y) = e^{\w^T \x + \epsilon }.
+\end{equation}
+The error term $e^\epsilon$ is the mixture prior from the Gamma distribution, and we assume its mean is $1$, i.e. $E(e^\epsilon) = 1$. This setting ensures that $E(y) = e^{\w^T \x} \cdot e^\epsilon = e^{\w^T \x}$. Meanwhile, given the probability density function of negative binomial distribution in Equation~(\ref{eq:nbpdf}), the mean of negative binomial distribution is $\frac{pk}{1-p}$. Combining the theoretical mean with the link function, we have $p = \frac{e^{\w^T\x}}{e^{\w^T\x} + k}$. Therefore, the probability mass function of $y$ becomes
+\begin{equation}
+\label{eq:nbpdf2}
+P(y| \w, k) = \frac{\Gamma(k+y)}{y! \Gamma(k)} \left(\frac{e^{\w^T\x}}{e^{\w^T\x} + k}\right)^y \left(\frac{k}{e^{\w^T\x} + k}\right)^k.
+\end{equation}
+
+
+The log-likelihood function of negative binomial model is given in Equation~(\ref{eq:nbpdf2-ll}), where $w$ and $\theta$ can be estimated by maximizing likelihood.
+\begin{multline}
+  \label{eq:nbpdf2-ll}
+\mathcal{L}(\w, k; \y, X) =	\sum_{i=1}^n \Bigg\{y_i \ln\left( \frac{e^{\w^T \x_i}}{e^{\w^T \x_i} + k}\right) + k \ln\left(\frac{k}{e^{\w^T \x_i} +k}\right) \\
+	+ \ln \Gamma(y_i + k ) - \ln \Gamma(y_i + 1) - \ln \Gamma( k) \Bigg\}.
+\end{multline}
+
+
+
+\subsection{Non-Stationary Model}
+
+
+The two regression models described above assume the statistical correlations between crime rate and observed features are constant over space, because they learn one set of parameters for all community areas. In the real world, it is very likely that some statistical correlations between crime rate and observed features are not stationary over space. In this section we propose to apply a non-stationary model, called geographically weighted regression (GWR)~\cite{FBC03}, to capture the different crime correlations at different places.
+
+Formally, a global spatial regression model such as the aforementioned two models has the following form
+\begin{equation}
+y = f(\x, \w),
+\end{equation}
+where $\w$ is the parameter of the regression function $f$. Given a set of data points $\{y_i, \x_i\}_{i=1}^n$ sampled at locations $l_1, \cdots, l_n$, the maximum likelihood estimation of parameter $\w$ is given by 
+\begin{equation}
+\w^* = \argmax_{\w} \sum_{i=1}^n \mathcal{L} (  y_i, f(\x_i, \w) ).
+\end{equation}
+This global model is stationary, because the weights used for predictions are the same at all locations, when we fit the model to find the optimal parameter.
+
+Instead, the GWR learns a \emph{local} regression function $f$ with parameter $\w_i$ at each location of interest $l_i$: 
+\begin{equation}
+\label{eq:gwrs}
+y = f(\x, \w_i),  \quad \forall l_i \in \{l_1, l_2, \cdots, l_n\},
+\end{equation}
+where $l_i$ is usually a geospatial coordinate in the two dimensional space. In order to train a lot of local models, we need a larger number of samples at each location $l_i$, which are usually not available. To address this issue, GWR uses the spatially nearby samples and gives each sample a weight according to the distance between sample point and target location $l_i$. The objective for the local model at location $l_i$ is 
+\begin{equation}
+\label{eq:gwr-general}
+\w_i^* = \arg\min_{\w_i} \sum_{j=1}^n  \gamma_{ij} \mathcal{L} \left(y_j, f(\x_j, \w_i) \right),
+\end{equation}
+where $\gamma_{ij}$ is the spatial kernel to weight the neighboring data point at location $l_j$ for regression model at location $l_i$.
+
+
+\textbf{Choice of spatial kernel $\gamma$}. There are several spatial kernels we can choose from. The most straightforward solution is to exclude samples that are further away from target location. Namely,
+\begin{equation}
+\gamma_{ij} = \left\{ \begin{array}{ll}  1 & \text{if $d_{ij} < \tau$} \\  0 & \text{otherwise,} \end{array} \right.
+\end{equation}
+where $d_{ij}$ is the distance between $l_i$ and $l_j$, and $\tau$ is a distance threshold. Clearly, such a solution suffers from the discontinuity. 
+
+A better solution is to specify the weight $\gamma$ as a continuous function of distance $d$, which is
+\begin{equation}
+\label{eq:gwr-gkn}
+\gamma_{ij} = \exp\left( -\frac{d_{ij}^2}{2h^2} \right),
+\end{equation} 
+where $h$ is referred to as the bandwidth of the Gaussian kernel. Intuitively, when the samples are dense near the target location $l_t$, the $h$ can be set smaller, so that we give lower weights to those samples far away. On the other hand, if the samples are sparse, $h$ should be set larger, so that we consider those further away samples as well to train our model. When $h$ is set to infinity, the GWR becomes a global model, since all samples have equal weight $1$. 
+
+
+One issue with the Gaussian kernel in Equation~(\ref{eq:gwr-gkn}) is that when the samples are dense, it over-smooths local models by considering too many samples at each location. A popular alternative kernel utilizes the bi-square function,
+\begin{equation}
+\gamma_{ij} = \left\{ \begin{array}{ll}  \left( 1 - \frac{d_{ij}^2}{\tau^2}\right)^2 & \text{if $d_{ij} < \tau$} \\  0 & \text{otherwise.} \end{array} \right.
+\end{equation}
+The bi-square kernel functions provides continuous weight for samples up to distance $\tau$. In our problem, since we do not have too many samples available, therefore we use the Gaussian kernel, and in experiment we will show the bandwidth tuning to get the best results.
+
+
+\textbf{Applying GWR on existing methods}. The GWR is more like a framework rather than a method, which can be applied to many existing regression methods. The classic GWR is applied to linear regression model resulting in the following objective for location $l_i$  
+\begin{equation}
+\w_i^* = \arg\min_{w_i} \sum_{j=1}^n \gamma_{ij} (y_j - \w_i^T \x_j)^2.
+\end{equation}
+% We can use the commonly used least square estimation to find the best $w_i$, because the $\gamma_k$ can be calculated in advance.
+
+
+Similarly, the GWR framework can be employed with the negative binomial regression model, and we call this \emph{geographically weighted negative binomial regression} (GWNBR). Here, the objective for model at location $l_i$ is to optimize the weighted log-likelihood function:
+\begin{multline}
+\label{eq:finalObj}
+\mathcal{L}(\w_i, k_i; \y, X) = \\
+	\sum_{j=1}^n \gamma_{ij} \Bigg\{y_j \ln\left( \frac{e^{\w_i^T \x_j}}{e^{\w_i^T \x_j} + k_i}\right) + k_i \ln\left(\frac{k_i}{e^{\w_i^T \x_j} +k_i}\right) \\
+	+ \ln \Gamma(y_j + k_i ) - \ln \Gamma(y_j + 1) - \ln \Gamma( k_i) \Bigg\}.
+\end{multline}
+
+
+\subsection{Optimization}
+
+The objective in Equation~(\ref{eq:finalObj}) can be solved using a block coordinate gradient descent method, by alternatively solving $\w_i$ and $k_i$. Details for solving each step are given below.\\
+\textbf{Fix $k_i$, solve $\w_i$:}\\
+When $k_i$ is fixed, the objective function can be simplified as follows:
+\begin{multline}
+	\min_{\w_i}
+	-\sum_{j=1}^n \gamma_{ij} \Bigg\{y_j \ln\left( \frac{e^{\w_i^T \x_j}}{e^{\w_i^T \x_j} + k_i}\right) + k_i \ln\left(\frac{k_i}{e^{\w_i^T \x_j} +k_i}\right) \}.
+\end{multline}
+The gradient is:
+\begin{equation}
+	\frac{\partial \mathcal{L}}{\partial \w_i}=\sum_{i=1}^{n}\gamma_{ij}\{y_i\frac{\x_je^{\w_i^T\x_j}}{e^{\w_i^T\x_j}}-\frac{(y_i+k_i)\x_je^{\w_i^T\x_j}}{e^{\w_i^T\x_j}+k_i}\}.
+\end{equation}
+Then,
+\begin{equation}
+\w_i^t=\w_i^{t-1}+\alpha\frac{\partial \mathcal{L}}{\partial \w_i^{t-1}}.
+\end{equation}
+\textbf{Fix $\w_i$, solve $k_i$:}\\
+When $\w_i$ is fixed, the objective function becomes:
+\begin{multline}
+\min_{k_i} = \\
+-\sum_{j=1}^n \gamma_{ij} \Bigg\{y_j \ln\left( \frac{e^{\w_i^T \x_j}}{e^{\w_i^T \x_j} + k_i}\right) + k_i \ln\left(\frac{k_i}{e^{\w_i^T \x_j} +k_i}\right) \\
++ \ln \Gamma(y_j + k_i ) - \ln \Gamma( k_i) \Bigg\}.
+\end{multline}
+The gradient is:
+\begin{multline}
+	\frac{\partial \mathcal{L}}{\partial k_i}=\sum_{i=1}^{n}\gamma_{ij}\{\frac{y_i}{e^{\w_i^T\x_j}+k_i}+\ln(\frac{k_i}{e^{\w_i^T\x_j}+k_i})\\-\frac{k_i}{e^{\w_i^T\x_j}+k_i}+1+\psi(y_j+k_i)-\psi(k_i)+y_i\},
+\end{multline}
+where $\psi(x)=\frac{\Gamma'(x)}{\Gamma(x)}$ is digamma function. Then,
+\begin{equation}
+k_i^t=k_i^{t-1}+\alpha\frac{\partial \mathcal{L}}{\partial k_i^{t-1}}.
+\end{equation}
