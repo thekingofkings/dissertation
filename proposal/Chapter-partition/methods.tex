@@ -1,0 +1,107 @@
+\section{methods}
+\label{sec:method}
+
+In this section, we use the stochastic Markov Chain Monte Carlo (MCMC) method to automatically learn the partition $\mathcal{Z}$. We propose two variations of MCMC sampling method with different sample proposal strategy. And finally, we use reinforcement learning to make the best of historical samples and automatically learn the sample strategy.
+
+
+\subsection{Markov Chain Monte Carlo}
+
+There are two parameters $\mathcal{Z}$ and $f$ to learn in Equation~\ref{eq:objective}. However, given a fixed partition $\mathcal{Z}$, the optimal task function $f$ can be easily learned. The challenge lies in searching through the partition space. Toward this goal, we adopt the MCMC method, or more specifically Metropolis-Hastings algorithm to optimize $\mathcal{Z}$. 
+
+Markov Chain Monte Carlo~\cite{andrieu2003introduction} is a stochastic algorithm for obtaining a sequence of random samples from a distribution for which direct sampling is difficult. A key property of the algorithm is that it constructs a Markov chain that will ultimately converge to $p$ through stochastic sampling \cite{ml:murphy}. In our case, the state space is all possible partitions $\mathcal{Z}$, and the distribution $p(\mathcal{Z})$ defines the probability that $\mathcal{Z}$ is a optimal to Problem~\ref{def:opt-problem}. Clearly, it is difficult to calculate $p(\mathcal{Z})$, however the quality measure $\mathcal{F}(\mathcal{Z})$ is proportional to $p(\mathcal{Z})$. Namely, a partition $\mathcal{Z}$ with lower $\mathcal{F}(\mathcal{Z})$ value is more likely to be optimal.
+
+
+In addition to the quality function $\mathcal{F}$, MCMC employs a proposal function $q(\mathcal{Z}'|\mathcal{Z})$, which defines the transition probability from state $\mathcal{Z}$ to $\mathcal{Z}'$. The Markov chain moves toward $\mathcal{Z}'$ with acceptance probability $\gamma$, defined as
+\begin{equation}
+\gamma = \min \Big [ 1, \frac{p(\mathcal{Z}')q(\mathcal{Z}| \mathcal{Z}')}{p(\mathcal{Z})q(\mathcal{Z}'|\mathcal{Z})} \Big ].
+\label{eq:gamma}
+\end{equation}
+
+$p(\mathcal{Z})$ is the Boltzmann distribution, defined by
+\begin{equation}
+p(\mathcal{Z}) = \frac{exp^{-\mathcal{F}(\mathcal{Z})/T}}{P}, 
+\label{eq:boltzmann}
+\end{equation}
+where $P$ is the normalization constant, and $T$ is the temperature parameter. We do not explicitly compute $P$, because they cancel out in Equation~(\ref{eq:gamma}).
+
+\begin{algorithm}
+\caption{MCMC method to search $\mathcal{Z}$.}
+\label{alg:mcmc}
+\begin{algorithmic}[1]
+\State $\mathcal{Z} \gets \mathcal{Z}_0$
+\While {$\mathcal{F}(\mathcal{Z}) \geq \epsilon$}
+  \State Sample $u \gets \mathcal{U}_{[0,1]}$
+  \State Sample $\mathcal{Z}' \gets q(\mathcal{Z}'|\mathcal{Z})$
+  \State $\gamma = \min \Big [ 1, \frac{p(\mathcal{Z}')q(\mathcal{Z}| \mathcal{Z}')}{p(\mathcal{Z})q(\mathcal{Z}'|\mathcal{Z})} \Big ]$
+  \If {$u < \gamma$}
+    \State $\mathcal{Z} \gets \mathcal{Z}'$
+  \EndIf
+\EndWhile
+\end{algorithmic}
+\end{algorithm}
+
+The MCMC algorithm is shown in Algorithm~\ref{alg:mcmc}. First, we initialize the partition with existing administrative boundary, denoted as $\mathcal{Z}_0$. Within each step, we draw $u \in [0,1]$ from uniform distribution $\mathcal{U}_{[0,1]}$, and draw next partition $\mathcal{Z}'$. The acceptance probability $\gamma$ is calculated according to Equation~\ref{eq:gamma}. If $u$ is smaller than the acceptance probability $\gamma$, then we accept the new partition $\mathcal{Z}'$. We repeat the process above, until $\mathcal{F}(\mathcal{Z})$ converges.
+
+
+
+\subsection{MCMC with Naive Proposal Distribution}
+
+The proposal function $q$ is very flexible, if not limitless. In practice, the exact form of $q$ generally affects the efficiency of the algorithm, or how quickly it will converge. We begin by establishing a baseline MCMC approach to the region partition problem by outlining the simplest $q$ we can devise. 
+
+We generate new partition by randomly select one tract $t_i \in \mathcal{T}$ that is on the boundary of some community area $Z_j$, and then flip $t_i$ to the adjacent community area. Such naive proposal function $q$ contains the following steps.
+\begin{itemize}
+  \item Maintain a set of tracts that are on partition boundary, denoted as $\mathcal{T}_b$.
+  \item Uniformly draw $t_i$ from $\mathcal{T}_b$. The current community assignment for $t_i$ is $Z_j$. The probability of selecting $t_i$ is $1/|\mathcal{T}_b|$.
+  \item Uniformly draw $Z_p$ from the set of adjacent community areas $Adjacent(t_i)$ of $t_i$. The probability of selecting $Z_p$ is $1/|Adjacent(t_i)$.
+  \item Verify the four conditions in Definition~\ref{def:partition} are satisfied. If not, restart.
+  \item Assign the $t_i$ to community $Z_p$. Update boundary set $\mathcal{T}_b$.
+\end{itemize}
+
+The naive proposal function $q$ is symmetric, because $q(\mathcal{Z}'|\mathcal{Z})=  q(\mathcal{Z}|\mathcal{Z}') = \frac{1}{|\mathcal{T}_b| \cdot |Adjacent(t_i|}$. Therefore, the acceptance probability $\gamma = \min[ 1, \frac{p(\mathcal{Z}'}{p(\mathcal{Z})}]$. 
+
+
+\subsection{Guided MCMC with Softmax Proposal Distribution}
+
+The naive proposal MCMC method is simple, but not efficient. The reason is that we are randomly trying different partitions. We now propose an MCMC approach with a more intelligent proposal strategy. This method follows a greedy intuition that we should adjust the community area with the highest prediction error to improve current partition.
+
+
+Given this intuition, we heuristically design our guided MCMC method to sample a community area with large error first. To achieve this, we apply softmax function over the prediction errors on community areas to derive the sample probability of each community area. The softmax proposal contains the following steps. 
+\begin{itemize}
+  \item Maintain a set of tracts that are on partition boundary, denoted as $\mathcal{T}_b$.
+  \item Draw $Z_j$ from $\mathcal{Z}$ proportional to the prediction of error using softmax function, $p(Z_j) = \frac{ \exp(||Y_j - f(X_j)||_2) }{ \sum_{k=1}^m \exp(||Y_k - f(X_k)||_2)}$.
+  \item Uniformly draw a tract $t_i$ from $Z_j \cap \mathcal{T}_b$.
+  \item Uniformly draw $Z_p$ from the set of adjacent community areas $Adjacent(t_i)$ of $t_i$. The probability of selecting $Z_p$ is $1/|Adjacent(t_i)$.
+  \item Verify the four conditions in Definition~\ref{def:partition} are satisfied. If not, restart.
+  \item Assign the $t_i$ to community $Z_p$. Update boundary set $\mathcal{T}_b$.
+\end{itemize}
+
+Note that under the softmax proposal approach, the proposal function $q$ is not symmetric. Therefore, we have to explicitly calculate the values for $q$ function and plug into Equation~\ref{eq:gamma}.
+
+
+
+\subsection{Reinforcement Learning}
+
+There are mainly two drawbacks with the MCMC method. First, when drawing a new sample, the MCMC method do not account for any information from previous samples. Take the naive proposal MCMC method as example, the rejected early generations of sample do not contribute any information for future generations of samples. Intuitively, if we repeatedly observe that the flipping some tract give us lower gain, then we should lower the probability that such tracts are sampled again in the future. Second, the Markov chain-based stochastic search strategy is more likely to stuck on a local optima. The reason is that the nature of MCMC sampling follows a depth first search in the huge search space. It is very likely that there is another chain lead to a better local optima, but the algorithm does not try.
+
+
+To address the issues of MCMC method, we further propose a reinforcement learning (RL)~\cite{sutton1998reinforcement} scheme for generating new samples. RL differs from standard supervised learning that the correct input/output pairs are never presented. Instead, RL concerns with how agents ought to take actions in an environment so as to maximize the cumulative gain.
+
+Map the RL components to our problem. The set of tracts consists of the environment, and their community area assignment is the state. An action is to re-assign some tract $t_i$ from $Z_j$ to $Z_p$, denoted as tuple $\langle t_i, Z_p\rangle$. The immediate reward of such transition is defined by $\Delta \mathcal{F} = \exp^{-\mathcal{F}(\mathcal{Z}')} - \exp^{ -\mathcal{F}(\mathcal{Z})}$, where the exponential function covert the loss into gain. We define the cumulative gain $Q$ as a function of current state $\mathcal{Z}$ and action $\langle t^k, Z^k \rangle$ at step $k$, and $Q$ satisfies the following condition
+\begin{equation}
+\label{eq:Q-obj}
+Q(\mathcal{Z}, \langle t^k, Z^k \rangle) = \Delta \mathcal{F} + \delta \cdot \sum_{a \in \{\langle t^{k+1}, Z^{k+1} \rangle\}} Q(\mathcal{Z}', a),
+\end{equation}
+where $\delta$ is the discount factor on future reward and $\{\langle t^{k+1}, Z^{k+1} \rangle\}$ is the set of all possible actions given $\mathcal{Z}'$. Given $Q$ function, at each state $\mathcal{Z}$, we are able to find the best action with a the highest cumulative gain through
+\begin{equation}
+\label{eq:Q-policy}
+\arg\max_{\langle t, Z \rangle} Q(\mathcal{Z}, \langle t, Z \rangle).
+\end{equation}
+
+
+In our problem, a reinforcement learning scheme face the following three challenges. We devise specific approximations to address these challenges.
+
+\textbf{Huge state space}. The state space is exponential to the number of tracts. As a consequence, we cannot track the exact reward for each state and actions. Instead, we use the Deep Q-learning~\cite{van2016deep} idea, where a deep neural network is learned to approximate the $Q$ function. Our neural network structure include embedding layer to encode the partition $\mathcal{Z}$ and action tuple, two dense fully connected dense layers, and finally the output layer predicts the sigmoid of $Q$.
+
+\textbf{Large and dynamic action space}. The number of possible actions is linear to the number tracts. Also, for different partition state, the tracts on the boundaries are different, and thus the action set is also different. Such property makes it difficult to calculate the summation of future $Q$ values in Equation~(\ref{eq:Q-obj}), and to find the maximum over all actions in Equation~(\ref{eq:Q-policy}). In this paper, we set the discount factor $\delta = 0$ to ease the calculation of $Q$. When search for the best action with Equation~(\ref{eq:Q-policy}), we sample a subset of $m=32$ actions, and find the best action within such subset.
+
+\textbf{Training overhead is high}. To train the Deep Q-learning model, we do a sequence of random action to generate a batch of training data. Such training overhead is significantly higher than the MCMC method. To improve the efficiency, we save our Deep Q model across different tasks and different rounds. And the neural networks is only updated when found action cannot improve the cumulative reward. 

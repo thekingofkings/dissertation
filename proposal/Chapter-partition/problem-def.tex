@@ -1,0 +1,55 @@
+\section{Region Partition Problem}
+\label{sec:problem}
+
+In this section, we first present the formal definition of our method. Then we prove that this partition problem is NP-hard.
+
+
+The input of our problem is a set of minimum spatial units. Without loss of generality, we use tract as unit of study in this paper, and the set of tracts is denoted as $\mathcal{T} = \{ t_1, t_2, \cdots, t_n \}$. Within each tract $t_i$, the following information are available $\langle p_i, y_i, x_i \rangle$, where $p_i$ is a sequence of GPS coordinates representing tract exterior boundary, $y_i$ is the target variable of interest, such as crime count and average house price, and $x_i \in \mathcal{R}^d$ is $d$-dimension contextual feature vectors. Note that each tract is a polygon with one connected component.
+
+We define community area as the proper unit to study the correlation between $y$ and $x$.
+\begin{definition}[Community area]
+ Each community area consists of several adjacent tracts, denoted as $Z_j = \{t_1^j, t_2^j, \cdots \}$. We derive $\langle P_j, Y_j, X_j \rangle$ for each community area $Z_j$ by aggregating $\{ \langle p_i, y_i, x_i \rangle | t_i \in Z_j \}$, where $P_j$ is the exterior boundary, $Y_j$ is the crime count, and $X_j$ is the contextual features of $Z_j$.
+\end{definition}
+Note that there are various approaches to aggregate tract level features $x_i$ into community area features $X_j$. For example we can use element-wise summation, min, or max on categorical count features. We can also calculate entropy to derive diversity feature as $X_j$.
+
+With the definition of community area, we define the partition of a city.
+\begin{definition}[Partition]
+\label{def:partition}
+A partition over $\mathcal{T}$ is denoted as $\mathcal{Z} = \{ Z_1, Z_2, \cdots, Z_m\}$, satisfying the following four conditions
+\begin{enumerate}
+\item (subset) $\forall j$, $Z_j \subset \mathcal{T}$;
+\item (non-overlapping) $\forall p, q$, $Z_p \cap Z_q = \emptyset$;
+\item (completeness) $\bigcup_{j=1}^m Z_j = \mathcal{T}$;
+\item (spatial-continuity) $\forall j$, $P_j$ defines a polygon with exact one connected component.
+\end{enumerate}
+\end{definition}
+
+A task is defined on a given partition of the city, where we aim at learning the correlation between $X$ and $Y$ at community area level.
+\begin{definition}[Task]
+Given a partition $\mathcal{Z}$, a task is to learn a linear function $f$, such that $Y_j = f(X_j)$, 
+where $X_j$ and $Y_j$ are target variable and contextual features of community area $Z_j$.
+\end{definition}
+
+
+Our ultimate goal is to have a more accurate prediction. The task-specific region partition problem is defined as follows.
+\begin{definition}[Task-specific region partition]
+\label{def:opt-problem}
+Given a set of tracts $\mathcal{T}$ and a task $f$, find a partition $\mathcal{Z}$ with $m$ components, such that the task error is minimized. Formally, we have
+\begin{equation}
+\label{eq:objective}
+\arg\min_{\mathcal{Z}, f} \sum_{j=1}^m \Big(||Y_j - f(X_j)|| + G(Z_j)\Big),
+\end{equation}
+where $G(\mathcal{Z}) = \sum_{j=1}^m G(Z_j)$ is a constraint function on partition.
+\end{definition}
+
+The constraint function $G$ ensures the partition $\mathcal{Z}$ has desirable property, such as small variance in community populations or balanced size in terms of community area. \\
+
+
+\textbf{NP-Hardness}. The problem in Definition~\ref{def:opt-problem} is a combinatorial optimization problem, where the set of instances is $\mathcal{T}$, the feasible solution is $\mathcal{Z}$, and the quality measure of solution is $\mathcal{F}(\mathcal{Z}, f) = \sum_{j=1}^m \mathcal{F}(Z_i, f)$. The decision version of the problem is to find a partition $\mathcal{Z}$, such that $\mathcal{F}(\mathcal{Z}, f) \leq \epsilon$, where $\epsilon$ is a constant. In this section, we prove such decision problem is NP-complete, and therefore the optimization problem in Definition~\ref{def:opt-problem} is NP-hard.
+
+In the NP-completeness proof, we approximate the decision problem above with an easier problem. The reason is that both $X_i$, $Y_i$, and $f$ are dynamically changing according to $\mathcal{Z}$, which complicates the original problem. First, we replace the jointly learned optimal $f$ with a fixed $f_0$. Since $f$ is optimal to minimize Equation~\ref{eq:objective} while $f_0$ is not, we have $\mathcal{F}(\mathcal{Z}, f) < \mathcal{F}(\mathcal{Z}, f_0)$. Second, we use $\sup \{\mathcal{F}(Z_j, f_0) \}$, where $\sup$ calculates supremum of a set, to approximate $\mathcal{F}(\mathcal{Z}, f_0)$. Since there are finite number of tracts within each community $Z_j$, and the task function $f_0$ is a linear function, therefore the upper bound of $\mathcal{F}(Z_j, f_0)$ exists and is finite. Combine two approximations above, we have $\mathcal{F}(\mathcal{Z}, f) < m \cdot \sup \{ \mathcal{F}(Z_j, f_0)\}$. The approximated decision problem is to find a partition $\mathcal{Z}$, such that $m \cdot \sup \{\mathcal{F}(Z_j, f_0) \} \leq \epsilon_0$.
+
+Now we prove the approximated decision problem is NP-complete. First, such approximated decision problem is NP, because given a partition $\mathcal{Z}_0$, we are able to validate $m \cdot \sup \{ \mathcal{F}(Z_j, f_0)\} \leq \epsilon_0$ in polynomial time. Next, we prove the NP-hardness of this problem by reducing the $(k,v)$-balanced partitioning problem to the approximated decision problem. The $(k,v)$-balanced partition problem~\cite{andreev2006balanced} is a proved NP-complete problem, which partition graph into $k$ disjoint components of size at most $v\frac{n}{k}$, while the capacity of edge cut is less than $\epsilon_0$. We construct the adjacency graph of all tracts $\mathcal{T}$, with weight $\sup \{\mathcal{F}(Z_j, f_0) \}$ on each edge. A solution to $(m,v)$-balanced partition problem on such adjacency graph is a solution to the approximated decision problem. The balanced partition problem achieve $k \cdot \sup \{\mathcal{F}(Z_j, f_0) \} \leq \epsilon_0$, where $k$ is the number of edges to cut the graph. It is clear that $k > m$, and therefore we find a partition satisfying $m \cdot \sup \{ \mathcal{F}(Z_j, f_0)\} \leq \epsilon_0$. \\
+
+
+The original problem in Definition~\ref{def:opt-problem} is NP-hard. Therefore, it is difficult to efficiently search for the optimal partition. In this paper, we use Markov Chain Monte Carlo sampling strategy to search local optimal solutions.
