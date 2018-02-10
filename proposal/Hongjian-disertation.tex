@@ -197,28 +197,6 @@
 %\documentclass[draft,secondthesissupervisor,honors]{psuthesis}
 %\documentclass[draft,bs]{psuthesis}
 
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage{textcomp}
-\usepackage{microtype}
-\usepackage[hidelinks]{hyperref}
-\usepackage{subfigure}
-\usepackage{multirow}
-
-\usepackage{colortbl}
-
-
-\definecolor{Gray}{gray}{0.85}
-
-
-\newcommand{\f}{\vec{\mathbf{f}}}
-\newcommand{\x}{\vec{\mathbf{x}}}
-\newcommand{\w}{\vec{\mathbf{w}}}
-\newcommand{\y}{\vec{\mathbf{y}}}
-\newcommand{\yp}{\vec{\mathbf{y}_p}}
-\newcommand{\demow}{\vec{\mathbf{\alpha}}}
-\newcommand{\z}{\vec{\mathbf{z}}}
-
 
 
 
@@ -226,22 +204,35 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Packages we like to use. %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{textcomp}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage[group-separator={,}]{siunitx}
+\usepackage{url}
+\usepackage{tikz}
+\usepackage{pbox}
+\usepackage{enumerate, enumitem}
+\usepackage{xcolor, colortbl}
+\usepackage{xspace}
 \usepackage{amsmath}
 \usepackage{amssymb}
-%\usepackage{amsthm}
+\usepackage{amsthm}
 %\usepackage{exscale}
 %\usepackage[mathscr]{eucal}
 %\usepackage{bm}
 \usepackage{eqlist} % Makes for a nice list of symbols.
-\usepackage[final]{graphicx}
 %\usepackage[dvipsnames]{color}
-\DeclareGraphicsExtensions{.pdf, .jpg, .png}
-\DeclareMathOperator*{\argmin}{arg\,min}
 
 % http://www.tex.ac.uk/cgi-bin/texfaq2html?label=citesort
 \usepackage{cite}
 
 \usepackage{titlesec}
+
+\usepackage{listings}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Use of the hyperref package %
@@ -296,9 +287,9 @@
 \author{Hongjian Wang}
 \dept{College of Information Sciences and Technology}
 % the degree will be conferred on this date
-\degreedate{April 2016}
+\degreedate{Feburary 2018}
 % year of your copyright
-\copyrightyear{2016}
+\copyrightyear{2018}
 
 % This command is used for students submitting a thesis to the
 % Schreyer Honors College. The argument of this command should
@@ -311,8 +302,8 @@
 %	Comprehensive Document
 %	Thesis Proposal
 %\documenttype{Thesis}
-%\documenttype{Dissertation}
-\documenttype{Comprehensive Document}
+\documenttype{Dissertation}
+%\documenttype{Comprehensive Document}
 
 
 % This will generally be The Graduate School, though you can
@@ -377,18 +368,6 @@
 \titleformat{\subsection}[block]{\large\bfseries\sffamily}{\thesubsection}{12pt}{}{}
 
 
-% Makes use of LaTeX's include facility. Add as many chapters
-% and appendices as you like.
-\includeonly{%
-Chapter-1/Chapter-1,%
-Chapter-2/Chapter-2,%
-Chapter-3/Chapter-3,%
-Chapter-4/Chapter-4,%
-Chapter-5/Chapter-5,%
-Appendix-A/Appendix-A%
-}
-
-\usepackage{listings}
 %%%%%%%%%%%%%%%%%
 % THE BEGINNING %
 %%%%%%%%%%%%%%%%%
@@ -468,11 +447,12 @@ Appendix-A/Appendix-A%
 % THE ACTUAL CONTENT %
 %%%%%%%%%%%%%%%%%%%%%%
 % Chapters
-\include{Chapter-1/Chapter-1}
-\include{Chapter-2/Chapter-2}
-\include{Chapter-3/Chapter-3}
-%\include{Chapter-4/Chapter-4}
-\include{Chapter-5/Chapter-5}
+\include{Chapter-intro/Chapter-1}
+\include{Chapter-preliminary/Chapter-2}
+\include{Chapter-embedding/Chapter-3}
+\include{Chapter-non-stationary/Chapter-4}
+\include{Chapter-partition/Chapter-5}
+\include{Chapter-conclusion/Chapter-6}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Appendices
 %
@@ -488,7 +468,7 @@ Appendix-A/Appendix-A%
 % lines that redefine the \thechapter and \thesection:
 %\renewcommand\thechapter{}
 %\renewcommand\thesection{\arabic{section}}
-\include{Appendix-A/Appendix-A}
+%\include{Appendix-A/Appendix-A}
 %\include{Appendix-B/Appendix-B}
 %\include{Appendix-C/Appendix-C}
 %\include{Appendix-D/Appendix-D}
@@ -513,7 +493,7 @@ Appendix-A/Appendix-A%
 	\begin{singlespace}
 	\bibliographystyle{GLG-bibstyle}
 	\addcontentsline{toc}{chapter}{Bibliography}
-	\bibliography{Biblio-Database}
+	\bibliography{Biblio-Database,dynamic-embedding}
 	\end{singlespace}
 
 %\begin{singlespace}

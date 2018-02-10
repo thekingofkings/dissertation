@@ -1,5 +1,5 @@
-%SourceDoc ../YourName-Dissertation.tex
-\chapter{Introduction -- Urban Computing} \label{chapter1:introduction}
+\chapter{Introduction -- Urban Computing} 
+\label{chapter1:introduction}
 
 
 
@@ -97,36 +97,25 @@ Our work is different from those work in social network literature in a way that
 
 There are mainly three challenges to address.
 
-\textbf{Given one type of social flow, define interaction is non-trivial}. Given only one type of social flow, there are too many possibilities in constructing interactions.   1) The flow matrix can take various form. For example, we can chose normalize the flow matrix or not. When normalizing the flow matrix, we can chose whether normalize by in-flow or out-flow. 
-2) There are also many nodal properties that could interact with their neighbors, such as various demographics features. 
-3) Different kinds of function can be used to define interactions. Take the product of flow and nodal properties is the most straightforward choice. However, sometimes it also makes sense to further apply a distance exponential decay on previous product.
-Therefore, the construction of interaction is totally ad-hoc. 
+\textbf{Given multiple types of social flow, the interaction is more difficult to define}. Given only one type of social flow, there are too many possibilities in constructing interactions.  First, the flow matrix can take various form. For example, we can chose normalize the flow matrix or not. When normalizing the flow matrix, we can chose whether normalize by in-flow or out-flow. Second, there are many nodal properties that could interact with their neighbors, such as various demographics features. Third, different kinds of function can be used to define interactions. Take the product of flow and nodal properties is the most straightforward choice. However, sometimes it also makes sense to further apply distance exponential decay on previous product.  Furthermore, it is possible we have multiple types of social flow (e.g. taxi flow, commuter transit). For one pair of regions, should we build separate interaction over different social flows, or sum over all flows to get one interaction? When we take the sum, should we weight different social flow differently, and how?
 
 
-\textbf{Given multiple types of social flow, the interaction is more difficult to define}. It is possible we have multiple types of social flow (e.g. taxi flow, commuter transit). For one pair of regions, should we build separate interaction over different social flows, or sum over all flows to get one interaction? When we take the sum, should we weight different social flow differently, and how?
-
-
-\textbf{The interaction could be spatial non-stationary}. Most models in existing work are global model, which assumes the statistic interaction does not vary over space. However, some urban data have spatial non-stationary property. Therefore, using global estimates of relationships can present misleading interpretations of local relationships.
+\textbf{The interaction is non-stationary over the space}. Most models in existing work are global model, which assumes the statistic interaction does not vary over space. However, some urban data have spatial non-stationary property. Therefore, using global estimates of relationships can present misleading interpretations of local relationships.
 
 
 
-\textbf{Identify discrete node from continuous space is challenging}. In the literature, the boundary of regions are usually pre-defined administrative regions, which has two major issues. First, this boundary definition is not consistent in terms of the property of interest. For example, it is very likely a community is formed on the boundary of two administrative regions. Also, the current partition does not evolve over time. In real life, we know there must be some dynamic change of communities. Second, partition continuous space is not trivial. There is a misalignment problem, which refers to the problem that different data are not collected in the same scale. For example, the crime record is at point level, while the demographics is at block level.
-
-\section{A Unified Graphical Model}
-
-We propose a unified graphical model to model the interactions among regions. Since various flow connect regions into various network. A graphical model is a natural way to represent the whole system. Additionally, this model can address the two drawbacks mentioned above.
-
-To address the non-trivial definition of interaction. In the graphical model we model the interaction of two communities is a hidden variable. This hidden variable is connected with the observations on both flow and nodal properties. We can learn the interaction from the network.
-
-To address the spatial non-stationarity. Each region is built as separate node in the graphical model. This way, the conditional probability 
-\[ P(y_i | X_i) \]
-is different at different regions, which is equivalent to have multiple local models to model the different relations between $y$ and $X$.
+\textbf{Identify discrete node from continuous space is challenging}. In the literature, the boundary of regions are usually pre-defined administrative regions, which has two major issues. First, this boundary definition is not consistent in terms of the property of interest. For example, it is very likely a community is formed on the boundary of two administrative regions. Also, the current partition does not evolve over time. In real life, we know there must be some dynamic change of communities. Second, partition continuous space is not trivial. There is a misalignment problem, which refers to the problem that different data are not collected in the same scale. For example, the crime record is at point level, while the demographics is at block level. \\
 
 
 
+To address these challenges, I have three major components in my disseration: (1) use graph embedding method to incorporate heterogeneous region interaction data; (2) use geographically weighed graphical model to account for the spatial non-stationary property; (3) automatically learn task-specific community area partitions.
 
 
-In next chapter we study the first problem - ``using links to understand nodes''. We use crime inference as an example, in which we use an enhanced spatial autoregressive model to predict crime count of a community using its neighbors. In Chapter \ref{ch:crf}. We first discuss the missing property of a spatial autoregressive model, which is the spatial non-stationarity. To address this, we propose a conditional random field based  graphical model. This model is superior than other method in the literature, such as geographically weighted regression. Finally, there is a research plan in Chapter \ref{ch:plan}.
+
+\section{Organization}
+
+
+The rest of my dissertation is organized as follows. In Chapter~\ref{ch:preliminary} we study the first problem - ``using links to understand nodes''. We use crime inference as an example, in which we use an enhanced spatial autoregressive model to predict crime count of a community using its neighbors. We improve the baseline method with a embedding method to jointly incorporate all kinds of region interactions in Chapter~\ref{ch:embedding}. In Chapter \ref{ch:non-stationary}. We first discuss the missing property of a spatial autoregressive model, which is the spatial non-stationarity. To address this, we employ the geographically weighted regression model. To tackle the spatial continuity, we study the task-specific region partition problem in Chapter~\ref{ch:partition}. Finally, I conclude in Chapter~\ref{ch:conclusion}.
 
 
 

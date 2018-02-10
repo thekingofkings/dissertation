@@ -1,0 +1,19 @@
+\section{Related Work}
+\label{sec:related}
+
+\textbf{Mobility Data in Urban Problems}. Mobility data has been used to solve a wide spectrum of urban problems, such as air quality inference \cite{zheng2013u}, noise pollution estimation \cite{zheng2014diagnosing}, real estate ranking \cite{fu2014sparse}, and region function detection \cite{pan2013land,qi2011measuring}. In these existing works, the transition matrix is the most frequently used to represent the mobility flow data. However, the transition matrix ignores the temporal information and the multi-hop transitions. To account for the temporal dynamics, Yuan et al. \cite{yuan2012discovering} propose a tensor-based framework to discover regions of different functions, which adds a temporal dimension to the transition matrix. Still, the mobility flow tensor can not capture the multi-hop transitions.
+
+
+ 
+Our method differs from the research mentioned above in how we encode the mobility flow information. We try to encode the dynamic mobility flow into vector representations of regions through a embedding method. The advantage of an embedding method over the transition matrix is that the embedding method preserves the global structural information. More specifically, the transition matrix only preserves the pairwise similarity, while the graph embedding is able to make use of higher order proximity and encode such information into the region representations.
+
+
+\textbf{Embedding in Heterogeneous Network}. Our method is related to the methods of graph embedding and dimension reduction in general. Some typical methods include multidimensional scaling (MDS) \cite{cox2000multidimensional}, IsoMap \cite{tenenbaum2000global}, Laplacian Eigenmap \cite{belkin2001laplacian}, and graph factorization \cite{ahmed2013distributed}. These methods find the embedding of a graph by representing the graph as an affinity matrix and then applying matrix factorization. However, the objective of matrix factorization does not necessarily preserve the global network structure, because the matrix factorization only captures the pairwise first-order proximity. 
+
+Inspired by the word2vec method from the natural language processing field \cite{mikolov2013linguistic, mikolov2013efficient, mikolov2013distributed}, which learns continuous vector representations for words, recent research established an analogy for networks by representing a network as a document \cite{perozzi2014deepwalk,tang2015line,grovernode2vec}. One could sample network by random walk to get sequences of vertices and learn a continuous representations for each vertex in a low-dimensional space.
+
+When there are multiple types of vertices and edges in the network, the graph embedding learning objective is different. Wang et al. \cite{wang2016linked} proposed a word embedding method for linked documents, which learns embedding for words, documents, and document labels. Xie et al. \cite{xie2016learning} apply the heterogeneous embedding technique in a location network to recommend locations.
+
+
+Our embedding method is applied on a heterogeneous graph as well, but it is still different from most existing works in heterogeneous network embedding. In our problem, we consider a dynamic graph where the relations between the same pair of vertices are changing over time. This new property presents new challenges in embedding learning.
+

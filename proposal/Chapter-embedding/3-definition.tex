@@ -1,0 +1,28 @@
+\section{Problem Definition}
+\label{sec:definition}
+
+
+We define the region representation learning problem as a joint embedding learning problem on two different graphs --- flow graph and spatial graph.
+
+
+The input data consist of mobility  data and spatial information of the city. The mobility dataset containing $n$ trips is denoted as $\Gamma = \{ \gamma^i \}$. Each trip $\gamma$ has the format $\langle l_s, l_e, t_s, t_e \rangle$, where $l_s$ and $l_e$ are the starting and ending location coordinates (i.e., latitude and longitude), and $t_s$ and $t_e$ are the starting and ending time of the trip respectively. The spatial information of the city is a set of $K$ non-overlapping regions, denoted as $\mathcal{R} = \{ r_1, r_2, \cdots, r_K \}$. The regions could be defined as the administrative boundaries (e.g. tracts and community areas) or partitioned by the road network~\cite{yuan2012discovering}. The spatial boundary of each region $r_i$ is given as well. To simplify the temporal dynamics, we use relative timestamps within one day $\mathcal{T} = \{ 1, 2, \cdots T\}$ with fixed time intervals, such as $1$ hour.
+
+
+The same region at different timestamps bears different functions, and thus the embedding could be different. We differentiate the same region at different timestamps with different vertices in our heterogeneous dynamic graph with \emph{time-enhanced vertex}. 
+
+
+\begin{definition}[Time-enhanced vertex]
+Each vertex in our graph is denoted as $v_i^t$, which represents the region $r_i$ at time $t$. We call this \emph{time-enhanced vertex} and our method will learn embedding representation for each such vertex. The set of time-enhanced vertices is denoted as $\V$, which contains $K \cdot T$ vertices, where $K$ is the number of regions, and $T$ is the number of timestamps.
+\end{definition}
+
+
+Given a set of vertices, there are two kinds of relations we want to capture. The first type of relation is derived from the mobility flow among those regions, which is formulated into the \emph{flow graph} $G_f$. The second one is the spatial adjacency, which is defined by the \emph{spatial graph} $G_s$. The intuitions and definitions of these two graphs will be introduced in detail in Section~\ref{sec:method}.
+
+
+Our method learns the representations from both graphs simultaneously. The formal definition of our problem is as follows.
+
+\begin{definition}[Dynamic mobility graph embedding]
+Given the flow graph $G_f$ and spatial graph $G_s$, we aim to learn a vector representation $\uv_i^t \in \mathbb{R}^d$ in a low dimensional space for each vertex $v_i^t \in \V$, i.e. learning a mapping $f: \V \rightarrow \mathbb{R}^d$. In the d-dimensional embedding space, both the mobility flow relation and spatial adjacency are preserved.
+\end{definition}
+
+With the region embeddings, we define the relevance measure by their dot product, i.e. $sim(i,j) = \uv_i^T \uv_j$.

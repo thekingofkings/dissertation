@@ -7,6 +7,8 @@
 \contentsline {table}{\numberline {2.2}{\ignorespaces Pearson correlation between POI category and crime rate (\textbf {*} indicates significant correlations with p-value less than $5\%$).}}{16}{table.2.2}
 \contentsline {table}{\numberline {2.3}{\ignorespaces Performance evaluation. Various feature combinations are shown in each column. The linear regression model and negative binomial results are compared by year group. }}{23}{table.2.3}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces Symbols for the dynamic coefficient model.}}{29}{table.3.1}
-\addvspace {10\p@ }
+\contentsline {table}{\numberline {3.1}{\ignorespaces Crime rate prediction with $RAW$ from 2013 to 2015. The MAE unit is crime count per 10,000 population.}}{42}{table.3.1}
+\contentsline {table}{\numberline {3.2}{\ignorespaces Average personal income and house price prediction with $RAW$. The MAE unit of personal income is dollar. The MAE unit of house price is dollar per square foot.}}{42}{table.3.2}
+\contentsline {table}{\numberline {3.3}{\ignorespaces Average personal income and house price prediction with embedding methods.}}{43}{table.3.3}
+\contentsline {table}{\numberline {3.4}{\ignorespaces CA 47 suffers from serious gang-related violence, and thus has much less traffic flows compared to its neighbors. The total number of taxi in/out trips are in 2013. The crime rate is gang-related crime count per 10,000 population in 2013.}}{48}{table.3.4}
 \addvspace {10\p@ }
