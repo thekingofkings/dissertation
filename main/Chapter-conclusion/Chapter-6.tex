@@ -1,2 +1,18 @@
-\chapter{Conclusion}
+\chapter{Discussion}
 \label{ch:conclusion}
+
+
+In this chapter, we discuss some potential topics as future work of this dissertation. Following the three challenges in this dissertation, there are potential improvements on each of the topic.
+
+\section{Supervised Embedding Method}
+
+The region embedding in Chapter 3 improves the performance of prediction tasks. However, the improvement is still limited. We found the main reason is that the embedding of region is learned in an unsupervised fashion. A potential improvement is to keep the task in mind, and devise some unsupervised embedding learning technique, which potentially will significantly improve the performance.
+
+\section{General Region Partition}
+
+One of the drawbacks of task-specific region partition is that the region partition is not stable over multiple runs of the same algorithm. The reason is that the proposed methods are stochastic methods. To further improve the stability of the identified partition, we are thinking using multiple tasks and jointly learning the partition. Another benefit of this joint partition learning is that the learned partition is representative and suitable for multiple tasks.
+
+
+\section{Adaptive Local Model}
+
+The GWR method is a simple strategy to design local models. However, we notice that the temporal features are not incorporated within the GWR model. Ideally, we want to build local model to account for both temporal change and spatial correlations. Further more, we do not want to build a lot of independent local models, because there are still correlations across the space. A viable solution is to jointly build a lot of local models. Namely, the local models share certain global structure, meanwhile each local model is adaptive to its local property.
