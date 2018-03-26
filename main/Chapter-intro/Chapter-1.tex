@@ -3,6 +3,25 @@
 
 
 
+\section{Urban Computing}
+
+Urbanization's rapid progress has led to many mega cites, where people's lives have been enriched with advanced technology. Meanwhile new issues, such as air pollution and traffic congestion, pose greater challenges to us. To address these challenges, \emph{urban computing}~\cite{zheng2014urban} emerges as a means to unlock the power of big data from modern cites, to tackle the challenges faced by modern cities,  and to build more intelligent cities.
+
+Nowadays, sensing technologies and large-scale computing infrastructure have produced a variety of \emph{big data} in urban spaces. In Figure~\ref{fig:intro}, we present an example of various data available in the City of New York. The big data have three major properties. 
+\begin{enumerate}
+\item Data variety. All kinds of data are collected in different formats. For example, the crime data is reported at incident level with detailed time and location. Meanwhile, the weather data and air quality data are available at the whole city scale.
+\item Data volume. The quantity of urban data could be huge. For example, there are over 450,000 taxi trips are made in New York City every day. There are over 380,000 venues in New York City, where people can visit and write reviews online.
+\item Data velocity. The speed of new data being generated is fast. On average, there are 621 millions of tweets are generated every data.
+\end{enumerate}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\linewidth]{fig/intro-data-v2.png}
+\caption{Various big data collected in urban space.}
+\label{fig:intro}
+\end{figure}
+
+All those urban data provides amazing opportunities for us to study urban problems and build intelligent urban applications. Among all these data, the urban mobility data is especially interesting because the mobility flow connect a pair of locations. 
 
 
 \section{Model Mobility-Flow-Incurred Interactions}
@@ -108,14 +127,21 @@ There are mainly three challenges to address.
 
 
 
-To address these challenges, I have three major components in my disseration: (1) use graph embedding method to incorporate heterogeneous region interaction data; (2) use geographically weighed graphical model to account for the spatial non-stationary property; (3) automatically learn task-specific community area partitions.
+To address these challenges, I have three major components in my dissertation: (1) use graph embedding method to incorporate heterogeneous region interaction data; (2) use geographically weighed graphical model to account for the spatial non-stationary property; (3) automatically learn task-specific community area partitions.
 
 
 
 \section{Organization}
 
 
-The rest of my dissertation is organized as follows. In Chapter~\ref{ch:preliminary} we study the first problem - ``using links to understand nodes''. We use crime inference as an example, in which we use an enhanced spatial autoregressive model to predict crime count of a community using its neighbors. We improve the baseline method with a embedding method to jointly incorporate all kinds of region interactions in Chapter~\ref{ch:embedding}. In Chapter \ref{ch:non-stationary}. We first discuss the missing property of a spatial autoregressive model, which is the spatial non-stationarity. To address this, we employ the geographically weighted regression model. To tackle the spatial continuity, we study the task-specific region partition problem in Chapter~\ref{ch:partition}. Finally, I conclude in Chapter~\ref{ch:conclusion}.
+The rest of my dissertation is organized as shown in Figure~\ref{fig:org}. In Chapter~\ref{ch:preliminary} we study the first problem - ``using links to understand nodes''. We use crime inference as an example, in which we use an enhanced spatial autoregressive model to predict crime count of a community using its neighbors. We improve the baseline method with a embedding method to jointly incorporate all kinds of region interactions in Chapter~\ref{ch:embedding}. In Chapter \ref{ch:non-stationary}. We first discuss the missing property of a spatial autoregressive model, which is the spatial non-stationarity. To address this, we employ the geographically weighted regression model. To tackle the spatial continuity, we study the task-specific region partition problem in Chapter~\ref{ch:partition}. Finally, I conclude in Chapter~\ref{ch:conclusion}.
 
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{fig/organization.png}
+\caption{Organization of this dissertation.}
+\label{fig:org}
+\end{figure}
 
 
