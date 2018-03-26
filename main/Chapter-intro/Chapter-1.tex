@@ -52,17 +52,18 @@ Consider the following two examples. These two examples show that it is not suff
 \label{sec:qa}
 
 
-In the urban space, a model of region \textbf{interactions} can help solve  several fundamental data mining questions. This thesis views  the city as a spatial network of communities linked by ``hyperlink'' flow. The questions we want to answer are:
+In this dissertation, we model the city as a spatial network of regions, where each region is one node and there is a link between a pair of nodes. Links measure the interactions between a pair of regions. For example, the spatial link defines the spatial adjacency among regions. There are other types of links as well.  Accounting for these different types of region \textbf{interactions} can improve the a set of urban prediction tasks. I am specifically interested in the mobility flow data because they act as a type of ``hyperlink'' and connect regions that are spatially far away. In order to model the city as a spatial network, we have to answer the following three research questions.
+
 \begin{itemize}
-\item Understand nodes using links. Estimate an unobserved property of focal community, given the observations on other communities and other types of data. For example, the crime rate in a residential neighborhood could be impacted by  non-adjacent but flow-connected neighborhoods, because the residents in the neighborhoods are also exposed to and influenced by the environment in the workplace.
-\item Understand links using nodes. Are certain properties of two connected nodes associated with the type and volume of the flow connections? For example, given the crime profiles of two connected communities, which type of interactions (taxi, LEHD, or space continuity) is more important in forming the crime properties?
-\item Identify the fundamental dependency structure among properties of nodes. For example, the crime rate of two connected communities may show a strong correlation. However, this does not necessarily mean that high crime rate in one community lead to the high crime in another. The crime is very likely to be caused by other properties. 
+\item How to better understand nodes using links? In an urban prediction task, we usually estimate an unobserved property of a focal region from the observations of similar regions. The challenge lies in an appropriate definition of ``similar regions''. In the literature, spatial similarity is widely used. However, we argue that mobility flow also plays an important role in defining region similarity. For example, the crime rate in a residential neighborhood could be impacted by spatially non-adjacent but flow-connected neighborhoods.
+\item How to define appropriate nodes in the spatial network? The administrative boundaries are widely used to define discrete regions. However, there are also a lot of concerns with the predefined boundaries. What if we do not have the boundaries available? What if the current boundary is outdated? Is the predefined boundary suitable for our prediction task?
+\item What is the appropriate model for the correlations among various data in our spatial network? We argue that one global model cannot necessarily fit all scenarios. For example, nationwide we may observe that the house price is negatively correlated with house density. However, such observation is not universally true because we can easily find counterexample. For example, the house price in Manhattan island is high regardless of the high house density.
 \end{itemize}
 
 
 
 
-\section{Existing Work}
+\section{Interactions within Networks in the Literature}
 \label{sec:ew}
 
 
@@ -116,25 +117,27 @@ Our work is different from those work in social network literature in a way that
 
 There are mainly three challenges to address.
 
-\textbf{Given multiple types of social flow, the interaction is more difficult to define}. Given only one type of social flow, there are too many possibilities in constructing interactions.  First, the flow matrix can take various form. For example, we can chose normalize the flow matrix or not. When normalizing the flow matrix, we can chose whether normalize by in-flow or out-flow. Second, there are many nodal properties that could interact with their neighbors, such as various demographics features. Third, different kinds of function can be used to define interactions. Take the product of flow and nodal properties is the most straightforward choice. However, sometimes it also makes sense to further apply distance exponential decay on previous product.  Furthermore, it is possible we have multiple types of social flow (e.g. taxi flow, commuter transit). For one pair of regions, should we build separate interaction over different social flows, or sum over all flows to get one interaction? When we take the sum, should we weight different social flow differently, and how?
-
-
-\textbf{The interaction is non-stationary over the space}. Most models in existing work are global model, which assumes the statistic interaction does not vary over space. However, some urban data have spatial non-stationary property. Therefore, using global estimates of relationships can present misleading interpretations of local relationships.
+\textbf{Given multiple types of social flow, the interaction is difficult to define}. Given only one type of social flow, there are too many possibilities in constructing interactions.  First, the flow matrix can take various form. For example, we can chose normalize the flow matrix or not. When normalizing the flow matrix, we can chose whether normalize by in-flow or out-flow. Second, there are many nodal properties that could interact with their neighbors, such as various demographics features. Third, different kinds of function can be used to define interactions. Take the product of flow and nodal properties is the most straightforward choice. However, sometimes it also makes sense to further apply distance exponential decay on previous product.  Furthermore, it is possible we have multiple types of social flow (e.g. taxi flow, commuter transit). For one pair of regions, should we build separate interaction over different social flows, or sum over all flows to get one interaction? When we take the sum, should we weight different social flow differently, and how?
 
 
 
-\textbf{Identify discrete node from continuous space is challenging}. In the literature, the boundary of regions are usually pre-defined administrative regions, which has two major issues. First, this boundary definition is not consistent in terms of the property of interest. For example, it is very likely a community is formed on the boundary of two administrative regions. Also, the current partition does not evolve over time. In real life, we know there must be some dynamic change of communities. Second, partition continuous space is not trivial. There is a misalignment problem, which refers to the problem that different data are not collected in the same scale. For example, the crime record is at point level, while the demographics is at block level. \\
+\textbf{Identify discrete node from continuous space is challenging}. In the literature, the boundary of regions are usually pre-defined administrative regions, which has two major issues. First, this boundary definition is not consistent in terms of the property of interest. For example, it is very likely a community is formed on the boundary of two administrative regions. Also, the current partition does not evolve over time. In real life, we know there must be some dynamic change of communities. Second, partition continuous space is not trivial. There is a misalignment problem, which refers to the problem that different data are not collected in the same scale. For example, the crime record is at point level, while the demographics is at block level.
 
 
 
-To address these challenges, I have three major components in my dissertation: (1) use graph embedding method to incorporate heterogeneous region interaction data; (2) use geographically weighed graphical model to account for the spatial non-stationary property; (3) automatically learn task-specific community area partitions.
+\textbf{The interaction is non-stationary over the space}. Most models in existing work are global model, which assumes the statistic interaction does not vary over space. However, some urban data have spatial non-stationary property. Therefore, using global estimates of relationships can present misleading interpretations of local relationships. \\
+
+
+To address these challenges, I have three : (1) use graph embedding method to incorporate heterogeneous region interaction data; (2) use geographically weighed graphical model to account for the spatial non-stationary property; (3) automatically learn task-specific community area partitions.
 
 
 
 \section{Organization}
 
 
-The rest of my dissertation is organized as shown in Figure~\ref{fig:org}. In Chapter~\ref{ch:preliminary} we study the first problem - ``using links to understand nodes''. We use crime inference as an example, in which we use an enhanced spatial autoregressive model to predict crime count of a community using its neighbors. We improve the baseline method with a embedding method to jointly incorporate all kinds of region interactions in Chapter~\ref{ch:embedding}. In Chapter \ref{ch:non-stationary}. We first discuss the missing property of a spatial autoregressive model, which is the spatial non-stationarity. To address this, we employ the geographically weighted regression model. To tackle the spatial continuity, we study the task-specific region partition problem in Chapter~\ref{ch:partition}. Finally, I conclude in Chapter~\ref{ch:conclusion}.
+The rest of my dissertation is organized as shown in Figure~\ref{fig:org}. In Chapter~\ref{ch:preliminary} I give a preliminary study to verify the idea that using mobility flow as hyper-links to better model region similarity. We use crime inference as an example, in which we use an enhanced spatial autoregressive model to predict crime count of a community using its neighbors.
+
+To address the aforementioned three challenges, I have correspondingly three major components in my dissertation. I propose an embedding method to incorporate all kinds of region interactions in Chapter~\ref{ch:embedding}. Next, I study the task-specific region partition problem in Chapter~\ref{ch:partition} to tackle the spatial continuity. In Chapter \ref{ch:non-stationary}, we first identify the spatial variations in mined relations. We further employ a geographically weighted regression model to solve the problem. Finally, I conclude in Chapter~\ref{ch:conclusion} with a discussion of potential future topics.
 
 
 \begin{figure}[h]
