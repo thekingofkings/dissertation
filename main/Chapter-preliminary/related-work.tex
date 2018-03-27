@@ -1,0 +1,53 @@
+% !TEX root = main-crime.tex
+
+
+\section{Related Work}
+\label{sec:related-work}
+
+
+In the criminology literature researchers have studied the relationship between crime and various features. Examples are historical crime records~\cite{MSBS+12,WRWS13}, education~\cite{Ehrl75}, ethnicity~\cite{Brai89}, income level~\cite{Patt91}, unemployment~\cite{Free99}, and spatial proximity~\cite{Ans02}. 
+In data mining, newer types of data are used in the study. For example, there are studies using twitter to predict crime \cite{WGB12,Gerb14}, and studies using cellphone data \cite{TQC14,Bogo14} to evaluate crime and social theories at scale. 
+Overall, the existing work on crime prediction can be categorized into three paradigms.
+
+
+\vspace{1mm}
+\textbf{Time-centric paradigm}. This line of work focuses on the temporal dimension of crime incidents. For example, in a study \cite{MSBS+12}, the authors propose to use a self-exciting point process to model the crime and gain insights into the temporal trends in the rate of burglary. In another study \cite{Ratc06}, the authors investigate the temporal constraints on crime, and propose an offender travel and opportunity model. This paper validates the claim that a proportion of offending is driven by the availability of opportunities presented in the  routine lives of offenders. 
+
+
+
+\vspace{1mm}
+\textbf{Place-centric paradigm}. Most existing work adopt a place-centric paradigm, where the research question is to predict the location of  crime incidents.  The predicted crime location is usually referred by the term \emph{hotspot}, which has various geographical size.  There are plenty of studies on exploration of the crime hotspots. For example, in a study \cite{TEP11} the authors  use criminal offense records to identify spatio-temporal patterns at multiple scales. They employ various quantitative tools from mathematics and physics and identify significant correlation in both space and time in the crime behavioral data.  Short \emph{et al.} \cite{SDPT+08} use a simple model to study the dynamics of crime hotspots and identify stable hotspots, where criminals are modeled as random walkers.  Bogomolov \emph{et al.} \cite{Bogo14} use human behavioral data derived from mobile network and demographic sources, together with open crime data to predict crime hotspots. They compare various classifiers and find random forests have the best prediction performance. The paper \cite{WGB12} uses automatic semantic analysis to understand natural language Twitter posts from which the crime incidents are reported. Some other work \cite{CTU08,ECCW05} employ kernel density estimation (KDE) to identify and analyze crime hotspots. Those studies form another form of crime prediction, which relies on the retrospective crime data to identify areas of high concentrations of crime. In  \cite{NaYa14}, the authors extend the crime cluster analysis with a temporal dimension. They employ the space-time variants of KDE to simultaneously visualize geographical extent and duration of crime clusters. 
+
+
+
+
+
+\vspace{1mm}
+\textbf{Population-centric paradigm}. In the last paradigm, research focuses on the criminal profiling at individual and community levels. At the individual level, \cite{WRWS13} aim to automatically  identify crimes committed by the same individual from a historical crime database. The proposed system, called \emph{Series Finder}, is designed to find and classify modus operandi (M.O.)  of criminals.  At the community level, Buczak \emph{et al.} \cite{BuGi10} use fuzzy association rule mining to find crime patterns. The rules they found are consistent across all regions. The paper constructs association rules from population demographics in communities.  In another paper \cite{TQC14}, the authors use computational methods to validate various social theories at a large scale.  They used mobile phone data in London, from which they mine the  people dynamics as features to correlate with crime.  
+
+
+Our problem is different from the first two categories of work, mainly because our innovation lies in using newer type of data to enhance the commonly used traditional counterparts. More specifically, we use POI to enhance the demographics information and use taxi flow as hyperlinks to enhance the geographical proximity correlation. Although our problem does not consider the temporal dimension of crime in depth, it could be a promising supplement to better profile crime. Our problem does not predict the location of any particular crime incident. Therefore the methods proposed in place-centric methods are not applicable in our problem. However, the features we proposed may be incorporated in those crime prediction models. 
+
+Our problem falls into the third paradigm because we try to profile the crime rate for Chicago community areas. In our problem, the community areas are well-defined and stable geographical regions. The newly proposed POI features and taxi links providenew perspectives in profiling the crime rate across community areas.
+
+
+
+\begin{table}[t]
+\centering
+\caption{Crime rate inference results. Various feature combinations are shown in each column. The linear regression and negative binomial regression are compared by year group.}
+\vspace{2mm}
+\label{tb:perf}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+{\multirow{4}{*}{Features}}	& \textbf{D}emo &  \checkmark& \checkmark& \checkmark& \checkmark \\ \cline{3-6}
+	& \textbf{G}eo & \checkmark & \checkmark& \checkmark& \checkmark \\ \cline{3-6}
+	& \textbf{P}OI & &\checkmark & & \checkmark \\ \cline{3-6}
+	& \textbf{T}axi & & & \checkmark& \checkmark \\ \hline
+	& MAE &  329.93& 386.90& 345.79& 361.28\\  \cline{2-6}
+		\multirow{-2}{*}{LR} & MRE& 0.324& 0.380& 0.340& 0.355\\ \hline
+	&  MAE &  336.09& 308.18& 326.07& \textbf{273.27}\\  \cline{2-6}
+	\multirow{-2}{*}{NB}& MRE&  0.331 & 0.303& 0.321 & \textbf{0.269}\\ \hline
+\end{tabular}\\
+\end{table}
+
+
