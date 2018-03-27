@@ -1,16 +1,8 @@
 % !TEX root = main-crime.tex
 
 \section{Conclusion}
-\label{sec:conclusion}
+\label{ch2-sec:conclusion}
 
 In the social science literature, the demographics and geographical neighbors are known to exhibit strong correlations with crime.
 In this paper we solve the problem of crime rate inference with new features. More specifically, we propose to use POI features to assist the demographic features, and to use taxi flow as hyperlinks to supplement the geographical neighbors.  The intuition behind the POI feature is that the POI distribution across community areas reflects profiles of the region functionality. The intuition behind the hyperlinks is that the taxi flow models the social interaction among nonadjacent regions, which potentially propagate crime or resources and information used in crime control. We adopt the negative binomial regression modal over the linear regression model, mainly because the count based regression models and guarantees positive prediction, while the linear regression may give negative crime rate as prediction.  Both POI and taxi flow features from a publicly accessible dataset in Chicago are evaluated to be helpful. In the best scenario, the POI distribution and taxi flow reduces the prediction error by $17.6\%$. 
 
-
-
-
-
-\section{Acknowledgements}
-
-
-The work was supported in part by NSF award \#1544455, \#1054389, and funding from NICHD R24-HD044943. The views and conclusions contained in this paper are those of the authors and should not be interpreted as reprinting any funding agencies.

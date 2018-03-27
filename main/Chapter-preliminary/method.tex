@@ -1,7 +1,7 @@
 % !TEX root = main-crime.tex
 
 \section{Overview}
-\label{sec:overview}
+\label{ch2-sec:overview}
 The crime data collected in Chicago has detailed information about the time and location (i.e., latitude and longitude) of crime and the types of crime. In our problem, the term crime count refers to number of crime incidents in a region (i.e., community area) in a year. The \emph{community area} is used as our geographical unit of study, since it is well-defined,  historically recognized and stable over time~\cite{wiki-ca}. In total, there are 77 community areas in Chicago.  Crime rate is the crime count normalized by the population in a region. We use vector $\vec{y} = [y_1, y_2, \ldots, y_n]$ to denote the crime rates in regions. The crime rate inference problem is to estimate the crime rate in one region using the crime rate of other regions in the same year by considering the features of regions and correlations between regions. 
 
 
@@ -34,7 +34,7 @@ crime rate of nearby regions are weighted according
 to spatial distances. (2) Hyperlink by taxi flow. Locations are connected through the frequent trips made by humans, which can be considered as the hyperlinks in space. This type of feature has never been studied in literature. We propose to use taxi trips to construct the social flow. Our hypothesis is that two regions that are more strongly connected through social flow will influence each other's crime rate.
 \end{itemize}
 
-In the following sections, we first discuss the inference models based on these three types of features in Section~\ref{sec:model} and then discuss how to construct these features using the real-world data in Section~\ref{sec:feature}.
+In the following sections, we first discuss the inference models based on these three types of features in Section~\ref{ch2-sec:model} and then discuss how to construct these features using the real-world data in Section~\ref{ch2-sec:feature}.
 
 
 
@@ -44,7 +44,7 @@ In the following sections, we first discuss the inference models based on these 
 
 
 \section{Inference Model}
-\label{sec:model}
+\label{ch2-sec:model}
 
 
 \subsection{Linear Regression}
