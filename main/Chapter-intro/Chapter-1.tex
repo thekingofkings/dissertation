@@ -9,9 +9,9 @@ Urbanization's rapid progress has led to many mega cites, where people's lives h
 
 Nowadays, sensing technologies and large-scale computing infrastructure have produced a variety of \emph{big data} in urban spaces. In Figure~\ref{fig:intro}, we present an example of various data available in the City of New York. The big data have three major properties. 
 \begin{enumerate}
-\item Data variety. All kinds of data are collected in different formats. For example, the crime data is reported at incident level with detailed time and location. Meanwhile, the weather data and air quality data are available at the whole city scale.
-\item Data volume. The quantity of urban data could be huge. For example, there are over 450,000 taxi trips are made in New York City every day. There are over 380,000 venues in New York City, where people can visit and write reviews online.
-\item Data velocity. The speed of new data being generated is fast. On average, there are 621 millions of tweets are generated every data.
+\item Data variety. Urban data are collected in different formats. For example, crime data could be collected at incident level with detailed time and location. Meanwhile, demographic data are often reported at block level or community level.
+\item Data volume. The quantity of urban data could be huge. For example, there are about 450,000 taxi trips are made in New York City every day according to the 2013 taxi data. There are over 380,000 venues on Foursquare as of 2015 in New York City, where people can visit and write reviews online.
+\item Data velocity. The speed of new data being generated is fast. On average, there are 621 millions of tweets are generated every data according to the data collected in 2013.
 \end{enumerate}
 
 \begin{figure}[h]
@@ -21,7 +21,7 @@ Nowadays, sensing technologies and large-scale computing infrastructure have pro
 \label{fig:intro}
 \end{figure}
 
-All those urban data provides amazing opportunities for us to study urban problems and build intelligent urban applications. Among all these data, the urban mobility data is especially interesting because the mobility flow connect a pair of locations. 
+All those urban data provide amazing opportunities for us to study urban problems and build intelligent urban applications. Among these data, the urban mobility data is especially interesting because the mobility flow connect a pair of locations. 
 
 
 \section{Model Mobility-Flow-Incurred Interactions}
@@ -63,7 +63,7 @@ In this dissertation, we model the city as a spatial network of regions, where e
 
 
 
-\section{Interactions within Networks in the Literature}
+\section{Literature for Modeling Interactions of Networks}
 \label{sec:ew}
 
 
@@ -115,29 +115,26 @@ Our work is different from those work in social network literature in a way that
 
 \section{Challenges}
 
-There are mainly three challenges to address.
+There are mainly three challenges to address in modeling region networks through mobility flow.
 
 \textbf{Given multiple types of social flow, the interaction is difficult to define}. Given only one type of social flow, there are too many possibilities in constructing interactions.  First, the flow matrix can take various form. For example, we can chose normalize the flow matrix or not. When normalizing the flow matrix, we can chose whether normalize by in-flow or out-flow. Second, there are many nodal properties that could interact with their neighbors, such as various demographics features. Third, different kinds of function can be used to define interactions. Take the product of flow and nodal properties is the most straightforward choice. However, sometimes it also makes sense to further apply distance exponential decay on previous product.  Furthermore, it is possible we have multiple types of social flow (e.g. taxi flow, commuter transit). For one pair of regions, should we build separate interaction over different social flows, or sum over all flows to get one interaction? When we take the sum, should we weight different social flow differently, and how?
 
 
 
-\textbf{Identify discrete node from continuous space is challenging}. In the literature, the boundary of regions are usually pre-defined administrative regions, which has two major issues. First, this boundary definition is not consistent in terms of the property of interest. For example, it is very likely a community is formed on the boundary of two administrative regions. Also, the current partition does not evolve over time. In real life, we know there must be some dynamic change of communities. Second, partition continuous space is not trivial. There is a misalignment problem, which refers to the problem that different data are not collected in the same scale. For example, the crime record is at point level, while the demographics is at block level.
+\textbf{Constructing discrete node from continuous space is challenging}. In the literature, the boundary of regions are usually pre-defined administrative regions, which has two major issues. First, this boundary definition is not consistent in terms of the property of interest. For example, it is very likely a community is formed on the boundary of two administrative regions. Also, the current partition does not evolve over time. In real life, we know there must be some dynamic change of communities. Second, partition continuous space is not trivial. There is a misalignment problem, which refers to the problem that different data are not collected in the same scale. For example, the crime record is at point level, while the demographics is at block level.
 
 
 
-\textbf{The interaction is non-stationary over the space}. Most models in existing work are global model, which assumes the statistic interaction does not vary over space. However, some urban data have spatial non-stationary property. Therefore, using global estimates of relationships can present misleading interpretations of local relationships. \\
-
-
-To address these challenges, I have three : (1) use graph embedding method to incorporate heterogeneous region interaction data; (2) use geographically weighed graphical model to account for the spatial non-stationary property; (3) automatically learn task-specific community area partitions.
+\textbf{The interaction is non-stationary over the space}. Most models in existing work are global model, which assumes the statistic interaction does not vary over space. However, some urban data have spatial non-stationary property. Therefore, using global estimates of relationships can present misleading interpretations of local relationships.
 
 
 
 \section{Organization}
 
 
-The rest of my dissertation is organized as shown in Figure~\ref{fig:org}. In Chapter~\ref{ch:preliminary} I give a preliminary study to verify the idea that using mobility flow as hyper-links to better model region similarity. We use crime inference as an example, in which we use an enhanced spatial autoregressive model to predict crime count of a community using its neighbors.
+The rest of my dissertation is organized as shown in Figure~\ref{fig:org}. In Chapter~\ref{ch:preliminary}, I give a preliminary study to verify the idea that using mobility flow as hyper-links to better model region similarity. We use crime inference as an example, in which we use an enhanced spatial autoregressive model to predict crime count of a community using its neighbors.
 
-To address the aforementioned three challenges, I have correspondingly three major components in my dissertation. I propose an embedding method to incorporate all kinds of region interactions in Chapter~\ref{ch:embedding}. Next, I study the task-specific region partition problem in Chapter~\ref{ch:partition} to tackle the spatial continuity. In Chapter \ref{ch:non-stationary}, we first identify the spatial variations in mined relations. We further employ a geographically weighted regression model to solve the problem. Finally, I conclude in Chapter~\ref{ch:conclusion} with a discussion of potential future topics.
+To address the aforementioned three challenges, I have correspondingly three chapters in my dissertation. We propose a graph embedding method to incorporate heterogeneous region interactions in Chapter~\ref{ch:embedding}. Next, we propose to automatically learn task-specific region partition in Chapter~\ref{ch:partition} to tackle the spatial continuity. In Chapter \ref{ch:non-stationary}, we first identify the spatial variations in mined relations. We further employ a geographically weighted regression model to solve the problem. Finally, I conclude in Chapter~\ref{ch:conclusion} with a discussion of potential future topics.
 
 
 \begin{figure}[h]
