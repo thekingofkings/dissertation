@@ -31,7 +31,7 @@ Following previous work~\cite{wang2016crime}, we construct a negative binomial m
 \end{example}
 
 % problem definition
-The observation above motivates us to learn a better region definition for crime study. In this paper, we propose a new problem of \emph{task-specific region partitioning}. Given spatial variables and a selected model  (e.g., linear regression), we aim to partition the city into regions such that the model trained by taking regions as data samples achieves the optimal results.
+The observation above motivates us to learn a better region definition for crime study. In this chapter, we propose a new problem of \emph{task-specific region partitioning}. Given spatial variables and a selected model  (e.g., linear regression), we aim to partition the city into regions such that the model trained by taking regions as data samples achieves the optimal results.
 
 % literature
 %two lines of literature: (1) clustering, no target; (2) partition tracts into regions, and build a model for each region.
@@ -45,7 +45,7 @@ Task-specific city region partitioning is a challenging problem. The key challen
 We evaluate our method on two real datasets, i.e. crime count and real estimate price. The learned region partitions are shown to consistently outperform the administrative boundaries and spatial clustering method. For example, our methods, on average, outperform the administrative boundary by $56\%$ in a crime prediction task. We also observe that the heuristic-based MCMC converges faster than the naive MCMC, while the reinforcement learning uses the least iterations to converge.
 
 % Key contributions
-To summarize, the key contributions of this paper are:
+To summarize, the key contributions of this chapter are:
 \begin{itemize}[leftmargin=*]
 \item We propose a novel problem on task-specific region partitioning. This problem is motivated by real-world urban studies, including our own previous work on crime prediction~\cite{wang2016crime}.
 \item We prove the problem is NP-hard and we study different MCMC and reinforcement learning sampling techniques to solve the problem. 
@@ -53,6 +53,6 @@ To summarize, the key contributions of this paper are:
 \end{itemize}
 
 
-% Paper organizations
-The rest of this paper is organized as follows. The formal definition of our problem is given in Section~\ref{sec:problem}, and our method is described in Section~\ref{sec:method}. Section~\ref{sec:experiment} shows the evaluations on two different tasks. Section~\ref{sec:related-work} summarizes related work.  Finally, we conclude in Section~\ref{sec:conclusion}.
+% chapter organizations
+The rest of this chapter is organized as follows. The formal definition of our problem is given in Section~\ref{ch4-sec:problem}, and our method is described in Section~\ref{ch4-sec:method}. Section~\ref{ch4-sec:experiment} shows the evaluations on two different tasks. Section~\ref{ch4-sec:related-work} summarizes related work.  Finally, we conclude in Section~\ref{ch4-sec:conclusion}.
 
