@@ -36,6 +36,10 @@ We evaluate the estimation accuracy under various feature combinations. The leav
 \caption{Performance evaluation. Various feature combinations are shown in each column. The linear regression model and negative binomial results are compared by year group.}
 \vspace{2mm}
 \label{tb:perf}
+
+\resizebox{\columnwidth}{!}{%
+
+
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
 \multicolumn{3}{|c|}{} & \multicolumn{8}{|c|}{Settings} \\ \hline
@@ -85,6 +89,7 @@ Year & Model$^2$ & Error & \multicolumn{8}{|c|}{} \\ \hline
 	\rowcolor{Gray}
 	\cellcolor{white}\multirow{-4}{*}{2014}	&	\cellcolor{white}\multirow{-2}{*}{NB}& MRE& 0.335&  0.289 & 0.334 & 0.270 &  0.331 & 0.303& 0.321 & \textbf{0.269}\\ \hline
 \end{tabular}
+}
 
 \footnotesize{$^1$ D -- demographic features, G -- geographical influence, P -- POI features, T -- taxi flow feature.\\}
 \footnotesize{$^2$ LR -- Linear Regression, NB -- Negative Binomial Regression.}
@@ -127,7 +132,7 @@ There are different ways to use the POI and taxi datasets. In this section, we s
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.27\textwidth]{fig/poi-cnt3.pdf}
+\includegraphics[width=0.7\textwidth]{fig/poi-cnt3.pdf}
 \caption{Absolute POI count distribution. In our crawled POI dataset, most community areas have less than 100 venues. Meanwhile, the downtown area there are over $10,000$ venues for one community area, e.g. \#8, \#32.}
 \label{fig:poi-dist}
 \end{figure}
@@ -267,8 +272,8 @@ The POI distributions are different from region to region. It is interesting to 
 
 \begin{figure}[h]
 \centering
-\subfigure[POI]{\includegraphics[width=0.23\textwidth]{fig/poi-improve.pdf}}
-\subfigure[Taxi flow]{\includegraphics[width=0.23\textwidth]{fig/taxi-improve.pdf}}
+\subfigure[POI]{\includegraphics[width=0.45\textwidth]{fig/poi-improve.pdf}}
+\subfigure[Taxi flow]{\includegraphics[width=0.45\textwidth]{fig/taxi-improve.pdf}}
 \caption{Performance improvement per region by using POI or taxi flow features on 2014 crime. The difference of MAEs in estimating crime with/without POI feature is shown on the left, and the same measure of taxi flow is shown on the right. The color blue means the MAE is reduced by adding corresponding feature (i.e., better performance), while the red means the MAE is increased (i.e., worse performance). The color saturation indicates the value of difference.}
 \label{fig:feat-area}
 \end{figure}
