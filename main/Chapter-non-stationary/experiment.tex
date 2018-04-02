@@ -1,11 +1,11 @@
 % !TEX root = main.tex
 \section{Experiments}
-\label{sec:experiment}
+\label{ch5-sec:experiment}
 
 
 \subsection{Settings}
 
-We use four types of data as features, including demographics, POI, geographical influence, and taxi flow, to predict the total crime rates. The details of feature data are described in Section~\ref{sec:feature}, and a description of crime data is available in Section~\ref{sec:overview}. We conduct the crime prediction on five consecutive years, 2010 -- 2014. There are over 30 categories of crime, and many categories have sparse values over regions. Therefore, we only study the effect of crime categories in Section~\ref{sec:crime-cat}, and in the rest experiments, we predict the total crime rate.
+We use four types of data as features, including demographics, POI, geographical influence, and taxi flow, to predict the total crime rates. The details of feature data are described in Section~\ref{ch2-sec:feature}, and a description of crime data is available in Section~\ref{ch5-sec:overview}. We conduct the crime prediction on five consecutive years, 2010 -- 2014. There are over 30 categories of crime, and many categories have sparse values over regions. Therefore, we only study the effect of crime categories in Section~\ref{sec:crime-cat}, and in the rest experiments, we predict the total crime rate.
 
 The following four methods, e.g. regression kriging (RK), linear regression (LR), negative binomial regression (NB), and geographically weighted negative binomial regression (GWNBR), are evaluated. The regression kriging method employs a regression model to incorporate all features as auxiliary variables, and then applies kriging to estimate the regression residual. We add kriging as one of the baseline, mainly because kriging is one of the most widely used method for geospatial interpolation~\cite{OlWe90}.
 
@@ -26,6 +26,8 @@ MRE & = \frac{\sum_i |y_i - \hat{y_i}|} {\sum_i y_i }
 \centering
 \caption{Performance evaluation on total crime rate prediction. Various feature combinations are shown in each column. The linear regression model,  negative binomial model, and geographically weighted negative binomial model are compared by year group. }
 \label{tb:perf}
+
+\resizebox{!}{0.45\textheight}{
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
 \multicolumn{3}{|c|}{} & \multicolumn{4}{|c|}{Settings} \\ \hline
@@ -103,8 +105,9 @@ Year & Model$^2$ & Error & \multicolumn{4}{|c|}{} \\ \hline
   \rowcolor{Gray2}
   \cellcolor{white}\multirow{-8}{*}{2014}	&\cellcolor{white}\multirow{-2}{*}{GWNBR} & MRE & 0.277  & 0.276 & 0.270 & \textbf{0.268} \\ \hline
 \end{tabular}
+}
 
-\footnotesize{$^1$ Demo -- demographic features, Geo -- geographical influence, POI -- POI features, Taxi -- taxi flow feature.\\}
+\footnotesize{$^1$ Demo -- demographic features, Geo -- geographical influence, POI -- POI features, Taxi -- taxi flow feature.}
 \footnotesize{$^2$ RK -- Regression Kriging, LR -- Linear Regression, NB -- Negative Binomial Regression, GWNBR -- Geographically Weighted Negative Binomial Regression.}
 \end{table}
 
