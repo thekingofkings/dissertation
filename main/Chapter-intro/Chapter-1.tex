@@ -5,7 +5,7 @@
 
 \section{Urban Computing}
 
-Urbanization's rapid progress has led to many mega cites, where people's lives have been enriched with advanced technology. Meanwhile new issues, such as air pollution and traffic congestion, pose greater challenges to us. To address these challenges, \emph{urban computing}~\cite{zheng2014urban} emerges as a means to unlock the power of big data from modern cites, to tackle the challenges faced by modern cities,  and to build more intelligent cities.
+Urbanization's rapid progress has led to many megacities, where people's lives have been enriched with advanced technology. Meanwhile new issues, such as air pollution and traffic congestion, pose greater challenges to us. To address these challenges, \emph{urban computing}~\cite{zheng2014urban} emerges as a means to unlock the power of big data from modern cities, to tackle the challenges faced by modern cities,  and to build more intelligent cities.
 
 Nowadays, sensing technologies and large-scale computing infrastructure have produced a variety of \emph{big data} in urban spaces. In Figure~\ref{fig:intro}, we present an example of various data available in the City of New York. The big data have three major properties. 
 \begin{enumerate}
@@ -21,13 +21,13 @@ Nowadays, sensing technologies and large-scale computing infrastructure have pro
 \label{fig:intro}
 \end{figure}
 
-All those urban data provide amazing opportunities for us to study urban problems and build intelligent urban applications. Among these data, the urban mobility data is especially interesting because the mobility flow connect a pair of locations. 
+All those urban data provide amazing opportunities for us to study urban problems and build intelligent urban applications. Among these data, the urban mobility data is especially interesting because the mobility flow connects a pair of locations. 
 
 
 \section{Model Mobility-Flow-Incurred Interactions}
 
 
-In the urban space, the movement of human population connects two disjoint regions, and brings influence from one to the other. My research focuses on modeling the complicated interactions in the urban space with human mobility data.  
+In the urban space, the movement of human population connects two disjoint regions and brings influence from one to the other. My research focuses on modeling the complicated interactions in the urban space with human mobility data.  
 
 
 In recent years, there are some large datasets of urban taxi made public~\cite{nyctaxi} under the Freedom of information request law.  The taxi dataset contains the time and location of pick-up and drop-off for a trip. By aggregating the taxi data, we are able to get the mobility flow among different regions.
@@ -36,13 +36,13 @@ Mobility flow data (e.g., commuting flow, taxi trajectories) are sensitive resou
 
 
 
-Consider the following two examples. These two examples show that it is not sufficient to only consider spatial interaction, and the interactions incurred by mobility flow is equally important.
+Consider the following two examples. These two examples show that it is not sufficient to only consider spatial interaction and the interactions incurred by mobility flow is equally important.
 
 
 \textbf{Example 1.} \emph{Policy makers are deciding where to construct a shelter for families that are victims of violence. They understand the value of locating the shelter geographically far from violent neighborhoods. One possible choice is to locate the shelter in a neighborhood that is 10 miles from the violent neighborhoods where vulnerable families previously lived. However, a deeper analysis may reveal that the new neighborhood, though geographically removed from the old neighborhood, may still have strong social flows (connections caused by commutes, family visits) with the old neighborhood. Emerging research suggests that a great deal of crime happens in areas that are socially connected to offenders' neighborhoods. This suggests that shelters may benefit from being located in a neighborhood that is also socially isolated from violence (e.g., with weak communication and commuting interactions with the violent neighborhoods that shelter residents fled from) while socially connected to jobs, services, and resources.}
 
 
-\textbf{Example 2.} \emph{In order to provide better living environment to crowded city, city planner decide to expand city with a new satellite town. However, people are not willingly to move, if there is not enough incentive. To create opportunity and attract people, some candidates to relocate are big factory, shopping mall, and government offices. The question is which facility should be relocated, so that population pressure in whole  city  is relieved.  Correspondingly, how many new residential building, supermarket, and parks should be built into the new city? People have to go the new city to work. Some of them may move to live in the new city, and the rest may choose to commute everyday.}
+\textbf{Example 2.} \emph{In order to provide a better living environment to the crowded city, city planner decides to expand city with a new satellite town. However, people are not willing to move, if there is not enough incentive. To create opportunity and attract people, some candidates to relocate are big factory, shopping mall, and government offices. The question is which facility should be relocated, so that population pressure in the whole city is relieved.  Correspondingly, how many new residential building, supermarket, and parks should be built into the new city? People have to go the new city to work. Some of them may move to live in the new city, and the rest may choose to commute everyday.}
 
 
 
@@ -76,7 +76,7 @@ Spatial interaction is a broad term encompassing any movement over space that re
 
 
 
-Notice that the region interaction in this thesis proposal is different from the traditional \textbf{spatial interaction} study, which assumes the interaction of two regions is reversely correlated with their geographical distance. However, space is a biased sample on human mobility, and should not be the only measure to model human movement. For example, during the weekdays people usually follow a regular home-office commuting pattern. The workplace region might be far from home region, but their connection is strong due to the human movement. As there are more and more mobility data available, we propose to employ the flow data in the interaction model as well.
+Notice that the region interaction in this dissertation is different from the traditional \textbf{spatial interaction} study, which assumes the interaction of two regions is reversely correlated with their geographical distance. However, space is a biased sample on human mobility, and should not be the only measure to model human movement. For example, during the weekdays people usually follow a regular home-office commuting pattern. The workplace region might be far from home region, but their connection is strong due to the human movement. As there are more and more mobility data available, we propose to employ the flow data in the interaction model as well.
 
 
 
@@ -86,11 +86,11 @@ Notice that the region interaction in this thesis proposal is different from the
 
 \subsection{Exploring Mobility Flow}
 
-In recent years, the availability of flow data enables research progress on exploring the role of various flows. New observations are made on the mobility data. For example, there are studies to explain epidemic spread with air travel \cite{huang2013global, tatem2014mapping} and population migration survey \cite{pindolia2013demographics}. Zheng et al. \cite{zheng2011urban} identify the underlying road network problem by detecting anomalous pair of flow. Yuan et al. \cite{yuan2012discovering} discover the function of regions by learning a topic model on the flow matrix and clustering the flow of region pairs into different topic.  Berlingerio et al. \cite{berlingerio2013allaboard} optimizes public transport route by looking at the region origin/destination flow. 
+In recent years, the availability of flow data enables research progress on exploring the role of various flows. New observations are made on the mobility data. For example, there are studies to explain epidemic spread with air travel \cite{huang2013global, tatem2014mapping} and population migration survey \cite{pindolia2013demographics}. Zheng et al. \cite{zheng2011urban} identify the underlying road network problem by detecting an anomalous pair of flow. Yuan et al. \cite{yuan2012discovering} discover the function of regions by learning a topic model on the flow matrix and clustering the flow of region pairs into different topics.  Berlingerio et al. \cite{berlingerio2013allaboard} optimize public transport route by looking at the region origin/destination flow. 
 
 
 
-The problem in this proposal is different from the works above in the sense that different approaches are taken. Those works in the literature study the mobility flow by itself. Namely, the literature focuses on observing the properties of the mobility flow by various data mining technique, such as clustering \cite{berlingerio2013allaboard}, topic modeling \cite{yuan2012discovering}, outlier detection \cite{zheng2011urban} etc.  The approach in the literature uses the observed properties of flow to manually explain a phenomenon. This thesis proposal takes a different approach, that explicitly models the statistic dependency between social flow and region properties in an inference problem setting. The approach in this thesis allows us to answer those three research questions raised in Section~\ref{sec:qa}, which the literature methods cannot answer.
+The problem in this proposal is different from the works above in the sense that different approaches are taken. Those works in the literature study the mobility flow by itself. Namely, the literature focuses on observing the properties of the mobility flow by various data mining technique, such as clustering \cite{berlingerio2013allaboard}, topic modeling \cite{yuan2012discovering}, outlier detection \cite{zheng2011urban} etc.  The approach in the literature uses the observed properties of flow to manually explain a phenomenon. This dissertation takes a different approach, that explicitly models the statistic dependency between social flow and region properties in an inference problem setting. The approach in this dissertation allows us to answer those three research questions raised in Section~\ref{sec:qa}, which the literature methods cannot answer.
 
 
 
@@ -105,7 +105,7 @@ In social network analysis, there is a line of work that focuses on infer an uno
 With more data types available, there is one line of works solving the nodal feature inference problem with \textbf{composite social network} \cite{pan2011composite, madan2011pervasive,zhong2012comsoc}. Composite social network is a graph with multiple types of edges. For example in a social network, two users could be connected by following, how many re-tweets, how many messages are exchanged, etc. 
 
 
-Our work is different from those work in social network literature in a way that we do not use observed edge strength as the interactions. All those paper in literature assumes that if two nodes are connected by a edge with heavy weight, then they are very likely to have strong interactions. This is not necessarily true. Take the crime inference as example. Suppose two communities are connected by heavy traffic flow, and both community are crime free. In this case, we cannot say two regions have strong crime interactions.
+Our work is different from those work in social network literature in a way that we do not use observed edge strength as the interactions. All those paper in literature assumes that if two nodes are connected by an edge with heavy weight, then they are very likely to have strong interactions. This is not necessarily true. Take the crime inference as an example. Suppose two communities are connected by heavy traffic flow, and both communities are crime free. In this case, we cannot say two regions have strong crime interactions.
 
 
 
@@ -117,11 +117,11 @@ Our work is different from those work in social network literature in a way that
 
 There are mainly three challenges to address in modeling region networks through mobility flow.
 
-\textbf{Given multiple types of social flow, the interaction is difficult to define}. Given only one type of social flow, there are too many possibilities in constructing interactions.  First, the flow matrix can take various form. For example, we can chose normalize the flow matrix or not. When normalizing the flow matrix, we can chose whether normalize by in-flow or out-flow. Second, there are many nodal properties that could interact with their neighbors, such as various demographics features. Third, different kinds of function can be used to define interactions. Take the product of flow and nodal properties is the most straightforward choice. However, sometimes it also makes sense to further apply distance exponential decay on previous product.  Furthermore, it is possible we have multiple types of social flow (e.g. taxi flow, commuter transit). For one pair of regions, should we build separate interaction over different social flows, or sum over all flows to get one interaction? When we take the sum, should we weight different social flow differently, and how?
+\textbf{Given multiple types of social flow, the interaction is difficult to define}. Given only one type of social flow, there are too many possibilities in constructing interactions.  First, the flow matrix can take various form. For example, we can choose to normalize the flow matrix or not. When normalizing the flow matrix, we can choose whether normalize by in-flow or out-flow. Second, there are many nodal properties that could interact with their neighbors, such as various demographic features. Third, different kinds of function can be used to define interactions. Taking the product of flow and nodal properties is the most straightforward choice. However, sometimes it also makes sense to further apply distance exponential decay on previous product.  Furthermore, it is possible we have multiple types of social flow (e.g. taxi flow, commuter transit). For one pair of regions, should we build separate interaction over different social flows, or sum over all flows to get one interaction? When we take the sum, should we weight different social flow differently, and how?
 
 
 
-\textbf{Constructing discrete node from continuous space is challenging}. In the literature, the boundary of regions are usually pre-defined administrative regions, which has two major issues. First, this boundary definition is not consistent in terms of the property of interest. For example, it is very likely a community is formed on the boundary of two administrative regions. Also, the current partition does not evolve over time. In real life, we know there must be some dynamic change of communities. Second, partition continuous space is not trivial. There is a misalignment problem, which refers to the problem that different data are not collected in the same scale. For example, the crime record is at point level, while the demographics is at block level.
+\textbf{Constructing discrete node from continuous space is challenging}. In the literature, the boundary of regions are usually pre-defined administrative regions, which has two major issues. First, this boundary definition is not consistent in terms of the property of interest. For example, it is very likely a community is formed on the boundary of two administrative regions. Also, the current partition does not evolve over time. In real life, we know there must be some dynamic change of communities. Second, partition continuous space is not trivial. There is a misalignment problem, which refers to the problem that different data are not collected in the same scale. For example, the crime record is collected at point level, while the demographics are collected at block level.
 
 
 
