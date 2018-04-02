@@ -1,0 +1,38 @@
+% !TEX root = main.tex
+
+\section{Related Work}
+\label{sec:related-work}
+
+
+Sensing technologies and large-scale computing infrastructures have produced a variety of big data in urban spaces (e.g. human mobility, POI, and traffic). These heterogeneous data convey rich knowledge about city dynamics and enable us to  address many urban challenges. For example, human mobility data could help improve the efficiency of transportation systems such as estimating real-time traffic flow \cite{HHAB10,CCLP+11}, and forecasting travel time for road segments \cite{CJJH09,FLL11,SiZa11} or a trip \cite{TRLM+09,WKKL16}. The POI and taxi data can be used to infer air quality~\cite{ZLH13} and city noises~\cite{ZLWZ+14}. With the similar motivation, we employ such modern urban data for crime rate inference. 
+
+\nop{are also used in the environment monitoring. Zheng et. al. \cite{ZLH13} inferred the real time air quality information throughout a city based on existing monitor station, POIs, and human mobility data. The POI data are also used to infer the noise pollution in New York city \cite{ZLWZ+14}.} 
+
+\medskip
+
+In the criminology literature, researchers have studied the relationship between crime and various features (social, demographics, and geographic factors). Examples are historical crime records~\cite{MSBS+12,WRWS13}, education~\cite{Ehrl75}, ethnicity~\cite{Brai89}, income level~\cite{Patt91}, unemployment~\cite{Free99}, and spatial proximity~\cite{Ans02}. 
+In data mining, newer types of data are used. For example, studies use twitter to predict crime \cite{WGB12,Gerb14}, and cellphone data \cite{TQC14,Bogo14} to evaluate crime and social theories at scale. Overall, existing work on crime prediction can be categorized into three paradigms.
+
+
+\smallskip
+\textbf{Time-centric paradigm}. This line of work focuses on the temporal dimension of crime incidents. For example, Mohler et. al.~\cite{MSBS+12} propose to use a self-exciting point process to model the crime and gain insights into the temporal trends in the rate of burglary. In another study, Ratcliffe~\cite{Ratc06} investigates the temporal constraints on crime, and propose an offender travel and opportunity model. His findings suggest that a proportion of offending is driven by the availability of opportunities presented in the  routine lives of offenders. 
+
+\smallskip
+\textbf{Place-centric paradigm}. Most existing works adopt a place-centric paradigm, where the research question is to predict the location of crime incidents.  The predicted crime location is sometimes referred as \emph{hotspot}, conceptualized at various geographical sizes. For example, Toole et. al.~\cite{TEP11} use criminal offense records to identify spatio-temporal patterns at multiple scales. They employ various quantitative tools from mathematics and physics and identify significant correlation in both space and time in the crime behavioral data. Short et. al.~\cite{SDPT+08} study the dynamics of crime hotspots and identify stable hotspots, where criminals are modeled as random walkers. Bogomolov et. al.~\cite{Bogo14} use human behavioral data derived from mobile network and demographic sources, together with open crime data to predict crime hotspots. They compare various classifiers and find random forests have the best prediction performance. Wang et. al.~\cite{WGB12} use automatic semantic analysis to understand natural language in Tweets, from which the crime incidents are reported. Some other work \cite{CTU08,ECCW05} employ kernel density estimation (KDE) to identify and analyze crime hotspots. Those studies form another form of crime prediction, which relies on the retrospective crime data to identify areas of high concentrations of crime. Nakaya et. al.~\cite{NaYa14} extend the crime cluster analysis with a temporal dimension. They employ the space-time variants of KDE to simultaneously visualize geographical extent and duration of crime clusters. 
+
+\smallskip
+\textbf{Population-centric paradigm}. In the last paradigm, research focuses on the criminal profiling at individual and community levels. At the individual level, Wang et. al.~\cite{WRWS13} aim to automatically  identify crimes committed by the same individual from a historical crime database. The proposed system, called \emph{Series Finder}, is designed to find and classify the modus operandi (M.O.) of criminals.  At the community level, Buczak et. al.~\cite{BuGi10} use fuzzy association rule mining to identify crime patterns. The rules they found are consistent across all regions. They identify association rules from population demographics in communities.  In another paper, Traunmueller et. al.~\cite{TQC14} use computational methods to validate various social theories at a large scale.  They used mobile phone data in London, from which they mine the  people dynamics as features to correlate with crime.  
+
+\smallskip
+The problem we tackle is to estimate crime rate in a community, which is different from the first two categories of work, mainly because our innovation lies in using newer type of data to enhance the commonly used traditional counterparts. More specifically, we use POI to enhance the demographics information and use taxi flow as hyperlinks to enhance the geographical proximity correlation. Although in our problem we do not consider the temporal dimension of crime in depth, it could be a promising supplement to better profile crime. Our problem is not location prediction of any particular crime incident. Therefore the methods proposed in place-centric methods are not applicable in our problem. However, the features we propose may be incorporated in those crime prediction models. 
+
+Our approach falls into the third paradigm because we try to predict the crime rate for Chicago community areas. In our study, the community areas are well-defined and stable geographical regions. The newly proposed POI features and taxi flows provide new perspectives in advancing our understanding of crime rates across community areas.
+
+
+\medskip
+
+
+It is worthy noting that our problem is different from the spatial interpolation (kriging) problem in geostatistics field~\cite{Ans02}. Kriging method in general is used for spatial interpolation, where the goal is to estimate the value of a target variable at a certain location given the observations of the same variables on nearby locations \cite{OlWe90}. The original kriging technique only involves one variable, and aims to interpolate missing observations of the target variable on a continuous plane \cite{Cres90}. Later on, various extensions on kriging are developed \cite{KBV95}. Among those extensions, regression-kriging \cite{HuWa94} and co-kriging \cite{Myer83, KBCD14} have been widely used in many applications, such as estimating soil nitrogen \cite{WZL13} and real-time precipitation prediction \cite{SGEG14}. Both regression-kriging and co-kriging incorporate auxiliary variables to estimate the target variable. The co-kriging assumes that auxiliary variables strongly correlate with target variable and there are abundant observations of auxiliary variables. The regression kriging learns a regression function between auxiliary variables and target variables, and then applies kriging method to estimate the regression residuals. In our problem, the co-kriging method is not appropriate, because some of the auxiliary variables are not strongly correlate with crime rate by itself. The regression kriging method, on the other hand, could be used as a baseline for comparison. However, it is worth mentioning that the kriging method aims to interpolate missing values to minimize overall variance, which is in contrast with our goal of optimal prediction.
+
+
+
